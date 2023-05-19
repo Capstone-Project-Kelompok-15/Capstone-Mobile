@@ -1,3 +1,5 @@
+import 'package:capstone_mobile/style/color_style.dart';
+import 'package:capstone_mobile/style/font_style.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
@@ -36,7 +38,9 @@ class ThreadContentCustom extends StatelessWidget {
             title: IntrinsicHeight(
               child: Row(
                 children: <Widget>[
-                  Text(name),
+                  Text(
+                    name,
+                  ),
                   // Expanded(child: Divider()),
                   const VerticalDivider(
                     thickness: 1,
@@ -48,31 +52,40 @@ class ThreadContentCustom extends StatelessWidget {
               ),
             ),
             subtitle: Row(
-              children: const [
-                Text("53 menit "),
-                Text("yang lalu,"),
-                Text(" Di Konoha"),
+              children: [
+                Text(
+                  "53 menit ",
+                  style: smallReguler,
+                ),
+                Text(
+                  "yang lalu,",
+                  style: smallReguler,
+                ),
+                Text(
+                  " Di Konoha",
+                  style: smallReguler,
+                ),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(bottom: 10),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
             child: Text(
               "UU TENAGA KERJA",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: regulerBold,
             ),
           ),
           ReadMoreText(
+            // content masih menggunakan data dari faker
             contentThread,
-            trimLines: 2,
-            colorClickableText: Colors.pink,
+            trimLines: 4,
             trimMode: TrimMode.Line,
             trimCollapsedText: 'Lihat Selengkapnya',
             trimExpandedText: 'kecikan',
-            moreStyle:
-                const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-            lessStyle:
-                const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            moreStyle: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
+            lessStyle: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),

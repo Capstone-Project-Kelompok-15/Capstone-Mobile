@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
@@ -28,6 +29,7 @@ class HomeThreadScreen extends StatelessWidget {
           child: IntrinsicWidth(
             child: TextFormField(
               textAlignVertical: TextAlignVertical.center,
+              style: regulerReguler,
               decoration: const InputDecoration(
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -60,36 +62,44 @@ class HomeThreadScreen extends StatelessWidget {
       appBar: myAppBar,
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.all(20),
-            height: bodyHeight * 0.08,
-            width: mediaQueryWidth,
-            decoration: const BoxDecoration(
-              color: Color(0xffEEEEEE),
-              borderRadius: BorderRadius.all(
-                Radius.circular(50),
+          GestureDetector(
+            onTap: () {
+              print("Berhasil button post");
+            },
+            child: Container(
+              margin: const EdgeInsets.all(20),
+              height: bodyHeight * 0.07,
+              width: mediaQueryWidth,
+              decoration: const BoxDecoration(
+                color: Color(0xffEEEEEE),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(50),
+                ),
+                // border: Border.all(color: Colors.black),
               ),
-              // border: Border.all(color: Colors.black),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                    width: mediaQueryWidth * 0.5,
-                    child: const Text("Apa yang anda pikirkan ?")),
-                Row(
-                  children: [
-                    Image.asset("assets/icon/PlaySquare.png"),
-                    SizedBox(
-                      width: mediaQueryWidth * 0.02,
-                    ),
-                    Text(
-                      "Post",
-                      style: TextStyle(fontSize: mediaQueryWidth * 0.04),
-                    )
-                  ],
-                )
-              ],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                      width: mediaQueryWidth * 0.5,
+                      child: Text(
+                        "Apa yang anda pikirkan ?",
+                        style: smallReguler,
+                      )),
+                  Row(
+                    children: [
+                      Image.asset("assets/icon/PlaySquare.png"),
+                      SizedBox(
+                        width: mediaQueryWidth * 0.02,
+                      ),
+                      Text(
+                        "Post",
+                        style: smallMedium,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -99,7 +109,7 @@ class HomeThreadScreen extends StatelessWidget {
                 return ThreadContentCustom(
                   faker: faker,
                   name: faker.person.name(),
-                  contentThread: faker.lorem.sentences(3).join(''),
+                  contentThread: faker.lorem.sentences(7).join(''),
                   mediaWidth: mediaQueryWidth,
                 );
               },
