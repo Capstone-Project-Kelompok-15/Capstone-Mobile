@@ -46,7 +46,6 @@ class ThreadContentCustom extends StatelessWidget {
                   Text(
                     name,
                   ),
-                  // Expanded(child: Divider()),
                   const VerticalDivider(
                     thickness: 1,
                     width: 20,

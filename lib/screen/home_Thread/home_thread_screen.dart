@@ -1,9 +1,11 @@
+import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
 class HomeThreadScreen extends StatelessWidget {
+  static const routename = "/homeThread";
   HomeThreadScreen({super.key});
   // ignore: unnecessary_new
   final faker = new Faker();
@@ -64,7 +66,7 @@ class HomeThreadScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              print("Berhasil button post");
+              Navigator.of(context).pushNamed(CreateThreadScreen.routename);
             },
             child: Container(
               margin: const EdgeInsets.all(20),

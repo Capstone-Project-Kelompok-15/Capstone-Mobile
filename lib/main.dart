@@ -1,4 +1,5 @@
-import 'package:capstone_mobile/screen/home_thread_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeThreadScreen(),
+      initialRoute: HomeThreadScreen.routename,
+      routes: {
+        HomeThreadScreen.routename: (context) => HomeThreadScreen(),
+        CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
+      },
     );
   }
 }
