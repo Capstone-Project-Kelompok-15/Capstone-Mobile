@@ -2,6 +2,7 @@ import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
 
 // ignore: must_be_immutable
@@ -9,12 +10,16 @@ class ThreadContentCustom extends StatelessWidget {
   String name;
   String contentThread;
   double? mediaWidth;
+  bool? isLeaderBoard;
+  int? ranking;
   ThreadContentCustom({
     super.key,
     required this.faker,
     required this.name,
     required this.contentThread,
     this.mediaWidth,
+    this.isLeaderBoard = false,
+    this.ranking,
   });
 
   final Faker faker;
@@ -51,22 +56,17 @@ class ThreadContentCustom extends StatelessWidget {
                 ],
               ),
             ),
-            subtitle: Row(
-              children: [
-                Text(
-                  "53 menit ",
-                  style: smallReguler,
-                ),
-                Text(
-                  "yang lalu,",
-                  style: smallReguler,
-                ),
-                Text(
-                  " Di Konoha",
-                  style: smallReguler,
-                ),
-              ],
-            ),
+            subtitle: Text("53 menit yang lalu,Di Konoha", style: smallReguler),
+            // untuk menampilkan rangkin bulanan dan mingguan
+            trailing: isLeaderBoard == true
+                ? Text(
+                    "#$ranking",
+                    style: GoogleFonts.sourceSansPro(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: success800),
+                  )
+                : const SizedBox(),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
@@ -81,7 +81,7 @@ class ThreadContentCustom extends StatelessWidget {
             trimLines: 4,
             trimMode: TrimMode.Line,
             trimCollapsedText: 'Lihat Selengkapnya',
-            trimExpandedText: 'kecikan',
+            trimExpandedText: 'Tampilkan lebih Sedikit',
             moreStyle: TextStyle(
                 fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
             lessStyle: TextStyle(
@@ -132,17 +132,10 @@ class ThreadContentCustom extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text(
-                    faker.person.firstName(),
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  const Text(" dan "),
-                  const Text("155"),
-                  const Text(" lainnya"),
-                ],
+              Text(
+                "${faker.person.firstName()} dan 155 lainnya",
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               const Text("4 Komentar"),
             ],
