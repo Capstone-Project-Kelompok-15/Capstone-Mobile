@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/style/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
