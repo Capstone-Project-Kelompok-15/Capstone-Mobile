@@ -1,4 +1,4 @@
-import 'package:capstone_mobile/screen/home_thread_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
