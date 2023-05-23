@@ -24,6 +24,7 @@ class CreateThreadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
+    // ignore: unused_local_variable
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
     final myAppbar = AppBar(

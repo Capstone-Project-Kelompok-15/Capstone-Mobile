@@ -1,4 +1,4 @@
-import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_Screen/komentar_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:faker/faker.dart';
@@ -7,13 +7,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
 
 // ignore: must_be_immutable
-class ThreadContentCustom extends StatelessWidget {
+class ThreadContentCustomWidget extends StatelessWidget {
   String name;
   String contentThread;
   double? mediaWidth;
   bool? isLeaderBoard;
   int? ranking;
-  ThreadContentCustom({
+  ThreadContentCustomWidget({
     super.key,
     required this.faker,
     required this.name,

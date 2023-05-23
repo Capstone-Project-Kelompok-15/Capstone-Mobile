@@ -1,6 +1,7 @@
-import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
-import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
-import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_Screen/create_thread_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_buttomNavigasi_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_Screen/home_thread_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_Screen/komentar_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,12 +15,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeThreadScreen(),
-      initialRoute: HomeThreadScreen.routename,
+      home: const HomeButtonmNavigasiScreen(),
+      initialRoute: HomeButtonmNavigasiScreen.routename,
       routes: {
+        HomeButtonmNavigasiScreen.routename: (context) =>
+            const HomeButtonmNavigasiScreen(),
         HomeThreadScreen.routename: (context) => HomeThreadScreen(),
         CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
-        KomentarScreen.routename: (context) => KomentarScreen(),
+        KomentarScreen.routename: (context) => const KomentarScreen(),
       },
     );
   }
