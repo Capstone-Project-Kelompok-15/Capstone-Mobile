@@ -46,7 +46,7 @@ class HomeThreadScreen extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: Image.asset(
-            "assets/icon/Bell.png",
+            "assets/icon/bell.png",
             width: 30,
             height: 30,
             color: Colors.black,
@@ -71,7 +71,7 @@ class HomeThreadScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              print("object");
+              Navigator.of(context).pushNamed(CreateThreadScreen.routename);
             },
             child: Container(
               margin: const EdgeInsets.all(20),

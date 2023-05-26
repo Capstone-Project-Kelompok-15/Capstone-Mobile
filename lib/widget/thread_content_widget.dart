@@ -174,7 +174,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                                 .pushNamed(KomentarScreen.routename);
                           },
                           icon: Image.asset(
-                            "assets/icon/Chat.png",
+                            "assets/icon/chat.png",
                           ),
                         ),
                         IconButton(
