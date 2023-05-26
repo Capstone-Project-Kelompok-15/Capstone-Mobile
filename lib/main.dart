@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-=======
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
 import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
->>>>>>> Home_Thread
-import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
