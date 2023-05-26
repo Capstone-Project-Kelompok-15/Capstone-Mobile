@@ -1,4 +1,7 @@
 import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
+import 'package:capstone_mobile/screen/landing_pages/landing_screen.dart';
+import 'package:capstone_mobile/screen/login_screen.dart';
+import 'package:capstone_mobile/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeThreadScreen(),
+      routes: {
+        '/':(context) => const SplashScreen(),
+        '/landing-page':(context) => const LandingScreen(),
+        '/home':(context) => HomeThreadScreen(),
+        '/login':(context) => const LoginScreen()
+      },
     );
   }
 }
