@@ -1,4 +1,4 @@
-import 'package:capstone_mobile/screen/home_Thread/home_Screen/komentar_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:faker/faker.dart';
@@ -46,18 +46,35 @@ class ThreadContentCustomWidget extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     name,
+                    style: regulerMedium,
                   ),
-                  const VerticalDivider(
-                    thickness: 1,
-                    width: 20,
-                    color: Colors.black,
+                  const SizedBox(
+                    height: 20,
+                    width: 10,
+                    child: VerticalDivider(
+                      thickness: 1,
+                      width: 20,
+                      color: Colors.black,
+                    ),
                   ),
-                  Image.asset("assets/icon/Follow.png")
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    iconSize: 20,
+                    splashRadius: 18,
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/icon/Follow.png",
+                      width: 24,
+                      height: 24,
+                      color: Colors.black,
+                    ),
+                  ),
                 ],
               ),
             ),
             subtitle: Text("53 menit yang lalu,Di Konoha", style: smallReguler),
-            // untuk menampilkan rangkin bulanan dan mingguan
+            // untuk menampilkan rangkin bulanan dan mingguan saat halaman leaderboard
             trailing: isLeaderBoard == true
                 ? Text(
                     "#$ranking",
@@ -92,40 +109,47 @@ class ThreadContentCustomWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  width: mediaWidth! * 0.3,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          print("berhasil like");
-                        },
-                        child: Image.asset(
-                          "assets/icon/like.png",
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: SizedBox(
+                    width: mediaWidth! * 0.3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          onPressed: () {},
+                          icon: Image.asset(
+                            "assets/icon/like.png",
+                            width: 24,
+                          ),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(KomentarScreen.routename);
-                        },
-                        child: Image.asset("assets/icon/chat.png"),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          print("berhasil send");
-                        },
-                        child: Image.asset("assets/icon/Send.png"),
-                      ),
-                    ],
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          onPressed: () {},
+                          icon: Image.asset("assets/icon/chat.png"),
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                          onPressed: () {},
+                          icon: Image.asset("assets/icon/Send.png"),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    print("berhasil menu");
-                  },
-                  child: Image.asset("assets/icon/Menu.png"),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: () {},
+                  icon: Image.asset(
+                    "assets/icon/Menu.png",
+                    width: 24,
+                    height: 24,
+                  ),
                 ),
               ],
             ),

@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:capstone_mobile/screen/home_Thread/home_Screen/home_thread_screen.dart';
+import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:flutter/material.dart';
 
@@ -54,19 +54,55 @@ class _HomeButtonmNavigasiScreen extends State<HomeButtonmNavigasiScreen> {
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Image(
+                image: AssetImage("assets/icon/Home.png"),
+                width: 24,
+                height: 24,
+              ),
+              activeIcon: Image(
+                image: AssetImage("assets/icon/HomeBold.png"),
+                width: 24,
+                height: 24,
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_add),
+              icon: Image(
+                image: AssetImage("assets/icon/Follow.png"),
+                width: 24,
+                height: 24,
+              ),
+              activeIcon: Image(
+                image: AssetImage("assets/icon/FollowBold.png"),
+                width: 24,
+                height: 24,
+              ),
               label: 'Business',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.leaderboard),
+              icon: Image(
+                image: AssetImage("assets/icon/Leaderboard.png"),
+                width: 26,
+                height: 26,
+              ),
+              activeIcon: Image(
+                image: AssetImage("assets/icon/LeaderboardBold.png"),
+                width: 26,
+                height: 26,
+              ),
               label: 'School',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Image(
+                image: AssetImage("assets/icon/Profile.png"),
+                width: 24,
+                height: 24,
+              ),
+              activeIcon: Image(
+                image: AssetImage("assets/icon/ProfileBold.png"),
+                width: 24,
+                height: 24,
+              ),
               label: 'School',
             ),
           ],
