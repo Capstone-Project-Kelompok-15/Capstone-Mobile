@@ -1,4 +1,3 @@
-import 'package:capstone_mobile/style/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,7 +28,7 @@ TextStyle regulerReguler = GoogleFonts.sourceSansPro(
 );
 TextStyle regulerMedium = GoogleFonts.sourceSansPro(
   fontSize: 16,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.w600,
 );
 TextStyle regulerBold = GoogleFonts.sourceSansPro(
   fontSize: 16,

@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
@@ -45,10 +46,15 @@ class HomeThreadScreen extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: Image.asset(
-            "assets/icon/bell.png",
+            "assets/icon/Bell.png",
+            width: 30,
+            height: 30,
             color: Colors.black,
           ),
-        )
+        ),
+        SizedBox(
+          width: 20,
+        ),
       ],
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -65,7 +71,11 @@ class HomeThreadScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
+<<<<<<< HEAD
               print("object");
+=======
+              Navigator.of(context).pushNamed(CreateThreadScreen.routename);
+>>>>>>> Home_Thread
             },
             child: Container(
               margin: const EdgeInsets.all(20),
@@ -107,11 +117,12 @@ class HomeThreadScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
-                return ThreadContentCustom(
+                return ThreadContentCustomWidget(
                   faker: faker,
                   name: faker.person.name(),
                   contentThread: faker.lorem.sentences(7).join(''),
                   mediaWidth: mediaQueryWidth,
+                  bodyheight: bodyHeight,
                 );
               },
             ),
