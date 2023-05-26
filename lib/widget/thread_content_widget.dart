@@ -128,7 +128,10 @@ class ThreadContentCustomWidget extends StatelessWidget {
                         IconButton(
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed(KomentarScreen.routename);
+                          },
                           icon: Image.asset("assets/icon/chat.png"),
                         ),
                         IconButton(

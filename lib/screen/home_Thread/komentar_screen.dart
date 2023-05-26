@@ -20,20 +20,27 @@ class _KomentarScreenState extends State<KomentarScreen> {
   @override
   Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: typography500),
-        title: Text(
-          "Komentar",
-          style: GoogleFonts.sourceSansPro(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: typography500,
-          ),
+    final mediaQueryHeight = MediaQuery.of(context).size.height;
+    final myAppBar = AppBar(
+      iconTheme: IconThemeData(color: typography500),
+      title: Text(
+        "Komentar",
+        style: GoogleFonts.sourceSansPro(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: typography500,
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
       ),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+    );
+
+    final bodyHeight = mediaQueryHeight -
+        myAppBar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
+    return Scaffold(
+      appBar: myAppBar,
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: ListView.builder(
@@ -42,6 +49,63 @@ class _KomentarScreenState extends State<KomentarScreen> {
             return ItemComentarWidget(
                 faker: faker, mediaQueryWidth: mediaQueryWidth);
           },
+        ),
+      ),
+      bottomSheet: Container(
+        height: bodyHeight * 0.08,
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 8,
+              offset: const Offset(0, -4), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: const BorderRadius.all(Radius.circular(50)),
+              ),
+              child: Image.asset(
+                "assets/icon/Profile.png",
+                width: 26,
+              ),
+            ),
+            Center(
+              child: Container(
+                width: mediaQueryWidth * 0.7,
+                // padding: const EdgeInsets.all(2),
+                padding: const EdgeInsets.only(left: 10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                ),
+                child: const TextField(
+                  decoration: InputDecoration(
+                    hintText: "Masukan Komentar...",
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ),
+            IconButton(
+              splashRadius: 20,
+              onPressed: () {},
+              icon: Image.asset(
+                "assets/icon/Send-Right.png",
+                width: 30,
+                height: 30,
+              ),
+            ),
+          ],
         ),
       ),
     );
