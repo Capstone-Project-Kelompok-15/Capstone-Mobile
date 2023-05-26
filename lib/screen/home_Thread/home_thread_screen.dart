@@ -46,10 +46,15 @@ class HomeThreadScreen extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: Image.asset(
-            "assets/icon/bell.png",
+            "assets/icon/Bell.png",
+            width: 30,
+            height: 30,
             color: Colors.black,
           ),
-        )
+        ),
+        SizedBox(
+          width: 20,
+        ),
       ],
       backgroundColor: Colors.transparent,
       elevation: 0,
@@ -113,6 +118,7 @@ class HomeThreadScreen extends StatelessWidget {
                   name: faker.person.name(),
                   contentThread: faker.lorem.sentences(7).join(''),
                   mediaWidth: mediaQueryWidth,
+                  bodyheight: bodyHeight,
                 );
               },
             ),
