@@ -181,6 +181,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                           constraints: const BoxConstraints(),
                           onPressed: () {
                             showModalBottomSheet<void>(
+                              isDismissible: false,
                               context: context,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
@@ -207,6 +208,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                   constraints: const BoxConstraints(),
                   onPressed: () {
                     showModalBottomSheet<void>(
+                      isDismissible: false,
                       context: context,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(

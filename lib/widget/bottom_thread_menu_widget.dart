@@ -1,5 +1,8 @@
 // ignore_for_file: camel_case_types, must_be_immutable
 import 'package:capstone_mobile/style/font_style.dart';
+import 'package:capstone_mobile/widget/bottom_laporkan_thread_widget.dart';
+import 'package:capstone_mobile/widget/bottom_repost_thread_widget.dart';
+import 'package:capstone_mobile/widget/button_thread_menu_widget.dart';
 import 'package:flutter/material.dart';
 
 class bottomThreadMenu extends StatelessWidget {
@@ -21,11 +24,23 @@ class bottomThreadMenu extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              child: Text(
-                "Thread Menu",
-                style: regulerBold,
-              ),
+            Row(
+              children: [
+                IconButton(
+                    constraints: const BoxConstraints(),
+                    padding: const EdgeInsets.only(right: 10),
+                    splashRadius: 20,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back)),
+                SizedBox(
+                  child: Text(
+                    "Thread Menu",
+                    style: regulerBold,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(
               height: 20,
@@ -33,57 +48,72 @@ class bottomThreadMenu extends StatelessWidget {
             BtnThreadMenu(
               imageIcon: "assets/icon/Census.png",
               namaButton: "Ikuti Thread",
+              navigasi: (() {
+                print("Ikuti Thread");
+              }),
             ),
             BtnThreadMenu(
               imageIcon: "assets/icon/Bookmark.png",
               namaButton: "Tambahkan ke Bookmarks",
+              navigasi: (() {
+                print("object");
+              }),
             ),
             BtnThreadMenu(
               imageIcon: "assets/icon/RotateRight.png",
               namaButton: "Repost Thread",
+              navigasi: (() {
+                // print("object 1");
+                Navigator.pop(context);
+                showModalBottomSheet<void>(
+                  isDismissible: false,
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25),
+                    ),
+                  ),
+                  builder: (BuildContext context) {
+                    return BottomRepostThreadWidget(
+                      bodyHeight: bodyHeight,
+                      mediaWidth: mediaWidth,
+                    );
+                  },
+                );
+              }),
             ),
             BtnThreadMenu(
               imageIcon: "assets/icon/Info.png",
               namaButton: "Laporkan Thread",
+              navigasi: (() {
+                Navigator.pop(context);
+                showModalBottomSheet<void>(
+                  isDismissible: false,
+                  context: context,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25),
+                    ),
+                  ),
+                  builder: (BuildContext context) {
+                    return BottomLaporkanThreadWidget(
+                      bodyHeight: bodyHeight,
+                      mediaWidth: mediaWidth,
+                    );
+                  },
+                );
+              }),
             ),
             BtnThreadMenu(
-              imageIcon: "assets/icon/Statistics.png",
-              namaButton: "Direct Message to Joko Santoso",
-            ),
+                imageIcon: "assets/icon/Statistics.png",
+                namaButton: "Direct Message to Joko Santoso",
+                navigasi: (() {
+                  print("Direct Message to Joko Santoso");
+                })),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class BtnThreadMenu extends StatelessWidget {
-  String imageIcon;
-  String namaButton;
-  BtnThreadMenu({
-    super.key,
-    required this.imageIcon,
-    required this.namaButton,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: Row(
-        children: [
-          Image(
-            image: AssetImage(imageIcon),
-            width: 24,
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          Text(
-            namaButton,
-            style: regulerMedium,
-          ),
-        ],
       ),
     );
   }

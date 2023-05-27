@@ -24,7 +24,9 @@ class BottomShereWidget extends StatelessWidget {
                   constraints: const BoxConstraints(),
                   padding: const EdgeInsets.only(right: 10),
                   splashRadius: 20,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   icon: const Icon(Icons.arrow_back)),
               Text(
                 "Bagikan",

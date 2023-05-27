@@ -52,7 +52,7 @@ class HomeThreadScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
       ],
@@ -71,7 +71,8 @@ class HomeThreadScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(CreateThreadScreen.routename);
+              Navigator.of(context).pushNamed(CreateThreadScreen.routename,
+                  arguments: bodyHeight);
             },
             child: Container(
               margin: const EdgeInsets.all(20),
