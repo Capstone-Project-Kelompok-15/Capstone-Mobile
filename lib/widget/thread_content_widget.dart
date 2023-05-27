@@ -1,8 +1,7 @@
-import 'dart:ffi';
-
 import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
+import 'package:capstone_mobile/widget/bottom_shere_widget.dart';
 import 'package:capstone_mobile/widget/bottom_thread_menu_widget.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -174,13 +173,29 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                                 .pushNamed(KomentarScreen.routename);
                           },
                           icon: Image.asset(
-                            "assets/icon/Chat.png",
+                            "assets/icon/chat.png",
                           ),
                         ),
                         IconButton(
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
-                          onPressed: () {},
+                          onPressed: () {
+                            showModalBottomSheet<void>(
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                ),
+                              ),
+                              builder: (BuildContext context) {
+                                return BottomShereWidget(
+                                  bodyHeight: widget.bodyheight,
+                                  mediaWidth: widget.mediaWidth,
+                                );
+                              },
+                            );
+                          },
                           icon: Image.asset("assets/icon/Send.png"),
                         ),
                       ],
