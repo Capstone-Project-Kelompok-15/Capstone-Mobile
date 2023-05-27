@@ -37,7 +37,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
     // ignore: unused_local_variable
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
-    var myAppbar = AppBar(
+    final myAppbar = AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
       bottomOpacity: 0,
