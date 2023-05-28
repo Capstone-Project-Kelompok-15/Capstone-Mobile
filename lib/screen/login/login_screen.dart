@@ -1,4 +1,4 @@
-import 'package:capstone_mobile/screen/register_screen.dart';
+import 'package:capstone_mobile/screen/register/register_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/button.dart';

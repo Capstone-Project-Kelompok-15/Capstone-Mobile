@@ -1,6 +1,6 @@
 import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:capstone_mobile/screen/landing_pages/landing_screen.dart';
-import 'package:capstone_mobile/screen/login_screen.dart';
+import 'package:capstone_mobile/screen/login/login_screen.dart';
 import 'package:capstone_mobile/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 
