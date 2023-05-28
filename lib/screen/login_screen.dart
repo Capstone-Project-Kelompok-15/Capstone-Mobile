@@ -12,6 +12,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,13 +65,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TabBarView(children: [
                 ListView(
                   children: [
-                    const InputField(
-                        title: "Alamat Email / Nomor Handphone",
-                        hintText: "e.g., alexiealexander@gmail.com"),
+                    InputField(
+                      title: "Alamat Email / Nomor Handphone",
+                      hintText: "e.g., alexiealexander@gmail.com",
+                      controller: emailController,
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
-                    const InputField(title: "Kata Sandi"),
+                    InputField(
+                      title: "Kata Sandi",
+                      controller: passwordController,
+                    ),
                     Align(
                         alignment: Alignment.bottomRight,
                         child: Container(
@@ -82,7 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               )),
                         )),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 138, vertical: 24),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 138, vertical: 24),
                       child: Button(
                           buttonText: "Masuk", width: 111, onPressed: () {}),
                     )
