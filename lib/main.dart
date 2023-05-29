@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/':(context) => const SplashScreen(),
-        '/landing-page':(context) => const LandingScreen(),
-        '/home':(context) => HomeThreadScreen(),
-        '/login':(context) => const LoginScreen()
+        SplashScreen.routename:(context) => const SplashScreen(),
+        LandingScreen.routename:(context) => const LandingScreen(),
+        LoginScreen.routename:(context) => const LoginScreen(),
+        HomeThreadScreen.routename: (context) => HomeThreadScreen(),
       },
     );
   }

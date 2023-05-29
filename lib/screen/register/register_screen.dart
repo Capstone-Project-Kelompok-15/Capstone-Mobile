@@ -4,6 +4,8 @@ import 'package:capstone_mobile/widget/button.dart';
 import 'package:capstone_mobile/widget/input_field.dart';
 import 'package:flutter/material.dart';
 
+import '../login/login_screen.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -47,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onPressed: () {
                   final snackBar = showRegisterDialog(true);
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  Navigator.pushNamed(context, '/login');
+                  Navigator.of(context).pushNamed(LoginScreen.routename,);
                 }),
           )
         ],

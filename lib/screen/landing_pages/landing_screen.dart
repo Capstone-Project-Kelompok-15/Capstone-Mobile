@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'landing_screen_2.dart';
 
 class LandingScreen extends StatefulWidget {
+  static const routename = '/landing-screen';
   const LandingScreen({super.key});
 
   @override
