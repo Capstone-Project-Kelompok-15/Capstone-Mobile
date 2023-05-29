@@ -2,6 +2,8 @@ import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/button.dart';
 import 'package:flutter/material.dart';
 
+import '../login/login_screen.dart';
+
 class LandingScreen3 extends StatefulWidget {
   const LandingScreen3({super.key});
 
@@ -38,7 +40,7 @@ class _LandingScreen3State extends State<LandingScreen3> {
                     buttonText: "Lanjutkan",
                     width: 138,
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/login');}
+                      Navigator.of(context).pushNamed(LoginScreen.routename,);}
                     ),
                 const SizedBox(height: 119,)
               ],

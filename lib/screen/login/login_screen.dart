@@ -1,3 +1,5 @@
+import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
+import 'package:capstone_mobile/screen/register/register_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/button.dart';
@@ -5,6 +7,7 @@ import 'package:capstone_mobile/widget/input_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const routename = '/login';
   const LoginScreen({super.key});
 
   @override
@@ -93,13 +96,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 138, vertical: 24),
                       child: Button(
-                          buttonText: "Masuk", width: 111, onPressed: () {}),
+                          buttonText: "Masuk", width: 111, onPressed: () {Navigator.of(context).pushNamed(HomeThreadScreen.routename,);}),
                     )
                   ],
                 ),
-                const Center(
-                  child: Text("Daftar"),
-                ),
+                const RegisterScreen()
               ]))
             ],
           ),

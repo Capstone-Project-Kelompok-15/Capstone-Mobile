@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'package:capstone_mobile/screen/landing_pages/landing_screen.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
+  static const routename = '/';
   const SplashScreen({super.key});
 
   @override
@@ -10,10 +12,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  static const routename = '/';
+
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, '/landing-page');
+      Navigator.of(context).pushNamed(LandingScreen.routename,);
     });
     super.initState();
   }
