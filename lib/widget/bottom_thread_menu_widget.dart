@@ -68,6 +68,7 @@ class bottomThreadMenu extends StatelessWidget {
                 showModalBottomSheet<void>(
                   isDismissible: false,
                   context: context,
+                  isScrollControlled: true,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(25),
@@ -75,9 +76,13 @@ class bottomThreadMenu extends StatelessWidget {
                     ),
                   ),
                   builder: (BuildContext context) {
-                    return BottomRepostThreadWidget(
-                      bodyHeight: bodyHeight,
-                      mediaWidth: mediaWidth,
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: BottomRepostThreadWidget(
+                        bodyHeight: bodyHeight,
+                        mediaWidth: mediaWidth,
+                      ),
                     );
                   },
                 );

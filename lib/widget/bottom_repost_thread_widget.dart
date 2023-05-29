@@ -12,11 +12,10 @@ class BottomRepostThreadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: bodyHeight * 0.45,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      width: mediaWidth,
+    return Padding(
+      padding: const EdgeInsets.all(20),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: [
