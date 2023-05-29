@@ -1,4 +1,4 @@
-import 'package:capstone_mobile/screen/home_thread_screen.dart';
+import 'package:capstone_mobile/screen/profile/profile_user_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeThreadScreen(),
+      home: ProfileUserScreen(),
     );
   }
 }
