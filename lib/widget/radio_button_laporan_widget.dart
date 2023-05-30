@@ -16,10 +16,9 @@ class _RadioButtonLaporanWidgetState extends State<RadioButtonLaporanWidget> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      horizontalTitleGap: 10,
+      visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
+      horizontalTitleGap: 0,
       contentPadding: EdgeInsets.zero,
-      minLeadingWidth: 0,
-      minVerticalPadding: 0,
       leading: IconButton(
         padding: EdgeInsets.zero,
         constraints: const BoxConstraints(),

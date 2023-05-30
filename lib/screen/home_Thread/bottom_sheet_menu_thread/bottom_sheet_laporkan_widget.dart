@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/radio_button_laporan_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +13,8 @@ class BottomSheetLaporkanThreadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: bodyHeight,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      width: mediaWidth,
+    return Padding(
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
           Row(
@@ -58,6 +57,17 @@ class BottomSheetLaporkanThreadWidget extends StatelessWidget {
           RadioButtonLaporanWidget(
             laporan: "bunuh diri",
           ),
+          ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                shape: const StadiumBorder(),
+                backgroundColor: primary500,
+                fixedSize: Size(mediaWidth * 0.3, 30),
+              ),
+              child: Text(
+                "kirim",
+                style: buttonMedium,
+              ))
         ],
       ),
     );
