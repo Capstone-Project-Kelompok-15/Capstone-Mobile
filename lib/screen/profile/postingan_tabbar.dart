@@ -25,23 +25,23 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  color: Colors.transparent,
+                SizedBox(
                   height: 30,
                   child: DropdownButton<String>(
+                    underline: Container(),
                     value: selectedStatus,
                     items: status
-                        .map((name) => DropdownMenuItem<String>(
+                        .map((status) => DropdownMenuItem<String>(
+                              value: status,
                               child: Text(
-                                name,
+                                status,
                                 style: smallMedium,
                               ),
-                              value: name,
                             ))
                         .toList(),
-                    onChanged: (String? newValue) {
+                    onChanged: (name) {
                       setState(() {
-                        selectedStatus = newValue!;
+                        selectedStatus = name;
                       });
                     },
                   ),
@@ -65,9 +65,8 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
           ),
           Container(
             width: double.infinity,
-            height: 0.5,
+            height: 1,
             decoration: BoxDecoration(
-              color: Colors.black,
               border: Border.all(
                 color: Color(0xffAAAAAA),
               ),

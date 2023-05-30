@@ -1,4 +1,5 @@
 import 'package:capstone_mobile/screen/profile/komentar_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/pengikut_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/postingan_tabbar.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
@@ -206,23 +207,13 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: 0.5,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                border: Border.all(
-                  color: Color(0xffAAAAAA),
-                ),
-              ),
-            ),
             Expanded(
               child: TabBarView(
                 controller: _tabController,
                 children: const [
                   PostinganTabBar(),
                   KomentarTabBar(),
-                  Text('Haha'),
+                  PengikutTabBar(),
                   Text('Haha'),
                 ],
               ),

@@ -48,6 +48,12 @@ TextStyle smallBold = GoogleFonts.sourceSansPro(
   fontWeight: FontWeight.bold,
 );
 
+//Tiny
+TextStyle tinyRegular = GoogleFonts.sourceSansPro(
+  fontSize: 10,
+  fontWeight: FontWeight.w400,
+);
+
 // button
 TextStyle buttonMedium = GoogleFonts.sourceSansPro(
   fontSize: 16,
