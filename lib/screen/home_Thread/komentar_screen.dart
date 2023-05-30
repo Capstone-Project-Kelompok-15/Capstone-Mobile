@@ -1,4 +1,5 @@
 import 'package:capstone_mobile/style/color_style.dart';
+import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
 import 'package:capstone_mobile/widget/item_komentar_widget.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class KomentarScreen extends StatefulWidget {
 class _KomentarScreenState extends State<KomentarScreen> {
   // ignore: unnecessary_new
   final faker = new Faker();
+  String contentKomentar = "";
 
   @override
   Widget build(BuildContext context) {
@@ -88,8 +90,11 @@ class _KomentarScreenState extends State<KomentarScreen> {
                   border: Border.all(color: Colors.black),
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  onChanged: (value) {
+                    contentKomentar = value;
+                  },
+                  decoration: const InputDecoration(
                     hintText: "Masukan Komentar...",
                     border: InputBorder.none,
                   ),
@@ -98,7 +103,20 @@ class _KomentarScreenState extends State<KomentarScreen> {
             ),
             IconButton(
               splashRadius: 20,
-              onPressed: () {},
+              onPressed: () {
+                if (contentKomentar.isNotEmpty) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialogCustomWidget(
+                          bodyHeight: bodyHeight,
+                          mediaQueryWidth: mediaQueryWidth,
+                          warna: primary500,
+                          text: "Komentar telah terkirim",
+                        );
+                      });
+                }
+              },
               icon: Image.asset(
                 "assets/icon/Send-Right.png",
                 width: 30,

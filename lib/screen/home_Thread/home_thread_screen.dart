@@ -66,12 +66,14 @@ class HomeThreadScreen extends StatelessWidget {
         MediaQuery.of(context).padding.top;
 
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       appBar: myAppBar,
       body: Column(
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed(CreateThreadScreen.routename);
+              Navigator.of(context).pushNamed(CreateThreadScreen.routename,
+                  arguments: bodyHeight);
             },
             child: Container(
               margin: const EdgeInsets.all(20),

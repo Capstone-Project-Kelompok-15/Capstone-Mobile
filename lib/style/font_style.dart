@@ -46,11 +46,13 @@ TextStyle smallBold = GoogleFonts.sourceSansPro(
   fontSize: 12,
   fontWeight: FontWeight.bold,
 );
+TextStyle smallBoldaAlertDialog = GoogleFonts.sourceSansPro(
+    fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white);
 
 // button
 TextStyle buttonMedium = GoogleFonts.sourceSansPro(
   fontSize: 16,
-  fontWeight: FontWeight.w500,
+  fontWeight: FontWeight.w900,
 );
 TextStyle buttonBold = GoogleFonts.sourceSansPro(
   fontSize: 16,

@@ -1,7 +1,8 @@
 import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
-import 'package:capstone_mobile/widget/bottom_thread_menu_widget.dart';
+import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_shere_widget.dart';
+import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_menu_widget.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -178,7 +179,24 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         IconButton(
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
-                          onPressed: () {},
+                          onPressed: () {
+                            showModalBottomSheet<void>(
+                              isDismissible: false,
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25),
+                                ),
+                              ),
+                              builder: (BuildContext context) {
+                                return BottomSheetShereWidget(
+                                  bodyHeight: widget.bodyheight,
+                                  mediaWidth: widget.mediaWidth,
+                                );
+                              },
+                            );
+                          },
                           icon: Image.asset("assets/icon/Send.png"),
                         ),
                       ],
@@ -190,6 +208,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                   constraints: const BoxConstraints(),
                   onPressed: () {
                     showModalBottomSheet<void>(
+                      isDismissible: false,
                       context: context,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
@@ -198,7 +217,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return bottomThreadMenu(
+                        return BottomSheetThreadMenu(
                           bodyHeight: widget.bodyheight,
                           mediaWidth: widget.mediaWidth,
                         );
