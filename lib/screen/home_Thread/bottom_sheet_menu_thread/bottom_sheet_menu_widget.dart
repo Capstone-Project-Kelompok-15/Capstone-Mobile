@@ -1,14 +1,14 @@
 // ignore_for_file: camel_case_types, must_be_immutable
 import 'package:capstone_mobile/style/font_style.dart';
-import 'package:capstone_mobile/widget/bottom_laporkan_thread_widget.dart';
-import 'package:capstone_mobile/widget/bottom_repost_thread_widget.dart';
-import 'package:capstone_mobile/widget/button_thread_menu_widget.dart';
+import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_laporkan_widget.dart';
+import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_repost_widget.dart';
+import 'package:capstone_mobile/widget/item_thread_menu.dart';
 import 'package:flutter/material.dart';
 
-class bottomThreadMenu extends StatelessWidget {
+class BottomSheetThreadMenu extends StatelessWidget {
   double bodyHeight;
   double mediaWidth;
-  bottomThreadMenu({
+  BottomSheetThreadMenu({
     super.key,
     required this.bodyHeight,
     required this.mediaWidth,
@@ -45,21 +45,21 @@ class bottomThreadMenu extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            BtnThreadMenu(
+            ItemThreadMenu(
               imageIcon: "assets/icon/Census.png",
               namaButton: "Ikuti Thread",
               navigasi: (() {
                 print("Ikuti Thread");
               }),
             ),
-            BtnThreadMenu(
+            ItemThreadMenu(
               imageIcon: "assets/icon/Bookmark.png",
               namaButton: "Tambahkan ke Bookmarks",
               navigasi: (() {
                 print("object");
               }),
             ),
-            BtnThreadMenu(
+            ItemThreadMenu(
               imageIcon: "assets/icon/RotateRight.png",
               namaButton: "Repost Thread",
               navigasi: (() {
@@ -79,7 +79,7 @@ class bottomThreadMenu extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: BottomRepostThreadWidget(
+                      child: BottomSheetRepostThreadWidget(
                         bodyHeight: bodyHeight,
                         mediaWidth: mediaWidth,
                       ),
@@ -88,7 +88,7 @@ class bottomThreadMenu extends StatelessWidget {
                 );
               }),
             ),
-            BtnThreadMenu(
+            ItemThreadMenu(
               imageIcon: "assets/icon/Info.png",
               namaButton: "Laporkan Thread",
               navigasi: (() {
@@ -103,7 +103,7 @@ class bottomThreadMenu extends StatelessWidget {
                     ),
                   ),
                   builder: (BuildContext context) {
-                    return BottomLaporkanThreadWidget(
+                    return BottomSheetLaporkanThreadWidget(
                       bodyHeight: bodyHeight,
                       mediaWidth: mediaWidth,
                     );
@@ -111,7 +111,7 @@ class bottomThreadMenu extends StatelessWidget {
                 );
               }),
             ),
-            BtnThreadMenu(
+            ItemThreadMenu(
                 imageIcon: "assets/icon/Statistics.png",
                 namaButton: "Direct Message to Joko Santoso",
                 navigasi: (() {

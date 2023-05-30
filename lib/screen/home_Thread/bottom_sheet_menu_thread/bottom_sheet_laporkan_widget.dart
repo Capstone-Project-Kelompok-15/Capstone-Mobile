@@ -3,11 +3,11 @@ import 'package:capstone_mobile/widget/radio_button_laporan_widget.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class BottomLaporkanThreadWidget extends StatelessWidget {
+class BottomSheetLaporkanThreadWidget extends StatelessWidget {
   double bodyHeight;
   double mediaWidth;
 
-  BottomLaporkanThreadWidget(
+  BottomSheetLaporkanThreadWidget(
       {super.key, required this.bodyHeight, required this.mediaWidth});
 
   @override

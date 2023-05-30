@@ -4,10 +4,10 @@ import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class BottomRepostThreadWidget extends StatelessWidget {
+class BottomSheetRepostThreadWidget extends StatelessWidget {
   double bodyHeight;
   double mediaWidth;
-  BottomRepostThreadWidget(
+  BottomSheetRepostThreadWidget(
       {super.key, required this.bodyHeight, required this.mediaWidth});
 
   @override

@@ -3,10 +3,10 @@
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
-class BottomShereWidget extends StatelessWidget {
+class BottomSheetShereWidget extends StatelessWidget {
   double bodyHeight;
   double mediaWidth;
-  BottomShereWidget(
+  BottomSheetShereWidget(
       {super.key, required this.bodyHeight, required this.mediaWidth});
 
   @override
