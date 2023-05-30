@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
+import 'package:capstone_mobile/widget/thread_content_widget.dart';
+
 
 class BookmarkScreen extends StatelessWidget {
   static const routename = "/bookmark";
@@ -9,10 +11,18 @@ class BookmarkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
+    final mediaQueryHeight = MediaQuery.of(context).size.height;
+
+    final bodyHeight = mediaQueryHeight - kToolbarHeight -
+        // AppBar.preferredSize.height - 
+        MediaQuery.of(context).padding.top;
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white, // Latar belakang putih
+        toolbarHeight: kToolbarHeight,
+        backgroundColor: Colors.transparent, 
+        elevation: 0,// Latar belakang putih
+        bottomOpacity: 0,
         iconTheme: IconThemeData(color: Colors.black), // Ikon berwarna hitam
         leading: Row(
           children: [
@@ -22,15 +32,6 @@ class BookmarkScreen extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  icon: Icon(Icons.bookmark),
-                  onPressed: null, // Menonaktifkan fungsi klik pada ikon bookmark
-                ),
-              ),
-            ),
           ],
         ),
         title: Text(
@@ -38,14 +39,16 @@ class BookmarkScreen extends StatelessWidget {
           style: TextStyle(color: Colors.black), // Teks berwarna hitam
         ),
       ),
+
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          return ThreadContentCustom(
+          return ThreadContentCustomWidget(
             faker: faker,
             name: faker.person.name(),
             contentThread: faker.lorem.sentences(7).join(''),
             mediaWidth: mediaQueryWidth,
+            bodyheight: bodyHeight,
           );
         },
       ),
