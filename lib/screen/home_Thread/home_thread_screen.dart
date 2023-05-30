@@ -84,7 +84,6 @@ class HomeThreadScreen extends StatelessWidget {
                 borderRadius: BorderRadius.all(
                   Radius.circular(50),
                 ),
-                // border: Border.all(color: Colors.black),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
