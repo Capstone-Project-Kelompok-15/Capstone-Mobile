@@ -190,10 +190,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                                 ),
                               ),
                               builder: (BuildContext context) {
-                                return BottomSheetShereWidget(
-                                  bodyHeight: widget.bodyheight,
-                                  mediaWidth: widget.mediaWidth,
-                                );
+                                return BottomSheetShereWidget();
                               },
                             );
                           },
@@ -217,10 +214,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return BottomSheetThreadMenu(
-                          bodyHeight: widget.bodyheight,
-                          mediaWidth: widget.mediaWidth,
-                        );
+                        return BottomSheetThreadMenu();
                       },
                     );
                   },

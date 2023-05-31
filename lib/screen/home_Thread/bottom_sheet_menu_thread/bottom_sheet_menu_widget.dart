@@ -6,20 +6,14 @@ import 'package:capstone_mobile/widget/item_thread_menu.dart';
 import 'package:flutter/material.dart';
 
 class BottomSheetThreadMenu extends StatelessWidget {
-  double bodyHeight;
-  double mediaWidth;
   BottomSheetThreadMenu({
     super.key,
-    required this.bodyHeight,
-    required this.mediaWidth,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.only(left: 20, top: 20),
-      height: bodyHeight * 0.5,
-      width: mediaWidth,
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,10 +73,7 @@ class BottomSheetThreadMenu extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: BottomSheetRepostThreadWidget(
-                        bodyHeight: bodyHeight,
-                        mediaWidth: mediaWidth,
-                      ),
+                      child: BottomSheetRepostThreadWidget(),
                     );
                   },
                 );
@@ -103,10 +94,7 @@ class BottomSheetThreadMenu extends StatelessWidget {
                     ),
                   ),
                   builder: (BuildContext context) {
-                    return BottomSheetLaporkanThreadWidget(
-                      bodyHeight: bodyHeight,
-                      mediaWidth: mediaWidth,
-                    );
+                    return BottomSheetLaporkanThreadWidget();
                   },
                 );
               }),

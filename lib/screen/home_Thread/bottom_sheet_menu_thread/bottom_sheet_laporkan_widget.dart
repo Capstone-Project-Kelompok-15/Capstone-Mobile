@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class BottomSheetLaporkanThreadWidget extends StatelessWidget {
-  double bodyHeight;
-  double mediaWidth;
-
-  BottomSheetLaporkanThreadWidget(
-      {super.key, required this.bodyHeight, required this.mediaWidth});
+  const BottomSheetLaporkanThreadWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final mediaWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(

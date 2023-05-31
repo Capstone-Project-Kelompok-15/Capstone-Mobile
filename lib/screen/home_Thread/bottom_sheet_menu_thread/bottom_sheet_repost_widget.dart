@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class BottomSheetRepostThreadWidget extends StatelessWidget {
-  double bodyHeight;
-  double mediaWidth;
-  BottomSheetRepostThreadWidget(
-      {super.key, required this.bodyHeight, required this.mediaWidth});
+  const BottomSheetRepostThreadWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final mediaWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -62,8 +62,6 @@ class BottomSheetRepostThreadWidget extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return AlertDialogCustomWidget(
-                    bodyHeight: bodyHeight,
-                    mediaQueryWidth: mediaWidth,
                     warna: primary500,
                     text: "Thread berhasil dilaporkan",
                   );
