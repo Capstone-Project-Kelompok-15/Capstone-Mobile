@@ -12,7 +12,8 @@ class BookmarkScreen extends StatelessWidget {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
     final mediaQueryHeight = MediaQuery.of(context).size.height;
 
-    final bodyHeight = mediaQueryHeight - kToolbarHeight - MediaQuery.of(context).padding.top;
+    final bodyHeight =
+        mediaQueryHeight - kToolbarHeight - MediaQuery.of(context).padding.top;
 
     String selectedValue = 'Item 1'; // Nilai terpilih awal
 
@@ -21,63 +22,81 @@ class BookmarkScreen extends StatelessWidget {
         toolbarHeight: kToolbarHeight,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        bottomOpacity: 0,
         iconTheme: IconThemeData(color: Colors.black),
-        leading: Row(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
+            Text(
+              'Bookmark',
+              style: TextStyle(color: Colors.black),
+            ),
+            DropdownButton<String>(
+              value: selectedValue,
+              onChanged: (newValue) {
+                // Tambahkan logika untuk menangani perubahan nilai dropdown di sini
+                // Misalnya, setState() untuk mengubah nilai terpilih dan memperbarui tampilan
+                // Contoh:
+                // setState(() {
+                //   selectedValue = newValue;
+                // });
               },
+              items: [
+                DropdownMenuItem<String>(
+                  backgroundColor: Colors.transparent,
+                  value: 'Item 1',
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                    child: Text(
+                      'Postingan Terbaru',
+                      style: TextStyle(
+                        fontFamily: 'Source Sans Pro',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 13,
+                        height: 1.4,
+                        color: Color.fromRGBO(44, 44, 44, 0.75),
+                      ),
+                    ),
+                  ),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'Item 2',
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                    child: Text(
+                      'Postingan Terlama',
+                      style: TextStyle(
+                        fontFamily: 'Source Sans Pro',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 13,
+                        height: 1.4,
+                        color: Color.fromRGBO(44, 44, 44, 0.75),
+                      ),
+                    ),
+                  ),
+                ),
+                // ... tambahkan item dropdown lainnya sesuai kebutuhan
+              ],
             ),
           ],
         ),
-        title: Text(
-          'Bookmark',
-          style: TextStyle(color: Colors.black),
-        ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.end;
-        children: [
-          DropdownButton(
-            value: selectedValue,
-            onChanged: (newValue) {
-              // Tambahkan logika untuk menangani perubahan nilai dropdown di sini
-              // Misalnya, setState() untuk mengubah nilai terpilih dan memperbarui tampilan
-              // Contoh:
-              // setState(() {
-              //   selectedValue = newValue;
-              // });
-            },
-            items: [
-              DropdownMenuItem(
-                value: 'Item 1',
-                child: Text('Item 1'),
-              ),
-              DropdownMenuItem(
-                value: 'Item 2',
-                child: Text('Item 2'),
-              ),
-              // ... tambahkan item dropdown lainnya sesuai kebutuhan
-            ],
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return ThreadContentCustomWidget(
-                  faker: faker,
-                  name: faker.person.name(),
-                  contentThread: faker.lorem.sentences(7).join(''),
-                  mediaWidth: mediaQueryWidth,
-                  bodyheight: bodyHeight,
-                );
-              },
-            ),
-          ),
-        ],
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return ThreadContentCustomWidget(
+            faker: faker,
+            name: faker.person.name(),
+            contentThread: faker.lorem.sentences(7).join(''),
+            mediaWidth: mediaQueryWidth,
+            bodyheight: bodyHeight,
+          );
+        },
       ),
     );
   }

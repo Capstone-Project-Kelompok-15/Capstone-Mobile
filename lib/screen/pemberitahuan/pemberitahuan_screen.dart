@@ -31,7 +31,7 @@ class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
     final myAppBar = AppBar(
       iconTheme: IconThemeData(color: typography500),
       title: Text(
-        "pemberitahuan",
+        "Pemberitahuan",
         style: GoogleFonts.sourceSansPro(
           fontSize: 16,
           fontWeight: FontWeight.bold,
