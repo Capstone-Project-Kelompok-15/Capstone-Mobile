@@ -31,11 +31,11 @@ class _LupaPassword3State extends State<LupaPassword3> {
           children: [
             const SizedBox(height: 48,),
             Text("Masukkan kata sandi baru", style: largeReguler, textAlign: TextAlign.center,),
-            const InputField(
+            InputField(
               title: " ",
               hintText: "Masukkan kata sandi baru",
             ),
-            const InputField(
+            InputField(
               title: " ",
               hintText: "Konfirmasi kata sandi baru",
             ),

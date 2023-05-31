@@ -30,7 +30,7 @@ class _LupaPassword2State extends State<LupaPassword2> {
           children: [
             const SizedBox(height: 48,),
             Text("Masukkan kode yang telah dikirim\nke lexliealexander@gmail.com", style: largeReguler, textAlign: TextAlign.center,),
-            const InputField(
+            InputField(
               title: " ",
               hintText: "e.g., 123456",
             ),

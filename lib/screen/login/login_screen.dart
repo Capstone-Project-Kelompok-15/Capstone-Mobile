@@ -1,4 +1,3 @@
-import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:capstone_mobile/screen/login/lupa_password/lupa_password_screen_1.dart';
 import 'package:capstone_mobile/screen/register/register_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
@@ -18,8 +17,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _obsecureText = true;
+  bool akunInvalid = false;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  String email = "kelompok15@gmail.com";
+  String password = "kel15jaya";
 
   @override
   Widget build(BuildContext context) {
@@ -71,25 +75,55 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TabBarView(children: [
                 ListView(
                   children: [
-                    InputField(
-                      title: "Alamat Email / Nomor Handphone",
-                      hintText: "e.g., alexiealexander@gmail.com",
-                      controller: emailController,
-                    ),
+                    akunInvalid == false
+                        ? InputField(
+                            title: "Alamat Email / Nomor Handphone",
+                            hintText: "e.g., alexiealexander@gmail.com",
+                            controller: emailController,
+                          )
+                        : InputField(
+                            title: "Alamat Email / Nomor Handphone",
+                            hintText: "e.g., alexiealexander@gmail.com",
+                            error: true,
+                            textError: "Email yang anda masukkan tidak sesuai",
+                            controller: emailController,
+                          ),
                     const SizedBox(
                       height: 16,
                     ),
-                    InputField(
-                      title: "Kata Sandi",
-                      controller: passwordController,
-                    ),
+                    akunInvalid == false
+                        ? InputField(
+                            title: "Kata Sandi",
+                            controller: passwordController,
+                            obsecureText: _obsecureText,
+                            isPassword: true,
+                            onTap: () {
+                              setState(() {
+                                _obsecureText = !_obsecureText;
+                              });
+                            },
+                          )
+                        : InputField(
+                            title: "Kata Sandi",
+                            error: true,
+                            textError: "Kata sandi yang anda masukkan salah",
+                            controller: passwordController,
+                            isPassword: true,
+                            obsecureText: _obsecureText,
+                            onTap: () {
+                              setState(() {
+                                _obsecureText = !_obsecureText;
+                              });
+                            },
+                          ),
                     Align(
                         alignment: Alignment.bottomRight,
                         child: Container(
                           padding: const EdgeInsets.only(right: 25),
                           child: TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushNamed(LupaPassword1.routename);
+                                Navigator.of(context)
+                                    .pushNamed(LupaPassword1.routename);
                               },
                               child: Text(
                                 "Lupa Kata Sandi",
@@ -101,7 +135,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 138, vertical: 24),
                       child: Button(
-                          buttonText: "Masuk", width: 111, onPressed: () {Navigator.of(context).pushNamed(HomeButtonmNavigasiScreen.routename);}),
+                          buttonText: "Masuk",
+                          width: 111,
+                          onPressed: () {
+                            setState(() {
+                              if (emailController.text == email &&
+                                  passwordController.text == password) {
+                                Navigator.of(context).pushNamed(
+                                    HomeButtonmNavigasiScreen.routename);
+                                final snackBar = showLoginDialog();
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              } else {
+                                akunInvalid = true;
+                              }
+                            });
+                            //
+                          }),
                     )
                   ],
                 ),
@@ -111,6 +161,24 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  SnackBar showLoginDialog() {
+    return SnackBar(
+      content: Container(
+        height: 47,
+        decoration: BoxDecoration(
+            color: primary500, borderRadius: BorderRadius.circular(24)),
+        child: Center(
+            child: Text(
+          "Login Berhasil",
+          style: smallBold.copyWith(color: Colors.white),
+        )),
+      ),
+      behavior: SnackBarBehavior.floating,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
     );
   }
 }
