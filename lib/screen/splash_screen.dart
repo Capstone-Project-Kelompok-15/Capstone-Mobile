@@ -4,7 +4,7 @@ import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const routename = '/';
+  static const routename = '/splash-screen';
   const SplashScreen({super.key});
 
   @override
