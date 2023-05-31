@@ -46,7 +46,7 @@ class HomeThreadScreen extends StatelessWidget {
       actions: [
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, PemberitahuanScreen.routename);
+            Navigator.of(context).pushNamed(PemberitahuanScreen.routename);
           },
           child: Image.asset(
             "assets/icon/bell.png",
