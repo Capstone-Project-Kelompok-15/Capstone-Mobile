@@ -22,7 +22,6 @@ class PemberitahuanScreen extends StatefulWidget {
 class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
   // ignore: unnecessary_new
   final faker = new Faker();
-  String contentKomentar = "";
 
   @override
   Widget build(BuildContext context) {
@@ -58,37 +57,5 @@ class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
           },
         ),
       ),
-      // bottomSheet: Container(
-      //   height: bodyHeight * 0.08,
-      //   padding: const EdgeInsets.all(10),
-      //   decoration: BoxDecoration(
-      //     color: Colors.white,
-      //     boxShadow: [
-      //       BoxShadow(
-      //         color: Colors.black.withOpacity(0.3),
-      //         spreadRadius: 2,
-      //         blurRadius: 8,
-      //         offset: const Offset(0, -4), // changes position of shadow
-      //       ),
-      //     ],
-      //   ),
-        // child: Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     Container(
-        //       padding: const EdgeInsets.all(5),
-        //       decoration: BoxDecoration(
-        //         border: Border.all(color: Colors.black),
-        //         borderRadius: const BorderRadius.all(Radius.circular(50)),
-        //       ),
-        //       child: Image.asset(
-        //         "assets/icon/Profile.png",
-        //         width: 26,
-        //       ),
-        //     )
-        //   ]
-        // )
-    //   )
-    // );
   );}
 }
