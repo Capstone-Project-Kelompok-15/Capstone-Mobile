@@ -1,3 +1,4 @@
+// import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
@@ -9,24 +10,22 @@ class ButtonNotificationWidget extends StatefulWidget {
 
 class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
   final Faker faker = Faker();
-  bool isKomentar = false;
+  bool ispemberitahuan = false;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: Navigator.of(context).pushNamed(PemberitahuanScreen.routename); {
-        setState(() {
-          isKomentar = !isKomentar;
-        });
+      onTap: () {
+        Navigator.pushNamed(context, PemberitahuanScreen.routename);
       },
       child: Icon(
-        Icons.,
+        Icons.notifications,
         size: 30,
       ),
     );
   }
 
-  Widget _buildKomentarWidget() {
+  Widget _buildlPemberitahuanWidget() {
     return Column(
       children: [
         ListTile(
@@ -40,7 +39,7 @@ class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
         ),
         Padding(
           padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12),
-          child: isKomentar
+          child: ispemberitahuan
               ? Container(
                   child: Column(
                     children: [
@@ -56,7 +55,7 @@ class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
                         child: TextButton(
                           onPressed: () {
                             setState(() {
-                              isKomentar = false;
+                              ispemberitahuan = false;
                             });
                           },
                           child: const Text("kecilkan"),
@@ -70,7 +69,7 @@ class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
                   child: TextButton(
                     onPressed: () {
                       setState(() {
-                        isKomentar = true;
+                        ispemberitahuan = true;
                       });
                     },
                     child: const Text("Lihat balasan"),

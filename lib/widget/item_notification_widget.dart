@@ -8,7 +8,7 @@ class ItemNotificationWidget extends StatefulWidget {
   const ItemNotificationWidget({
     Key? key,
     required this.faker,
-    required this.mediaQueryWidth,
+    required this.mediaQueryWidth, 
   }) : super(key: key);
 
   @override
@@ -16,7 +16,7 @@ class ItemNotificationWidget extends StatefulWidget {
 }
 
 class _ItemNotificationWidgetState extends State<ItemNotificationWidget> {
-  bool iskomentar = false;
+  bool ispemberitahuan = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,47 +44,6 @@ class _ItemNotificationWidgetState extends State<ItemNotificationWidget> {
           ),
           subtitle: Text("2 menit yang lalu"),
         ),
-        // Padding(
-        //   padding: EdgeInsets.only(left: widget.mediaQueryWidth * 0.12),
-        //   child: iskomentar == true
-        //       ? Container(
-        //           child: Column(
-        //             children: [
-        //               const ListTile(
-        //                 leading: CircleAvatar(
-        //                   child: Text("K"),
-        //                 ),
-        //                 title: Text("nama komentar"),
-        //                 subtitle: Text("komentar"),
-        //               ),
-        //               Align(
-        //                 alignment: Alignment.bottomLeft,
-        //                 child: TextButton(
-        //                   onPressed: () {
-        //                     if (iskomentar == true) {
-        //                       iskomentar = false;
-        //                     }
-        //                     setState(() {});
-        //                   },
-        //                   child: const Text("kecilkan"),
-        //                 ),
-        //               ),
-        //             ],
-        //           ),
-        //         )
-        //       : Align(
-        //           alignment: Alignment.centerLeft,
-        //           child: TextButton(
-        //             onPressed: () {
-        //               if (iskomentar == false) {
-        //                 iskomentar = true;
-        //               }
-        //               setState(() {});
-        //             },
-        //             child: const Text("Lihat balasan"),
-        //           ),
-        //         ),
-        // ),
       ],
     );
   }
