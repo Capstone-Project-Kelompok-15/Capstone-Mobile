@@ -48,7 +48,6 @@ class BookmarkScreen extends StatelessWidget {
               },
               items: [
                 DropdownMenuItem<String>(
-                  backgroundColor: Colors.transparent,
                   value: 'Item 1',
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),

@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 

@@ -27,7 +27,7 @@ class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
   @override
   Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
-    final mediaQueryHeight = MediaQuery.of(context).size.height;
+    // final mediaQueryHeight = MediaQuery.of(context).size.height;
     final myAppBar = AppBar(
       iconTheme: IconThemeData(color: typography500),
       title: Text(
@@ -42,9 +42,9 @@ class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
       elevation: 0,
     );
 
-    final bodyHeight = mediaQueryHeight -
-        myAppBar.preferredSize.height -
-        MediaQuery.of(context).padding.top;
+    // final bodyHeight = mediaQueryHeight -
+    //     myAppBar.preferredSize.height -
+    //     MediaQuery.of(context).padding.top;
 
     return Scaffold(
       appBar: myAppBar,
@@ -58,37 +58,37 @@ class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
           },
         ),
       ),
-      bottomSheet: Container(
-        height: bodyHeight * 0.08,
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              spreadRadius: 2,
-              blurRadius: 8,
-              offset: const Offset(0, -4), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                borderRadius: const BorderRadius.all(Radius.circular(50)),
-              ),
-              child: Image.asset(
-                "assets/icon/Profile.png",
-                width: 26,
-              ),
-            )
-          ]
-        )
-      )
-    );
-  }
+      // bottomSheet: Container(
+      //   height: bodyHeight * 0.08,
+      //   padding: const EdgeInsets.all(10),
+      //   decoration: BoxDecoration(
+      //     color: Colors.white,
+      //     boxShadow: [
+      //       BoxShadow(
+      //         color: Colors.black.withOpacity(0.3),
+      //         spreadRadius: 2,
+      //         blurRadius: 8,
+      //         offset: const Offset(0, -4), // changes position of shadow
+      //       ),
+      //     ],
+      //   ),
+        // child: Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     Container(
+        //       padding: const EdgeInsets.all(5),
+        //       decoration: BoxDecoration(
+        //         border: Border.all(color: Colors.black),
+        //         borderRadius: const BorderRadius.all(Radius.circular(50)),
+        //       ),
+        //       child: Image.asset(
+        //         "assets/icon/Profile.png",
+        //         width: 26,
+        //       ),
+        //     )
+        //   ]
+        // )
+    //   )
+    // );
+  );}
 }
