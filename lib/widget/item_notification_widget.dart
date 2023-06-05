@@ -6,16 +6,16 @@ class ItemNotificationWidget extends StatefulWidget {
   final double mediaQueryWidth;
 
   const ItemNotificationWidget({
-    super.key,
+    Key? key,
     required this.faker,
     required this.mediaQueryWidth,
-  });
+  }) : super(key: key);
 
   @override
-  State<ItemNotificationWidget> createState() => _ItemNotificationWidget();
+  _ItemNotificationWidgetState createState() => _ItemNotificationWidgetState();
 }
 
-class _ItemNotificationWidget extends State<ItemNotificationWidget> {
+class _ItemNotificationWidgetState extends State<ItemNotificationWidget> {
   bool iskomentar = false;
 
   @override
@@ -26,69 +26,65 @@ class _ItemNotificationWidget extends State<ItemNotificationWidget> {
           horizontalTitleGap: 20,
           contentPadding: const EdgeInsets.all(0),
           leading: const CircleAvatar(
-            child: Text("D"),
+            child: Text("W"),
           ),
-          title: Text(widget.faker.person.name()),
-          subtitle: const Text("Bagus idenya"),
-        ),
-        Padding(
-            padding: EdgeInsets.only(left: widget.mediaQueryWidth * 0.12),
-            child: iskomentar == true
-                // ignore: avoid_unnecessary_containers
-                ? Container(
-                    child: Column(
-                      children: [
-                        const ListTile(
-                          leading: CircleAvatar(
-                            child: Text("K"),
-                          ),
-                          title: Text("nama komentar"),
-                          subtitle: Text("komentar"),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: TextButton(
-                              onPressed: () {
-                                if (iskomentar == true) {
-                                  iskomentar = false;
-                                }
-                                setState(() {});
-                              },
-                              child: const Text("kecilkan")),
-                        ),
-                      ],
-                    ),
-                  )
-                : Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextButton(
-                      onPressed: () {
-                        if (iskomentar == false) {
-                          iskomentar = true;
-                        }
-                        setState(() {});
-                      },
-                      child: const Text("Lihat balasan"),
-                    ),
-                  )
-
-            // child: ListTile(
-            //   horizontalTitleGap: 0,
-            //   contentPadding: const EdgeInsets.all(0),
-            //   leading: const CircleAvatar(
-            //     radius: 15,
-            //     child: Text("K"),
-            //   ),
-            //   title: Text(
-            //     faker.person.name(),
-            //     style: smallMedium,
-            //   ),
-            //   subtitle: Text(
-            //     "Bagus idenya",
-            //     style: smallReguler,
-            //   ),
-            // ),
+          title: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: widget.faker.person.name(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                const TextSpan(text: " Bagus idenya"),
+              ],
             ),
+          ),
+          subtitle: Text("2 menit yang lalu"),
+        ),
+        // Padding(
+        //   padding: EdgeInsets.only(left: widget.mediaQueryWidth * 0.12),
+        //   child: iskomentar == true
+        //       ? Container(
+        //           child: Column(
+        //             children: [
+        //               const ListTile(
+        //                 leading: CircleAvatar(
+        //                   child: Text("K"),
+        //                 ),
+        //                 title: Text("nama komentar"),
+        //                 subtitle: Text("komentar"),
+        //               ),
+        //               Align(
+        //                 alignment: Alignment.bottomLeft,
+        //                 child: TextButton(
+        //                   onPressed: () {
+        //                     if (iskomentar == true) {
+        //                       iskomentar = false;
+        //                     }
+        //                     setState(() {});
+        //                   },
+        //                   child: const Text("kecilkan"),
+        //                 ),
+        //               ),
+        //             ],
+        //           ),
+        //         )
+        //       : Align(
+        //           alignment: Alignment.centerLeft,
+        //           child: TextButton(
+        //             onPressed: () {
+        //               if (iskomentar == false) {
+        //                 iskomentar = true;
+        //               }
+        //               setState(() {});
+        //             },
+        //             child: const Text("Lihat balasan"),
+        //           ),
+        //         ),
+        // ),
       ],
     );
   }
