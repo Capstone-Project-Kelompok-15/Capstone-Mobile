@@ -20,19 +20,17 @@ class PemberitahuanScreen extends StatefulWidget {
 }
 
 class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
-  // ignore: unnecessary_new
-  final faker = new Faker();
+  final Faker faker = Faker();
 
   @override
-  Widget build(BuildContext context) {
+Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
-    // final mediaQueryHeight = MediaQuery.of(context).size.height;
     final myAppBar = AppBar(
       iconTheme: IconThemeData(color: typography500),
       title: Text(
         "Pemberitahuan",
         style: GoogleFonts.sourceSansPro(
-          fontSize: 16,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
           color: typography500,
         ),
@@ -41,21 +39,63 @@ class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
       elevation: 0,
     );
 
-    // final bodyHeight = mediaQueryHeight -
-    //     myAppBar.preferredSize.height -
-    //     MediaQuery.of(context).padding.top;
-
     return Scaffold(
       appBar: myAppBar,
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ItemNotificationWidget(
-                faker: faker, mediaQueryWidth: mediaQueryWidth);
-          },
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25, 15, 15, 15),
+              child: Text(
+                "New",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListView.builder(
+              itemCount: 5,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 16, bottom: 8),
+                  child: ItemNotificationWidget(
+                    faker: faker,
+                    mediaQueryWidth: mediaQueryWidth,
+                  ),
+                );
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25, 15, 15, 15),
+              child: Text(
+                "Minggu Lalu",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListView.builder(
+              itemCount: 10,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 25, right: 16, bottom: 8),
+                  child: ItemNotificationWidget(
+                    faker: faker,
+                    mediaQueryWidth: mediaQueryWidth,
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
-  );}
+    );
+  }
 }
