@@ -12,16 +12,6 @@ class KomentarTabBar extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            width: double.infinity,
-            height: 0.5,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              border: Border.all(
-                color: Color(0xffAAAAAA),
-              ),
-            ),
-          ),
           Expanded(
             child: Container(
               height: 200,

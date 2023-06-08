@@ -1,6 +1,9 @@
-import 'package:capstone_mobile/screen/profile/komentar_tabbar.dart';
-import 'package:capstone_mobile/screen/profile/pengikut_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/menu_profile.dart';
 import 'package:capstone_mobile/screen/profile/postingan_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/tabbar/diikuti_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/tabbar/komentar_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/tabbar/pengikut_tabbar.dart';
+
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/circular_tab_indicator.dart';
@@ -54,7 +57,12 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MenuProfile()));
+              },
               child: Image.asset(
                 "assets/icon/Menu.png",
                 color: Colors.black,
@@ -151,7 +159,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                               child: Text(
                                 'Ubah Profil',
                                 style: smallMedium.copyWith(
-                                    color: Color(0xff636466)),
+                                    color: const Color(0xff636466)),
                               ),
                             ),
                           ),
@@ -159,7 +167,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -207,6 +215,16 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                 ],
               ),
             ),
+            Container(
+              width: double.infinity,
+              height: 0.5,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                border: Border.all(
+                  color: const Color(0xffAAAAAA),
+                ),
+              ),
+            ),
             Expanded(
               child: TabBarView(
                 controller: _tabController,
@@ -214,7 +232,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                   PostinganTabBar(),
                   KomentarTabBar(),
                   PengikutTabBar(),
-                  Text('Haha'),
+                  DiikutiTabbar(),
                 ],
               ),
             )

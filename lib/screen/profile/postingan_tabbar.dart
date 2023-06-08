@@ -67,6 +67,7 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
             width: double.infinity,
             height: 1,
             decoration: BoxDecoration(
+              color: Colors.black,
               border: Border.all(
                 color: Color(0xffAAAAAA),
               ),
