@@ -66,6 +66,7 @@ class HomeThreadScreen extends StatelessWidget {
         MediaQuery.of(context).padding.top;
 
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       appBar: myAppBar,
       body: Column(
         children: [

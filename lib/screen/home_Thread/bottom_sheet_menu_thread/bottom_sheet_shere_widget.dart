@@ -3,16 +3,16 @@
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
-class BottomShereWidget extends StatelessWidget {
-  double bodyHeight;
-  double mediaWidth;
-  BottomShereWidget(
-      {super.key, required this.bodyHeight, required this.mediaWidth});
+class BottomSheetShereWidget extends StatelessWidget {
+  const BottomSheetShereWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final mediaWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: bodyHeight * 0.25,
+      height: 200,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       width: mediaWidth,
       child: Column(
