@@ -16,7 +16,7 @@ class MessageScreen extends StatelessWidget {
         ),
         title: Text(
           "Pesan",
-          style: largeBoldBlack,
+          style: largeBold,
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,

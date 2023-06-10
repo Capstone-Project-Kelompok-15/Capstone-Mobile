@@ -29,7 +29,7 @@ class _PrivateMessageScreenState extends State<PrivateMessageScreen> {
               padding: const EdgeInsets.only(left: 10),
               child: Text(
                 "bagus",
-                style: largeBoldBlack,
+                style: largeBold,
               ),
             ),
           ],
