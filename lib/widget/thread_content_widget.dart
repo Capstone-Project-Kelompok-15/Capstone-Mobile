@@ -1,8 +1,8 @@
 import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
-import 'package:capstone_mobile/widget/bottom_shere_widget.dart';
-import 'package:capstone_mobile/widget/bottom_thread_menu_widget.dart';
+import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_shere_widget.dart';
+import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_menu_widget.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -190,10 +190,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                                 ),
                               ),
                               builder: (BuildContext context) {
-                                return BottomShereWidget(
-                                  bodyHeight: widget.bodyheight,
-                                  mediaWidth: widget.mediaWidth,
-                                );
+                                return BottomSheetShereWidget();
                               },
                             );
                           },
@@ -217,10 +214,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return bottomThreadMenu(
-                          bodyHeight: widget.bodyheight,
-                          mediaWidth: widget.mediaWidth,
-                        );
+                        return BottomSheetThreadMenu();
                       },
                     );
                   },
