@@ -19,25 +19,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          const InputField(
+          InputField(
             title: "Username",
             hintText: "e.g., fariswht",
           ),
           const SizedBox(
             height: 16,
           ),
-          const InputField(
+          InputField(
             title: "Alamat Email / Nomor Handphone",
             hintText: "e.g., lexliealexander@gmail.com",
           ),
           const SizedBox(
             height: 16,
           ),
-          const InputField(title: "Kata Sandi"),
+          InputField(title: "Kata Sandi"),
           const SizedBox(
             height: 16,
           ),
-          const InputField(
+          InputField(
             title: "Umur",
             hintText: "e.g., 22",
           ),
