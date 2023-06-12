@@ -12,8 +12,9 @@ class InputField extends StatelessWidget {
   final bool isPassword;
   final bool obsecureText;
   final Function()? onTap;
+  final Function(String)? onChanged;
 
-  InputField(
+  const InputField(
       {super.key,
       required this.title,
       this.hintText,
@@ -22,7 +23,8 @@ class InputField extends StatelessWidget {
       this.textError,
       this.isPassword = false,
       this.obsecureText = false,
-      this.onTap});
+      this.onTap,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class InputField extends StatelessWidget {
               ),
               TextFormField(
                 cursorColor: primary500,
+                onChanged: onChanged,
                 decoration: InputDecoration(
                     hintText: hintText,
                     hintStyle: regulerReguler,
@@ -52,7 +55,9 @@ class InputField extends StatelessWidget {
                                 : Icons.visibility_off),
                             onTap: onTap,
                           )
-                        : Container(width: 1,),
+                        : Container(
+                            width: 1,
+                          ),
                     contentPadding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     border: OutlineInputBorder(
