@@ -60,9 +60,11 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
             GestureDetector(
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MenuProfile()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MenuProfile(),
+                  ),
+                );
               },
               child: Image.asset(
                 "assets/icon/Menu.png",
