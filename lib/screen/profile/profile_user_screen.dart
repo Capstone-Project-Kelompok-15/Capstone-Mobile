@@ -3,6 +3,7 @@ import 'package:capstone_mobile/screen/profile/postingan_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/tabbar/diikuti_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/tabbar/komentar_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/tabbar/pengikut_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/ubah_profile.dart';
 
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
@@ -144,7 +145,12 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UbahProfileScreen()));
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.transparent,

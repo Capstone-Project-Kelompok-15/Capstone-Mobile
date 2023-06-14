@@ -19,7 +19,7 @@ class _PengikutTabBarState extends State<PengikutTabBar> {
             itemCount: 10,
             physics: const ScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
-              return PengikutProfile();
+              return const PengikutProfile();
             },
           ),
         ),
