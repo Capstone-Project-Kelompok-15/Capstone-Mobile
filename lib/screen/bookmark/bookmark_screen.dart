@@ -29,7 +29,7 @@ class BookmarkScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(

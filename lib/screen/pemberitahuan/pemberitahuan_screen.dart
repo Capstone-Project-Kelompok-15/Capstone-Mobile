@@ -45,8 +45,8 @@ Widget build(BuildContext context) {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 15, 15, 15),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(25, 15, 15, 15),
               child: Text(
                 "New",
                 style: TextStyle(
@@ -58,7 +58,7 @@ Widget build(BuildContext context) {
             ListView.builder(
               itemCount: 5,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(left: 25, right: 16, bottom: 8),
@@ -69,8 +69,8 @@ Widget build(BuildContext context) {
                 );
               },
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 15, 15, 15),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(25, 15, 15, 15),
               child: Text(
                 "Minggu Lalu",
                 style: TextStyle(
@@ -82,7 +82,7 @@ Widget build(BuildContext context) {
             ListView.builder(
               itemCount: 10,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(left: 25, right: 16, bottom: 8),
