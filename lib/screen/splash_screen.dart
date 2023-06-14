@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
 import 'package:capstone_mobile/screen/landing_pages/landing_screen.dart';
+import 'package:capstone_mobile/service/login_service.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
@@ -14,11 +16,26 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   static const routename = '/';
 
+  void checkUser() async {
+    Timer(const Duration(seconds: 3), () async {
+      String cekUser = await getToken();
+      if (cekUser.isNotEmpty) {
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushNamed(
+          HomeButtonmNavigasiScreen.routename,
+        );
+      } else {
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushNamed(
+          LandingScreen.routename,
+        );
+      }
+    });
+  }
+
   @override
   void initState() {
-    Timer(const Duration(seconds: 3), () {
-      Navigator.of(context).pushNamed(LandingScreen.routename,);
-    });
+    checkUser();
     super.initState();
   }
 
@@ -30,18 +47,29 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             const SizedBox(
-              width: 250,
-              height: 250,
-              child:Image(image: AssetImage('assets/images/logo_with_typo.png'))),
-            const SizedBox(height: 202,),
+                width: 250,
+                height: 250,
+                child: Image(
+                    image: AssetImage('assets/images/logo_with_typo.png'))),
+            const SizedBox(
+              height: 202,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Diskusi lebih mudah bersama ", style: regulerReguler,),
-                Text("Squad Space", style: regulerBold,)
+                Text(
+                  "Diskusi lebih mudah bersama ",
+                  style: regulerReguler,
+                ),
+                Text(
+                  "Squad Space",
+                  style: regulerBold,
+                )
               ],
             ),
-            const SizedBox(height: 112,)
+            const SizedBox(
+              height: 112,
+            )
           ],
         ),
       ),
