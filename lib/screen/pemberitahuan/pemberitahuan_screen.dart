@@ -23,7 +23,7 @@ class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
   final Faker faker = Faker();
 
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
     final myAppBar = AppBar(
       iconTheme: IconThemeData(color: typography500),

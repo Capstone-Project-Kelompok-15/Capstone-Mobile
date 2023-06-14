@@ -4,6 +4,8 @@ import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
 import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
+import 'package:capstone_mobile/screen/settings/pengaturan_akun_screen.dart';
+import 'package:capstone_mobile/screen/settings/setting_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,11 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: 
-      const HomeButtonmNavigasiScreen(),
+      // const HomeButtonmNavigasiScreen(),
       // BookmarkScreen(),
+      const SettingScreen(),
       initialRoute: 
-      HomeButtonmNavigasiScreen.routename,
+      // HomeButtonmNavigasiScreen.routename,
       // BookmarkScreen.routename,
+      SettingScreen.routename,
       routes: {
         HomeButtonmNavigasiScreen.routename: (context) =>
             const HomeButtonmNavigasiScreen(),
@@ -31,6 +35,8 @@ class MyApp extends StatelessWidget {
         KomentarScreen.routename: (context) => const KomentarScreen(),
         PemberitahuanScreen.routename: (context) => const PemberitahuanScreen(),
         BookmarkScreen.routename: (context) => BookmarkScreen(),
+        PengaturanAkunScreen.routename: (context) => const PengaturanAkunScreen(),
+        SettingScreen.routename: (context) => const SettingScreen(),
       },
     );
   }
