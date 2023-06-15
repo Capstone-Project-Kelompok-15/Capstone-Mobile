@@ -12,8 +12,8 @@ import 'package:readmore/readmore.dart';
 class ThreadContentCustomWidget extends StatefulWidget {
   String name;
   String contentThread;
-  double mediaWidth;
-  double bodyheight;
+  double? mediaWidth;
+  double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
 
@@ -22,8 +22,8 @@ class ThreadContentCustomWidget extends StatefulWidget {
     required this.faker,
     required this.name,
     required this.contentThread,
-    required this.mediaWidth,
-    required this.bodyheight,
+    this.mediaWidth,
+    this.bodyheight,
     this.isLeaderBoard = false,
     this.ranking,
   });
@@ -140,7 +140,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: SizedBox(
-                    width: widget.mediaWidth * 0.25,
+                    width: widget.mediaWidth! * 0.25,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
