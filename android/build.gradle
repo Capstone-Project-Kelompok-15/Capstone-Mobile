@@ -26,8 +26,6 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
-<<<<<<< HEAD
-=======
 subprojects {
     project.configurations.all {
         resolutionStrategy.eachDependency { details ->
@@ -39,7 +37,6 @@ subprojects {
     }
 }
 
->>>>>>> Development
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
