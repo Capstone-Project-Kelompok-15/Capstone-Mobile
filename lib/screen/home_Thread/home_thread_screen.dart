@@ -4,6 +4,8 @@ import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
+import '../pemberitahuan/pemberitahuan_screen.dart';
+
 class HomeThreadScreen extends StatelessWidget {
   static const routename = "/homeThread";
   HomeThreadScreen({super.key});
@@ -44,7 +46,9 @@ class HomeThreadScreen extends StatelessWidget {
       ),
       actions: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamed(PemberitahuanScreen.routename);
+          },
           child: Image.asset(
             "assets/icon/bell.png",
             width: 30,

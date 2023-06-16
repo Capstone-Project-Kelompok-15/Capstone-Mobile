@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../style/font_style.dart';
 import '../../widget/thread_content_widget.dart';
 
-class FollowByThread extends StatelessWidget {
-  static const routename = "/followThread";
-  const FollowByThread({super.key});
+class LeaderBoard extends StatelessWidget {
+  static const routename = "/leaderboard";
+  const LeaderBoard({super.key});
 
   get color => null;
 
@@ -29,13 +29,13 @@ class FollowByThread extends StatelessWidget {
                   right: 10,
                 ),
                 child: Image.asset(
-                  "assets/icon/Follow.png",
+                  "assets/icon/Peringkat.png",
                   width: 24,
                   height: 24,
                 ),
               ),
               Text(
-                'Ikuti',
+                'Pengikut',
                 style: largeBold.copyWith(
                   color: Colors.black,
                   fontSize: 20,
@@ -85,49 +85,47 @@ class FollowByThread extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: TabBarView(
-              children: [
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return ThreadContentCustomWidget(
-                      faker: faker,
-                      name: faker.person.name(),
-                      contentThread: faker.lorem.sentences(7).join(''),
-                      mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight,
-                    );
-                  },
-                ),
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return ThreadContentCustomWidget(
-                      faker: faker,
-                      name: faker.person.name(),
-                      contentThread: faker.lorem.sentences(7).join(''),
-                      mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight,
-                    );
-                  },
-                ),
-              ],
-            ),)
-          //   Expanded(
-          //   child: ListView.builder(
-          //     itemCount: 10,
-          //     itemBuilder: (context, index) {
-          //       return ThreadContentCustomWidget(
-          //         faker: faker,
-          //         name: faker.person.name(),
-          //         contentThread: faker.lorem.sentences(7).join(''),
-          //         mediaWidth: mediaQueryWidth,
-          //         bodyheight: bodyHeight,
-          //       );
-          //     },
-          //   ),
-          // )
-            
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return ThreadContentCustomWidget(
+                  faker: faker,
+                  name: faker.person.name(),
+                  contentThread: faker.lorem.sentences(7).join(''),
+                  mediaWidth: mediaQueryWidth,
+                  bodyheight: bodyHeight,
+                );
+              },
+            ),
+          )
+            // TabBarView(
+            //   children: [
+            //     ListView.builder(
+            //       itemCount: 10,
+            //       itemBuilder: (context, index) {
+            //         return ThreadContentCustomWidget(
+            //           faker: faker,
+            //           name: faker.person.name(),
+            //           contentThread: faker.lorem.sentences(7).join(''),
+            //           mediaWidth: mediaQueryWidth,
+            //           bodyheight: bodyHeight,
+            //         );
+            //       },
+            //     ),
+            //     ListView.builder(
+            //       itemCount: 10,
+            //       itemBuilder: (context, index) {
+            //         return ThreadContentCustomWidget(
+            //           faker: faker,
+            //           name: faker.person.name(),
+            //           contentThread: faker.lorem.sentences(7).join(''),
+            //           mediaWidth: mediaQueryWidth,
+            //           bodyheight: bodyHeight,
+            //         );
+            //       },
+            //     ),
+            //   ],
+            // ),
             // const SizedBox(
             //   height: 20,
             //   width: double.infinity,
