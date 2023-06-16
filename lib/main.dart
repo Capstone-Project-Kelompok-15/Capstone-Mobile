@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/screen/follow_thread/follow_thread_screen.dart';
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         HomeThreadScreen.routename: (context) => HomeThreadScreen(),
         CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
         KomentarScreen.routename: (context) => const KomentarScreen(),
+        FollowByThread.routename: (context) => const FollowByThread(),
       },
     );
   }
