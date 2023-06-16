@@ -26,6 +26,20 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
+<<<<<<< HEAD
+=======
+subprojects {
+    project.configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == 'com.android.support'
+                    && !details.requested.name.contains('multidex') ) {
+                details.useVersion "27.1.1"
+            }
+        }
+    }
+}
+
+>>>>>>> Development
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }

@@ -80,11 +80,12 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
                 scrollDirection: Axis.vertical,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return ThreadContentCustom(
+                  return ThreadContentCustomWidget(
                     faker: faker,
                     name: faker.person.name(),
                     contentThread: faker.lorem.sentences(7).join(''),
                     mediaWidth: mediaQueryWidth,
+                    bodyheight: 1,
                   );
                 },
               ),
