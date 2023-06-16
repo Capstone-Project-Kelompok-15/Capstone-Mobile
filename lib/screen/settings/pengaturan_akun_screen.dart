@@ -16,7 +16,7 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
   @override
   Widget build(BuildContext context) {
     final myAppBar = AppBar(
-      iconTheme: IconThemeData(color: typography500),
+iconTheme: IconThemeData(color: typography500),
       leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -31,10 +31,18 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
           color: typography500,
         ),
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.done),
+          color: Colors.blue,
+          onPressed: () {
+            // do something when the button is pressed
+          },
+        ),
+      ],
       backgroundColor: Colors.transparent,
       elevation: 0,
     );
-
     return Scaffold(
       appBar: myAppBar,
       body: const SingleChildScrollView(
@@ -42,9 +50,9 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(28, 15, 15, 15),
+              padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
-                "Masuk",
+                "Alamat Email",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -52,9 +60,24 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(28, 15, 15, 15),
+              padding: EdgeInsets.fromLTRB(25, 10, 10, 5),
+              child: TextField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(8),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(191, 191, 191, 0.5),
+                      width: 1.5,
+                    ),
+                  ),
+                  hintText: 'e.g., fariswht',
+                ),
+              ),
+            ),    
+            Padding(
+              padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
-                "Pindah Akun",
+                "Kata Sandi Lama",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -62,9 +85,27 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(28, 15, 15, 15),
+              padding: EdgeInsets.fromLTRB(25, 10, 10, 5),
+              child: TextField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(8),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(191, 191, 191, 0.5),
+                      width: 1.5,
+                    ),
+                  ),
+                  hintText: 'Masukkan Kata Sandi Lama',
+                  suffixIcon: Icon(
+                    Icons.visibility,
+                  ),
+                ),
+              ),
+            ),            
+            Padding(
+              padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
-                "Tambah Akun",
+                "Kata Sandi Baru",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -72,15 +113,51 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(28, 15, 15, 15),
+              padding: EdgeInsets.fromLTRB(25, 10, 10, 5),
+              child: TextField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(8),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(191, 191, 191, 0.5),
+                      width: 1.5,
+                    ),
+                  ),
+                  hintText: 'Masukkan Kata Sandi Baru',
+                  suffixIcon: Icon(
+                    Icons.visibility,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
-                "Keluar",
+                "Konfirmasi Kata Sandi",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(25, 10, 10, 5),
+              child: TextField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(8),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromRGBO(191, 191, 191, 0.5),
+                      width: 1.5,
+                    ),
+                  ),
+                  hintText: 'Masukkan Kata Sandi Baru',
+                  suffixIcon: Icon(
+                    Icons.visibility,
+                  ),
+                ),
+              ),
+            ),    
           ],
         ),
       ),
