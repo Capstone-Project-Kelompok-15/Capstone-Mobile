@@ -5,6 +5,8 @@ import 'package:capstone_mobile/screen/profile/profile_user_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:flutter/material.dart';
 
+import 'follow_thread/follow_thread_screen.dart';
+
 class HomeButtonmNavigasiScreen extends StatefulWidget {
   static const routename = "/HomeMainScreen";
   const HomeButtonmNavigasiScreen({super.key});
@@ -20,10 +22,7 @@ class _HomeButtonmNavigasiScreen extends State<HomeButtonmNavigasiScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     HomeThreadScreen(),
-    const Text(
-      'Index 1: Follow',
-      style: optionStyle,
-    ),
+    const FollowByThread(),
     const Text(
       'Index 2: LeaderBoard',
       style: optionStyle,
