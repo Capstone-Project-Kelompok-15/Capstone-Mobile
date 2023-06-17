@@ -28,7 +28,6 @@ class _LandingScreen1State extends State<LandingScreen1> {
                     image: AssetImage('assets/images/landing_1.png'),
                     fit: BoxFit.cover)),
           ),
-          
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
