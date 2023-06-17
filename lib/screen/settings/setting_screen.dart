@@ -53,7 +53,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Row(
                   children: [
                     Image.asset(
-                      "assets/icon/bookmark.png", //ganti iconnya make setting
+                      "assets/icon/bell.png", //ganti iconnya make setting
                       width: 20,
                       height: 20,
                       color: Colors.black,
