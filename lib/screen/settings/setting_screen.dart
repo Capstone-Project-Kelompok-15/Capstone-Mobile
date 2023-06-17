@@ -124,7 +124,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     context: context,
                     builder: (context) => BasicDialogAlert(
                       title: const Text("Apakah anda yakin?"),
-                      content: const Text("Apakah anda yakin ingin keluar dari  aplikasi Squad Space."),
+                      content: const Text("Apakah anda yakin ingin keluar dari aplikasi Squad Space."),
                       actions: <Widget>[
                         BasicDialogAction(
                           title: const Text("Ya"),
