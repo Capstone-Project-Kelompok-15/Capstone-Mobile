@@ -29,10 +29,10 @@ class MyApp extends StatelessWidget {
       home: const HomeButtonmNavigasiScreen(),
       initialRoute: SplashScreen.routename,
       routes: {
-        SplashScreen.routename:(context) => const SplashScreen(),
-        LandingScreen.routename:(context) => const LandingScreen(),
-        LoginScreen.routename:(context) => const LoginScreen(),
-        LupaPassword1.routename:(context) => const LupaPassword1(),
+        SplashScreen.routename: (context) => const SplashScreen(),
+        LandingScreen.routename: (context) => const LandingScreen(),
+        LoginScreen.routename: (context) => const LoginScreen(),
+        LupaPassword1.routename: (context) => const LupaPassword1(),
         HomeButtonmNavigasiScreen.routename: (context) =>
             const HomeButtonmNavigasiScreen(),
         HomeThreadScreen.routename: (context) => HomeThreadScreen(),

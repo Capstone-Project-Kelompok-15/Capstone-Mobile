@@ -5,7 +5,6 @@ import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class UbahProfileScreen extends StatefulWidget {
   const UbahProfileScreen({super.key});
 

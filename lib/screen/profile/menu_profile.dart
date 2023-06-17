@@ -1,4 +1,5 @@
 import 'package:capstone_mobile/screen/bookmark/bookmark_screen.dart';
+import 'package:capstone_mobile/screen/profile/bantuan/bantuan.dart';
 import 'package:capstone_mobile/screen/settings/setting_screen.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +64,14 @@ class MenuProfile extends StatelessWidget {
                 height: 29,
               ),
               GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BantuanScreen(),
+                    ),
+                  );
+                },
                 child: Row(
                   children: [
                     Image.asset(
