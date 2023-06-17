@@ -16,12 +16,12 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
   @override
   Widget build(BuildContext context) {
     final myAppBar = AppBar(
-iconTheme: IconThemeData(color: typography500),
+      iconTheme: IconThemeData(color: typography500),
       leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
       title: Text(
         "Pengaturan Akun",
@@ -45,10 +45,10 @@ iconTheme: IconThemeData(color: typography500),
     );
     return Scaffold(
       appBar: myAppBar,
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Padding(
               padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
@@ -73,7 +73,7 @@ iconTheme: IconThemeData(color: typography500),
                   hintText: 'e.g., fariswht',
                 ),
               ),
-            ),    
+            ),
             Padding(
               padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
@@ -101,7 +101,7 @@ iconTheme: IconThemeData(color: typography500),
                   ),
                 ),
               ),
-            ),            
+            ),
             Padding(
               padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
@@ -157,7 +157,7 @@ iconTheme: IconThemeData(color: typography500),
                   ),
                 ),
               ),
-            ),    
+            ),
           ],
         ),
       ),
