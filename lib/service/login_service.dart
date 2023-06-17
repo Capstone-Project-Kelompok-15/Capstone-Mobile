@@ -9,6 +9,7 @@ void saveToken(String valueToken) async {
 
 Future<String> getToken() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
+  // ignore: no_leading_underscores_for_local_identifiers
   final _token = prefs.getString(token);
   return _token ?? "";
 }

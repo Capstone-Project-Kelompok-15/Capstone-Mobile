@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-import 'package:capstone_mobile/profile_sementara_screen.dart';
 import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:capstone_mobile/screen/profile/profile_user_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';

@@ -30,6 +30,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
   @override
   Widget build(BuildContext context) {
     String content = "";
+    // ignore: unused_local_variable
     final argumentHeight =
         (ModalRoute.of(context)?.settings.arguments ?? "") as double;
 
@@ -86,6 +87,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
         ),
       ],
     );
+    // ignore: unused_local_variable
     final bodyHeight = mediaQueryHeight -
         myAppbar.preferredSize.height -
         MediaQuery.of(context).padding.top;

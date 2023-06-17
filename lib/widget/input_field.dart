@@ -50,6 +50,7 @@ class InputField extends StatelessWidget {
                     hintStyle: regulerReguler,
                     suffixIcon: isPassword == true
                         ? GestureDetector(
+                            // ignore: sort_child_properties_last
                             child: Icon(obsecureText
                                 ? Icons.visibility
                                 : Icons.visibility_off),
