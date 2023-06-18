@@ -19,25 +19,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          InputField(
+          const InputField(
             title: "Username",
             hintText: "e.g., fariswht",
           ),
           const SizedBox(
             height: 16,
           ),
-          InputField(
+         const InputField(
             title: "Alamat Email / Nomor Handphone",
             hintText: "e.g., lexliealexander@gmail.com",
           ),
           const SizedBox(
             height: 16,
           ),
-          InputField(title: "Kata Sandi"),
+          const InputField(title: "Kata Sandi"),
           const SizedBox(
             height: 16,
           ),
-          InputField(
+          const InputField(
             title: "Umur",
             hintText: "e.g., 22",
           ),
@@ -49,7 +49,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onPressed: () {
                   final snackBar = showRegisterDialog(true);
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  Navigator.of(context).pushNamed(LoginScreen.routename,);
+                  Navigator.of(context).pushNamed(
+                    LoginScreen.routename,
+                  );
                 }),
           )
         ],
@@ -60,34 +62,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
   SnackBar showRegisterDialog(bool success) {
     if (success == true) {
       return SnackBar(
-          content: Container(
-        height: 47,
-        decoration: BoxDecoration(
-            color: primary500, borderRadius: BorderRadius.circular(24)),
-        child: Center(
-            child: Text(
-          "Akun Anda Sudah Terdaftar, Silahkan Login",
-          style: smallBold.copyWith(color: Colors.white),
-        )),
-      ),
-      behavior: SnackBarBehavior.floating,
-      elevation: 0,
-      backgroundColor: Colors.transparent,);
+        content: Container(
+          height: 47,
+          decoration: BoxDecoration(
+              color: primary500, borderRadius: BorderRadius.circular(24)),
+          child: Center(
+              child: Text(
+            "Akun Anda Sudah Terdaftar, Silahkan Login",
+            style: smallBold.copyWith(color: Colors.white),
+          )),
+        ),
+        behavior: SnackBarBehavior.floating,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      );
     } else {
       return SnackBar(
-          content: Container(
-        height: 63,
-        decoration: BoxDecoration(
-            color: primary500, borderRadius: BorderRadius.circular(24)),
-        child: Center(
-            child: Text(
-          "Gagal Mendaftarkan Akun, Silahkan Coba Lagi",
-          style: smallBold.copyWith(color: Colors.white),
-        )),
-      ),
-      behavior: SnackBarBehavior.floating,
-      elevation: 0,
-      backgroundColor: Colors.transparent,);
+        content: Container(
+          height: 63,
+          decoration: BoxDecoration(
+              color: primary500, borderRadius: BorderRadius.circular(24)),
+          child: Center(
+              child: Text(
+            "Gagal Mendaftarkan Akun, Silahkan Coba Lagi",
+            style: smallBold.copyWith(color: Colors.white),
+          )),
+        ),
+        behavior: SnackBarBehavior.floating,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      );
     }
   }
 }

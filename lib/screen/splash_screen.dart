@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 import 'package:capstone_mobile/screen/landing_pages/landing_screen.dart';
 import 'package:capstone_mobile/style/font_style.dart';

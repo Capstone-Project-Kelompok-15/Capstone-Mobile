@@ -113,7 +113,7 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                 const SizedBox(
                   height: 19.5,
                 ),
-                Container(
+                SizedBox(
                   width: 345,
                   height: 38,
                   child: TextField(
@@ -141,7 +141,7 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                 const SizedBox(
                   height: 19.5,
                 ),
-                Container(
+                SizedBox(
                   width: 345,
                   height: 196,
                   child: TextField(

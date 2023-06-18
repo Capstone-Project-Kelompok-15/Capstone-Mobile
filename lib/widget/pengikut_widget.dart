@@ -26,7 +26,7 @@ class PengikutProfile extends StatelessWidget {
               "John doe",
               style: smallMedium,
             ),
-            trailing: Container(
+            trailing: SizedBox(
               height: 40,
               width: 30,
               child: Column(
