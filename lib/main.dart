@@ -2,6 +2,7 @@ import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/home_Thread/home_thread_screen.dart';
 import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
 import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
+import 'package:capstone_mobile/screen/leaderboard/leaderboard_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         HomeThreadScreen.routename: (context) => HomeThreadScreen(),
         CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
         KomentarScreen.routename: (context) => const KomentarScreen(),
+        LeaderboardScreen.routename: (context) => const LeaderboardScreen(),
       },
     );
   }

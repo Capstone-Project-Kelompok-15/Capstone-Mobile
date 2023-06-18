@@ -53,8 +53,6 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                       context: context,
                       builder: (context) {
                         return AlertDialogCustomWidget(
-                          bodyHeight: argumentHeight,
-                          mediaQueryWidth: mediaQueryWidth,
                           warna: primary500,
                           text: "Komentar telah terkirim",
                         );
@@ -64,8 +62,6 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                       context: context,
                       builder: (context) {
                         return AlertDialogCustomWidget(
-                          bodyHeight: argumentHeight,
-                          mediaQueryWidth: mediaQueryWidth,
                           warna: danger500,
                           text: "Gagal",
                         );
@@ -90,6 +86,9 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
         ),
       ],
     );
+    final bodyHeight = mediaQueryHeight -
+        myAppbar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
 
     return Scaffold(
       appBar: myAppbar,

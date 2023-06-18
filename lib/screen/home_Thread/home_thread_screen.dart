@@ -1,4 +1,5 @@
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
+import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,9 @@ class HomeThreadScreen extends StatelessWidget {
       ),
       actions: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamed(PemberitahuanScreen.routename);
+          },
           child: Image.asset(
             "assets/icon/bell.png",
             width: 30,
@@ -66,6 +69,7 @@ class HomeThreadScreen extends StatelessWidget {
         MediaQuery.of(context).padding.top;
 
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       appBar: myAppBar,
       body: Column(
         children: [
@@ -114,6 +118,7 @@ class HomeThreadScreen extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ThreadContentCustomWidget(
+                  image: Image.asset("assets/images/fotodummy.png"),
                   faker: faker,
                   name: faker.person.name(),
                   contentThread: faker.lorem.sentences(7).join(''),

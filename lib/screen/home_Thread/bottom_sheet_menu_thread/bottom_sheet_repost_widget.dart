@@ -4,19 +4,18 @@ import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class BottomRepostThreadWidget extends StatelessWidget {
-  double bodyHeight;
-  double mediaWidth;
-  BottomRepostThreadWidget(
-      {super.key, required this.bodyHeight, required this.mediaWidth});
+class BottomSheetRepostThreadWidget extends StatelessWidget {
+  const BottomSheetRepostThreadWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: bodyHeight * 0.45,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      width: mediaWidth,
+    final mediaWidth = MediaQuery.of(context).size.width;
+    return Padding(
+      padding: const EdgeInsets.all(20),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: [
@@ -63,8 +62,6 @@ class BottomRepostThreadWidget extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return AlertDialogCustomWidget(
-                    bodyHeight: bodyHeight,
-                    mediaQueryWidth: mediaWidth,
                     warna: primary500,
                     text: "Thread berhasil dilaporkan",
                   );
