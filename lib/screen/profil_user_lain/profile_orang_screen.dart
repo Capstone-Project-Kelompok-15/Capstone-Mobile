@@ -1,9 +1,7 @@
-import 'package:capstone_mobile/screen/profile/menu_profile.dart';
+// import 'package:capstone_mobile/screen/profile/menu_profile.dart';
 import 'package:capstone_mobile/screen/profile/postingan_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/tabbar/diikuti_tabbar.dart';
-import 'package:capstone_mobile/screen/profile/tabbar/komentar_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/tabbar/pengikut_tabbar.dart';
-import 'package:capstone_mobile/screen/profile/ubah_profile.dart';
 
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
@@ -12,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class ProfileOrangScreen extends StatefulWidget {
   static const routename = "/profileorang";
-  const ProfileOrangScreen({super.key});
+  const ProfileOrangScreen({Key? key}) : super(key: key);
 
   @override
   State<ProfileOrangScreen> createState() => _ProfileOrangScreenState();
@@ -21,6 +19,7 @@ class ProfileOrangScreen extends StatefulWidget {
 class _ProfileOrangScreenState extends State<ProfileOrangScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  
 
   @override
   void initState() {
@@ -37,6 +36,10 @@ class _ProfileOrangScreenState extends State<ProfileOrangScreen>
   @override
   Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
+    final mediaQueryHeight = MediaQuery.of(context).size.height;
+
+    final bodyHeight = mediaQueryHeight - kToolbarHeight - MediaQuery.of(context).padding.top;
+
 
     return SafeArea(
       child: Scaffold(
@@ -50,39 +53,26 @@ class _ProfileOrangScreenState extends State<ProfileOrangScreen>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Joko Santoso',
-                    style: largeMedium.copyWith(color: typography500),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Image.asset(
-                          "assets/icon/Message.png",
+                  const Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Joko Santoso',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
                       ),
-                      const SizedBox(
-                        width: 24,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MenuProfile(),
-                            ),
-                          );
-                        },
-                        child: Image.asset(
-                          "assets/icon/Menu.png",
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
+                  const SizedBox(width: 40), // Spacer
                 ],
               ),
             ),
@@ -101,7 +91,7 @@ class _ProfileOrangScreenState extends State<ProfileOrangScreen>
                     ),
                   ),
                   const SizedBox(height: 18),
-                  Container(
+                  SizedBox(
                     height: 40,
                     width: 160,
                     child: Row(
@@ -158,33 +148,36 @@ class _ProfileOrangScreenState extends State<ProfileOrangScreen>
                     height: 40,
                     width: 165,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const UbahProfileScreen()));
-                          },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              border: Border.all(
-                                color: Colors.grey,
-                              ),
+                              color: const Color(0xff195FAA),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             width: 90,
                             height: 30,
                             child: Center(
                               child: Text(
-                                'Ubah Profil',
+                                'Follow',
                                 style: smallMedium.copyWith(
-                                    color: const Color(0xff636466)),
+                                  color: const Color(0xffFFFFFF),
+                                  fontSize: 16,
+                                ),
                               ),
                             ),
+                          ),
+                        ),
+                        const Spacer(flex: 1),                        
+                        GestureDetector(
+                          onTap: () {
+                            // Handle pesan di sini
+                          },
+                          child: Image.asset(
+                            "assets/icon/Statistics.png",
+                            width: 30,
+                            height: 30,
                           ),
                         ),
                       ],
@@ -205,31 +198,30 @@ class _ProfileOrangScreenState extends State<ProfileOrangScreen>
                           labelColor: primary500,
                           unselectedLabelColor: const Color(0xff939598),
                           indicator: RectangleTabIndicator(
-                              color: primary500,
-                              width: 70,
-                              height: 4,
-                              radius: 3),
+                            color: primary500,
+                            width: 70,
+                            height: 4,
+                            radius: 3,
+                          ),
                           tabs: [
                             Tab(
-                                child: Text(
-                              'Postingan',
-                              style: smallMedium.copyWith(fontSize: 13),
-                            )),
+                              child: Text(
+                                'Postingan',
+                                style: smallMedium.copyWith(fontSize: 13),
+                              ),
+                            ),
                             Tab(
-                                child: Text(
-                              'Komentar',
-                              style: smallMedium.copyWith(fontSize: 13),
-                            )),
+                              child: Text(
+                                'Pengikut',
+                                style: smallMedium.copyWith(fontSize: 13),
+                              ),
+                            ),
                             Tab(
-                                child: Text(
-                              'Pengikut',
-                              style: smallMedium.copyWith(fontSize: 13),
-                            )),
-                            Tab(
-                                child: Text(
-                              'Diikuti',
-                              style: smallMedium.copyWith(fontSize: 13),
-                            )),
+                              child: Text(
+                                'Diikuti',
+                                style: smallMedium.copyWith(fontSize: 13),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -253,7 +245,6 @@ class _ProfileOrangScreenState extends State<ProfileOrangScreen>
                 controller: _tabController,
                 children: const [
                   PostinganTabBar(),
-                  KomentarTabBar(),
                   PengikutTabBar(),
                   DiikutiTabbar(),
                 ],
