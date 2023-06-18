@@ -69,7 +69,7 @@ class _KebijakanAplikasiScreenState extends State<KebijakanAplikasiScreen> {
                         return Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
+                            SizedBox(
                               height: 140,
                               width: 20,
                               child: Text(

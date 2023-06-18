@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
 class ButtonNotificationWidget extends StatefulWidget {
+  const ButtonNotificationWidget({super.key});
+
   @override
-  _ButtonNotificationWidgetState createState() => _ButtonNotificationWidgetState();
+  // ignore: library_private_types_in_public_api
+  _ButtonNotificationWidgetState createState() =>
+      _ButtonNotificationWidgetState();
 }
 
 class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
@@ -18,13 +22,14 @@ class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
       onTap: () {
         Navigator.pushNamed(context, PemberitahuanScreen.routename);
       },
-      child: Icon(
+      child: const Icon(
         Icons.notifications,
         size: 30,
       ),
     );
   }
 
+  // ignore: unused_element
   Widget _buildlPemberitahuanWidget() {
     return Column(
       children: [
@@ -38,8 +43,10 @@ class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
           subtitle: const Text("Bagus idenya"),
         ),
         Padding(
-          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12),
+          padding:
+              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12),
           child: ispemberitahuan
+              // ignore: avoid_unnecessary_containers
               ? Container(
                   child: Column(
                     children: [

@@ -7,6 +7,8 @@ class BookmarkScreen extends StatelessWidget {
 
   final faker = Faker();
 
+  BookmarkScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;

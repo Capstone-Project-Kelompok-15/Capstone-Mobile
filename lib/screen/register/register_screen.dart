@@ -1,10 +1,9 @@
+import 'package:capstone_mobile/service/registrasi_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/button.dart';
 import 'package:capstone_mobile/widget/input_field.dart';
 import 'package:flutter/material.dart';
-
-import '../login/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -14,45 +13,62 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  String _username = "";
+  String _email = "";
+  String _password = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          const InputField(
+          InputField(
             title: "Username",
             hintText: "e.g., fariswht",
+            onChanged: (value) {
+              _username = value;
+            },
           ),
           const SizedBox(
             height: 16,
           ),
-         const InputField(
+          InputField(
             title: "Alamat Email / Nomor Handphone",
             hintText: "e.g., lexliealexander@gmail.com",
+            onChanged: (value) {
+              _email = value;
+            },
           ),
           const SizedBox(
             height: 16,
           ),
-          const InputField(title: "Kata Sandi"),
+          InputField(
+            title: "Kata Sandi",
+            onChanged: (value) {
+              _password = value;
+            },
+          ),
           const SizedBox(
             height: 16,
           ),
-          const InputField(
-            title: "Umur",
-            hintText: "e.g., 22",
-          ),
+          // InputField(
+          //   title: "Umur",
+          //   hintText: "e.g., 22",
+          // ),
           Padding(
             padding: const EdgeInsets.only(right: 139, left: 141, top: 24),
             child: Button(
-                buttonText: "Daftar",
-                width: 110,
-                onPressed: () {
-                  final snackBar = showRegisterDialog(true);
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  Navigator.of(context).pushNamed(
-                    LoginScreen.routename,
-                  );
-                }),
+              buttonText: "Daftar",
+              width: 110,
+              onPressed: () {
+                Registrasi().createUser(
+                    username: _username, email: _email, password: _password);
+                // final snackBar = showRegisterDialog(true);
+                // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                // Navigator.of(context).pushNamed(
+                //   LoginScreen.routename,
+                // );
+              },
+            ),
           )
         ],
       ),

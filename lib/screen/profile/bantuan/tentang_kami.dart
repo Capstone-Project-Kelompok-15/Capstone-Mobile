@@ -41,7 +41,7 @@ class TentangKamiScreen extends StatelessWidget {
                   const SizedBox(
                     height: 89,
                   ),
-                  Container(
+                  SizedBox(
                     height: 150,
                     width: 150,
                     child: Image.asset(
