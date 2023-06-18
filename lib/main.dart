@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: 
-      // const HomeButtonmNavigasiScreen(),
+      const HomeButtonmNavigasiScreen(),
       // BookmarkScreen(),
-      const SettingScreen(),
+      // const SettingScreen(),
       initialRoute: 
-      // HomeButtonmNavigasiScreen.routename,
+      HomeButtonmNavigasiScreen.routename,
       // BookmarkScreen.routename,
-      SettingScreen.routename,
+      // SettingScreen.routename,
       routes: {
         HomeButtonmNavigasiScreen.routename: (context) =>
             const HomeButtonmNavigasiScreen(),

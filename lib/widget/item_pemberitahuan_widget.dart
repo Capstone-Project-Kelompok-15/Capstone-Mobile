@@ -3,21 +3,21 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
-class ItemNotificationWidget extends StatefulWidget {
+class ItemPemberitahuanWidget extends StatefulWidget {
   final Faker faker;
   final double mediaQueryWidth;
 
-  const ItemNotificationWidget({
+  const ItemPemberitahuanWidget({
     Key? key,
     required this.faker,
     required this.mediaQueryWidth, 
   }) : super(key: key);
 
   @override
-  _ItemNotificationWidgetState createState() => _ItemNotificationWidgetState();
+  _ItemPemberitahuanWidgetState createState() => _ItemPemberitahuanWidgetState();
 }
 
-class _ItemNotificationWidgetState extends State<ItemNotificationWidget> {
+class _ItemPemberitahuanWidgetState extends State<ItemPemberitahuanWidget> {
   bool ispemberitahuan = false;
 
   final List<String> notificationMessages = [
@@ -27,10 +27,10 @@ class _ItemNotificationWidgetState extends State<ItemNotificationWidget> {
   ];
 
   final List<String> notificationTimes = [
-    "2 menit yang lalu",
-    "1 jam yang lalu",
-    "5 jam yang lalu",
-    "1 hari yang lalu",
+    "1 Minggu yang lalu",
+    "9 Hari yang lalu yang lalu",
+    "11 Hari yang lalu",
+    "2 Minggu yang lalu",
   ];
 
   int timeIndex = 0;
