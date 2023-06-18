@@ -36,7 +36,7 @@ class BantuanScreen extends StatelessWidget {
                     style: regulerBold,
                   )
                 ],
-              ),  
+              ),
               SizedBox(
                 height: 23.5,
               ),
@@ -55,11 +55,11 @@ class BantuanScreen extends StatelessWidget {
                     child: Text(
                       'Tentang Kami',
                       style: regulerMedium.copyWith(
-                        color: Color(0xff195FAA),
+                        color: const Color(0xff195FAA),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 29,
                   ),
                   GestureDetector(
@@ -74,11 +74,11 @@ class BantuanScreen extends StatelessWidget {
                     child: Text(
                       'FAQ',
                       style: regulerMedium.copyWith(
-                        color: Color(0xff195FAA),
+                        color: const Color(0xff195FAA),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 29,
                   ),
                   GestureDetector(
@@ -93,7 +93,7 @@ class BantuanScreen extends StatelessWidget {
                     child: Text(
                       'Kebijakan Aplikasi',
                       style: regulerMedium.copyWith(
-                        color: Color(0xff195FAA),
+                        color: const Color(0xff195FAA),
                       ),
                     ),
                   ),

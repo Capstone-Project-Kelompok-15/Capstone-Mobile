@@ -100,7 +100,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                     ),
                   ),
                   const SizedBox(height: 18),
-                  Container(
+                  SizedBox(
                     height: 40,
                     width: 160,
                     child: Row(

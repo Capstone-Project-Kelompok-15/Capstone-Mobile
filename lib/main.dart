@@ -25,25 +25,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const HomeButtonmNavigasiScreen(),
-      initialRoute: SplashScreen.routename,
-      routes: {
-        SplashScreen.routename: (context) => const SplashScreen(),
-        LandingScreen.routename: (context) => const LandingScreen(),
-        LoginScreen.routename: (context) => const LoginScreen(),
-        LupaPassword1.routename: (context) => const LupaPassword1(),
-        HomeButtonmNavigasiScreen.routename: (context) =>
-            const HomeButtonmNavigasiScreen(),
-        HomeThreadScreen.routename: (context) => HomeThreadScreen(),
-        CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
-        KomentarScreen.routename: (context) => const KomentarScreen(),
-        FollowByThread.routename: (context) => const FollowByThread(),
-        BookmarkScreen.routename: (context) => BookmarkScreen(),
-        PemberitahuanScreen.routename: (context) => const PemberitahuanScreen(),
-        SettingScreen.routename: (context) => const SettingScreen(),
-        PengaturanAkunScreen.routename: (context) => PengaturanAkunScreen(),
-      }
-    );
+        debugShowCheckedModeBanner: false,
+        home: const HomeButtonmNavigasiScreen(),
+        initialRoute: SplashScreen.routename,
+        routes: {
+          SplashScreen.routename: (context) => const SplashScreen(),
+          LandingScreen.routename: (context) => const LandingScreen(),
+          LoginScreen.routename: (context) => const LoginScreen(),
+          LupaPassword1.routename: (context) => const LupaPassword1(),
+          HomeButtonmNavigasiScreen.routename: (context) =>
+              const HomeButtonmNavigasiScreen(),
+          HomeThreadScreen.routename: (context) => HomeThreadScreen(),
+          CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
+          KomentarScreen.routename: (context) => const KomentarScreen(),
+          FollowByThread.routename: (context) => const FollowByThread(),
+          BookmarkScreen.routename: (context) => BookmarkScreen(),
+          PemberitahuanScreen.routename: (context) =>
+              const PemberitahuanScreen(),
+          SettingScreen.routename: (context) => const SettingScreen(),
+          PengaturanAkunScreen.routename: (context) =>
+              const PengaturanAkunScreen(),
+        });
   }
 }

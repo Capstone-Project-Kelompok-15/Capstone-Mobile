@@ -13,7 +13,7 @@ class KomentarTabBar extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 200,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
