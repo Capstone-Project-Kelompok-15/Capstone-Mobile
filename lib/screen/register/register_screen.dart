@@ -16,6 +16,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _username = "";
   String _email = "";
   String _password = "";
+  String _age = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,18 +52,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(
             height: 16,
           ),
-          // InputField(
-          //   title: "Umur",
-          //   hintText: "e.g., 22",
-          // ),
+          InputField(
+            title: "Umur",
+            hintText: "e.g., 22",
+            onChanged: (value) {
+              _age = value;
+            },
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 139, left: 141, top: 24),
             child: Button(
               buttonText: "Daftar",
               width: 110,
-              onPressed: () {
-                Registrasi().createUser(
-                    username: _username, email: _email, password: _password);
+              onPressed: () async {
+                await Registrasi().createUser(
+                    username: _username,
+                    email: _email,
+                    password: _password,
+                    age: _age);
+                setState(() {});
                 // final snackBar = showRegisterDialog(true);
                 // ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 // Navigator.of(context).pushNamed(
