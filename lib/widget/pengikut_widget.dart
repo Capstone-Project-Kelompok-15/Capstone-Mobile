@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 class PengikutProfile extends StatelessWidget {
   const PengikutProfile({super.key});
   
-  get tinyRegular => null;
-
   @override
   Widget build(BuildContext context) {
     return Column(

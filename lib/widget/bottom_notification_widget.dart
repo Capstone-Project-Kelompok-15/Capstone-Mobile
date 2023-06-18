@@ -18,7 +18,7 @@ class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
       onTap: () {
         Navigator.pushNamed(context, PemberitahuanScreen.routename);
       },
-      child: Icon(
+      child: const Icon(
         Icons.notifications,
         size: 30,
       ),
