@@ -10,10 +10,11 @@ class ItemNotificationWidget extends StatefulWidget {
   const ItemNotificationWidget({
     Key? key,
     required this.faker,
-    required this.mediaQueryWidth, 
+    required this.mediaQueryWidth,
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ItemNotificationWidgetState createState() => _ItemNotificationWidgetState();
 }
 
@@ -36,16 +37,18 @@ class _ItemNotificationWidgetState extends State<ItemNotificationWidget> {
   int timeIndex = 0;
 
   @override
-Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     final random = Random();
-    final randomMessage = notificationMessages[random.nextInt(notificationMessages.length)];
+    final randomMessage =
+        notificationMessages[random.nextInt(notificationMessages.length)];
     final currentTime = notificationTimes[timeIndex];
 
     // Increment the index to get the next time in the list
     timeIndex = (timeIndex + 1) % notificationTimes.length;
 
     final fullName = widget.faker.person.name();
-    final firstName = fullName.split(' ').first; // Mendapatkan nama depan dari nama lengkap
+    final firstName =
+        fullName.split(' ').first; // Mendapatkan nama depan dari nama lengkap
 
     return Column(
       children: [
@@ -53,9 +56,11 @@ Widget build(BuildContext context) {
           horizontalTitleGap: 20,
           contentPadding: const EdgeInsets.all(0),
           leading: CircleAvatar(
+            // ignore: sort_child_properties_last
             child: Text(
-              firstName.substring(0, 1), // Mengambil huruf pertama dari nama depan
-              style: TextStyle(
+              firstName.substring(
+                  0, 1), // Mengambil huruf pertama dari nama depan
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
                 color: Colors.white,
@@ -68,7 +73,7 @@ Widget build(BuildContext context) {
               children: [
                 TextSpan(
                   text: fullName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                     color: Colors.black,
@@ -77,7 +82,7 @@ Widget build(BuildContext context) {
                 const TextSpan(text: " "),
                 TextSpan(
                   text: randomMessage,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                   ),
                 ),
@@ -86,7 +91,7 @@ Widget build(BuildContext context) {
           ),
           subtitle: Text(
             currentTime,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
             ),
           ),

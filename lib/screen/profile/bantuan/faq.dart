@@ -15,7 +15,7 @@ class _FaqScreenState extends State<FaqScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Column(
             children: [
               Row(
@@ -30,7 +30,7 @@ class _FaqScreenState extends State<FaqScreen> {
                       scale: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 14.5,
                   ),
                   Text(
@@ -39,10 +39,10 @@ class _FaqScreenState extends State<FaqScreen> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
-              FaqDropDown(),
+              const FaqDropDown(),
             ],
           ),
         ),
