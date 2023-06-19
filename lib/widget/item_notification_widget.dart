@@ -10,18 +10,11 @@ class ItemNotificationWidget extends StatefulWidget {
   const ItemNotificationWidget({
     Key? key,
     required this.faker,
-<<<<<<< HEAD
     required this.mediaQueryWidth,
   }) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-=======
-    required this.mediaQueryWidth, 
-  }) : super(key: key);
-
-  @override
->>>>>>> profile_orang_lain
   _ItemNotificationWidgetState createState() => _ItemNotificationWidgetState();
 }
 
@@ -44,28 +37,18 @@ class _ItemNotificationWidgetState extends State<ItemNotificationWidget> {
   int timeIndex = 0;
 
   @override
-<<<<<<< HEAD
   Widget build(BuildContext context) {
     final random = Random();
     final randomMessage =
         notificationMessages[random.nextInt(notificationMessages.length)];
-=======
-Widget build(BuildContext context) {
-    final random = Random();
-    final randomMessage = notificationMessages[random.nextInt(notificationMessages.length)];
->>>>>>> profile_orang_lain
     final currentTime = notificationTimes[timeIndex];
 
     // Increment the index to get the next time in the list
     timeIndex = (timeIndex + 1) % notificationTimes.length;
 
     final fullName = widget.faker.person.name();
-<<<<<<< HEAD
     final firstName =
         fullName.split(' ').first; // Mendapatkan nama depan dari nama lengkap
-=======
-    final firstName = fullName.split(' ').first; // Mendapatkan nama depan dari nama lengkap
->>>>>>> profile_orang_lain
 
     return Column(
       children: [
@@ -73,17 +56,11 @@ Widget build(BuildContext context) {
           horizontalTitleGap: 20,
           contentPadding: const EdgeInsets.all(0),
           leading: CircleAvatar(
-<<<<<<< HEAD
             // ignore: sort_child_properties_last
             child: Text(
               firstName.substring(
                   0, 1), // Mengambil huruf pertama dari nama depan
               style: const TextStyle(
-=======
-            child: Text(
-              firstName.substring(0, 1), // Mengambil huruf pertama dari nama depan
-              style: TextStyle(
->>>>>>> profile_orang_lain
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
                 color: Colors.white,
@@ -96,11 +73,7 @@ Widget build(BuildContext context) {
               children: [
                 TextSpan(
                   text: fullName,
-<<<<<<< HEAD
                   style: const TextStyle(
-=======
-                  style: TextStyle(
->>>>>>> profile_orang_lain
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
                     color: Colors.black,
@@ -109,11 +82,7 @@ Widget build(BuildContext context) {
                 const TextSpan(text: " "),
                 TextSpan(
                   text: randomMessage,
-<<<<<<< HEAD
                   style: const TextStyle(
-=======
-                  style: TextStyle(
->>>>>>> profile_orang_lain
                     fontSize: 12,
                   ),
                 ),
@@ -122,11 +91,7 @@ Widget build(BuildContext context) {
           ),
           subtitle: Text(
             currentTime,
-<<<<<<< HEAD
             style: const TextStyle(
-=======
-            style: TextStyle(
->>>>>>> profile_orang_lain
               fontSize: 12,
             ),
           ),
@@ -134,8 +99,4 @@ Widget build(BuildContext context) {
       ],
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 
 class DiikutiProfile extends StatelessWidget {
   const DiikutiProfile({super.key});
-<<<<<<< HEAD
-=======
-  
-  get tinyRegular => null;
->>>>>>> profile_orang_lain
 
   @override
   Widget build(BuildContext context) {
@@ -51,18 +46,10 @@ class DiikutiProfile extends StatelessWidget {
             ),
           ),
         ),
-<<<<<<< HEAD
         const SizedBox(
-=======
-        SizedBox(
->>>>>>> profile_orang_lain
           height: 16,
         )
       ],
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

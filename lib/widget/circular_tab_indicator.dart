@@ -44,8 +44,4 @@ class _RectanglePainter extends BoxPainter {
 
     canvas.drawRRect(roundedRect, _paint);
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

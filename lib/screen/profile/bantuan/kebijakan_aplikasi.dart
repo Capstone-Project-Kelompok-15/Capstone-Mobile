@@ -100,8 +100,4 @@ class _KebijakanAplikasiScreenState extends State<KebijakanAplikasiScreen> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

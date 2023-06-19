@@ -61,8 +61,4 @@ TextStyle buttonMedium = GoogleFonts.sourceSansPro(
 );
 TextStyle buttonReguler = GoogleFonts.sourceSansPro(
   fontSize: 16,
-<<<<<<< HEAD
 );
-=======
-);
->>>>>>> profile_orang_lain

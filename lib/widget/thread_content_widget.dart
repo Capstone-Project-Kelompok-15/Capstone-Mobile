@@ -216,11 +216,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-<<<<<<< HEAD
                         return const BottomSheetThreadMenu();
-=======
-                        return BottomSheetThreadMenu();
->>>>>>> profile_orang_lain
                       },
                     );
                   },

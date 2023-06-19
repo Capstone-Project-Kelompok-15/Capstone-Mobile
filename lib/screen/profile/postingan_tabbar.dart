@@ -95,8 +95,4 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

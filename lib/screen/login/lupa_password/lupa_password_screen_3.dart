@@ -62,8 +62,4 @@ class _LupaPassword3State extends State<LupaPassword3> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

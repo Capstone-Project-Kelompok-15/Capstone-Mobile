@@ -263,8 +263,4 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

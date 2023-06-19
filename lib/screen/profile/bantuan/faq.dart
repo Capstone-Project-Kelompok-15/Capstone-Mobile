@@ -49,8 +49,4 @@ class _FaqScreenState extends State<FaqScreen> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

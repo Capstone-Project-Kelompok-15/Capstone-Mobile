@@ -183,8 +183,4 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Colors.transparent,
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

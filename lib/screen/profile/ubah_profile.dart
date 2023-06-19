@@ -167,8 +167,4 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain

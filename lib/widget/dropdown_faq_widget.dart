@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 // ignore_for_file: unused_field
 
-=======
->>>>>>> profile_orang_lain
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
@@ -14,10 +11,7 @@ class FaqDropDown extends StatefulWidget {
 }
 
 class _FaqDropDownState extends State<FaqDropDown> {
-<<<<<<< HEAD
   // ignore: prefer_final_fields
-=======
->>>>>>> profile_orang_lain
   bool _customTileExpanded = false;
   @override
   Widget build(BuildContext context) {
@@ -27,11 +21,7 @@ class _FaqDropDownState extends State<FaqDropDown> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-<<<<<<< HEAD
               color: const Color(0xffBFBFBF),
-=======
-              color: Color(0xffBFBFBF),
->>>>>>> profile_orang_lain
             ),
           ),
           height: 70,
@@ -46,20 +36,12 @@ class _FaqDropDownState extends State<FaqDropDown> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-<<<<<<< HEAD
                     color: const Color(0xffBFBFBF),
-=======
-                    color: Color(0xffBFBFBF),
->>>>>>> profile_orang_lain
                   ),
                 ),
                 height: 80,
                 width: 342,
-<<<<<<< HEAD
                 child: const ListTile(
-=======
-                child: ListTile(
->>>>>>> profile_orang_lain
                   title: Text('This is tile number 1'),
                 ),
               ),
@@ -94,8 +76,4 @@ class _FaqDropDownState extends State<FaqDropDown> {
       ],
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain
