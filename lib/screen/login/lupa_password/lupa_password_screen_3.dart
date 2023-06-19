@@ -1,17 +1,3 @@
-import 'package:capstone_mobile/screen/login/login_screen.dart';
-import 'package:flutter/material.dart';
-
-import '../../../style/color_style.dart';
-import '../../../style/font_style.dart';
-import '../../../widget/button.dart';
-import '../../../widget/input_field.dart';
-
-class LupaPassword3 extends StatefulWidget {
-  const LupaPassword3({super.key});
-
-  @override
-  State<LupaPassword3> createState() => _LupaPassword3State();
-}
 
 class _LupaPassword3State extends State<LupaPassword3> {
   @override

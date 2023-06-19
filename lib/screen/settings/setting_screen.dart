@@ -53,7 +53,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Row(
                   children: [
                     Image.asset(
-                      "assets/icon/Settings.png", 
+                      "assets/icon/Settings.png",
                       width: 20,
                       height: 20,
                       color: Colors.black,
