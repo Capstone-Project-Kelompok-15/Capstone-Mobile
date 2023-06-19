@@ -40,4 +40,8 @@ class _LandingScreen1State extends State<LandingScreen1> {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> profile_orang_lain

@@ -18,4 +18,8 @@ void removeToken() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   await prefs.remove(token);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> profile_orang_lain

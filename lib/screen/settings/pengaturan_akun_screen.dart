@@ -163,4 +163,8 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> profile_orang_lain

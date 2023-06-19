@@ -167,4 +167,8 @@ class _SettingScreenState extends State<SettingScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> profile_orang_lain

@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 
 class PengikutProfile extends StatelessWidget {
   const PengikutProfile({super.key});
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> profile_orang_lain
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +30,11 @@ class PengikutProfile extends StatelessWidget {
               "John doe",
               style: smallMedium,
             ),
+<<<<<<< HEAD
             trailing: SizedBox(
+=======
+            trailing: Container(
+>>>>>>> profile_orang_lain
               height: 40,
               width: 30,
               child: Column(
@@ -54,4 +62,8 @@ class PengikutProfile extends StatelessWidget {
       ],
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> profile_orang_lain

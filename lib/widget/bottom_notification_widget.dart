@@ -4,12 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
 class ButtonNotificationWidget extends StatefulWidget {
+<<<<<<< HEAD
   const ButtonNotificationWidget({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _ButtonNotificationWidgetState createState() =>
       _ButtonNotificationWidgetState();
+=======
+  @override
+  _ButtonNotificationWidgetState createState() => _ButtonNotificationWidgetState();
+>>>>>>> profile_orang_lain
 }
 
 class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
@@ -29,7 +34,10 @@ class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
     );
   }
 
+<<<<<<< HEAD
   // ignore: unused_element
+=======
+>>>>>>> profile_orang_lain
   Widget _buildlPemberitahuanWidget() {
     return Column(
       children: [
@@ -43,10 +51,15 @@ class _ButtonNotificationWidgetState extends State<ButtonNotificationWidget> {
           subtitle: const Text("Bagus idenya"),
         ),
         Padding(
+<<<<<<< HEAD
           padding:
               EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12),
           child: ispemberitahuan
               // ignore: avoid_unnecessary_containers
+=======
+          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.12),
+          child: ispemberitahuan
+>>>>>>> profile_orang_lain
               ? Container(
                   child: Column(
                     children: [

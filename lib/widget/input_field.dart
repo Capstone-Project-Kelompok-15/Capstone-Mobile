@@ -12,9 +12,14 @@ class InputField extends StatelessWidget {
   final bool isPassword;
   final bool obsecureText;
   final Function()? onTap;
+<<<<<<< HEAD
   final Function(String)? onChanged;
 
   const InputField(
+=======
+
+  InputField(
+>>>>>>> profile_orang_lain
       {super.key,
       required this.title,
       this.hintText,
@@ -23,8 +28,12 @@ class InputField extends StatelessWidget {
       this.textError,
       this.isPassword = false,
       this.obsecureText = false,
+<<<<<<< HEAD
       this.onTap,
       this.onChanged});
+=======
+      this.onTap});
+>>>>>>> profile_orang_lain
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +53,31 @@ class InputField extends StatelessWidget {
               ),
               TextFormField(
                 cursorColor: primary500,
+<<<<<<< HEAD
                 onChanged: onChanged,
+=======
+>>>>>>> profile_orang_lain
                 decoration: InputDecoration(
                     hintText: hintText,
                     hintStyle: regulerReguler,
                     suffixIcon: isPassword == true
                         ? GestureDetector(
+<<<<<<< HEAD
                             // ignore: sort_child_properties_last
+=======
+>>>>>>> profile_orang_lain
                             child: Icon(obsecureText
                                 ? Icons.visibility
                                 : Icons.visibility_off),
                             onTap: onTap,
                           )
+<<<<<<< HEAD
                         : Container(
                             width: 1,
                           ),
+=======
+                        : Container(width: 1,),
+>>>>>>> profile_orang_lain
                     contentPadding:
                         const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                     border: OutlineInputBorder(
@@ -88,4 +107,8 @@ class InputField extends StatelessWidget {
       ],
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> profile_orang_lain

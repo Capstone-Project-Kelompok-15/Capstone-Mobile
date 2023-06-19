@@ -19,4 +19,8 @@ class Registrasi {
       print("User berhasil dibuat");
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> profile_orang_lain
