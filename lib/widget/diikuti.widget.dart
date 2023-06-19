@@ -1,8 +1,3 @@
-import 'package:capstone_mobile/style/font_style.dart';
-import 'package:flutter/material.dart';
-
-class DiikutiProfile extends StatelessWidget {
-  const DiikutiProfile({super.key});
 
   @override
   Widget build(BuildContext context) {

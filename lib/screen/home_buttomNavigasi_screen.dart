@@ -5,9 +5,6 @@ import 'package:capstone_mobile/screen/profile/profile_user_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:flutter/material.dart';
 
-import 'follow_thread/follow_thread_screen.dart';
-import 'leaderboard/leaderboard_screen.dart';
-
 class HomeButtonmNavigasiScreen extends StatefulWidget {
   static const routename = "/HomeMainScreen";
   const HomeButtonmNavigasiScreen({super.key});
@@ -23,9 +20,18 @@ class _HomeButtonmNavigasiScreen extends State<HomeButtonmNavigasiScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
     HomeThreadScreen(),
-    const FollowByThread(),
-    const LeaderboardScreen(),
-    const ProfileUserScreen(),
+    const Text(
+      'Index 1: Follow',
+      style: optionStyle,
+    ),
+    const Text(
+      'Index 2: LeaderBoard',
+      style: optionStyle,
+    ),
+    const Text(
+      'Index 3: Profile',
+      style: optionStyle,
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -47,6 +53,7 @@ class _HomeButtonmNavigasiScreen extends State<HomeButtonmNavigasiScreen> {
           ),
         ]),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Image(

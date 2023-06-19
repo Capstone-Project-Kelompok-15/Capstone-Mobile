@@ -5,8 +5,10 @@ import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bott
 import 'package:capstone_mobile/widget/item_thread_menu.dart';
 import 'package:flutter/material.dart';
 
-class BottomSheetThreadMenu extends StatelessWidget {
-  BottomSheetThreadMenu({
+class bottomThreadMenu extends StatelessWidget {
+  double bodyHeight;
+  double mediaWidth;
+  bottomThreadMenu({
     super.key,
   });
 
@@ -70,10 +72,9 @@ class BottomSheetThreadMenu extends StatelessWidget {
                     ),
                   ),
                   builder: (BuildContext context) {
-                    return Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: BottomSheetRepostThreadWidget(),
+                    return BottomRepostThreadWidget(
+                      bodyHeight: bodyHeight,
+                      mediaWidth: mediaWidth,
                     );
                   },
                 );
@@ -94,7 +95,10 @@ class BottomSheetThreadMenu extends StatelessWidget {
                     ),
                   ),
                   builder: (BuildContext context) {
-                    return BottomSheetLaporkanThreadWidget();
+                    return BottomLaporkanThreadWidget(
+                      bodyHeight: bodyHeight,
+                      mediaWidth: mediaWidth,
+                    );
                   },
                 );
               }),
