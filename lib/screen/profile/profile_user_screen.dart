@@ -59,7 +59,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                       GestureDetector(
                         onTap: () {},
                         child: Image.asset(
-                          "assets/icon/Message.png",
+                          "assets/icon/message.png",
                           color: Colors.black,
                         ),
                       ),
@@ -197,7 +197,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                     children: [
                       Container(
                         color: Colors.transparent,
-                        width: 360,
+                        width: 317,
                         height: 55,
                         child: TabBar(
                           controller: _tabController,
@@ -205,29 +205,29 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                           unselectedLabelColor: const Color(0xff939598),
                           indicator: RectangleTabIndicator(
                               color: primary500,
-                              width: 70,
+                              width: 60,
                               height: 4,
                               radius: 3),
                           tabs: [
                             Tab(
                                 child: Text(
                               'Postingan',
-                              style: smallMedium.copyWith(fontSize: 13),
+                              style: smallMedium.copyWith(fontSize: 12),
                             )),
                             Tab(
                                 child: Text(
                               'Komentar',
-                              style: smallMedium.copyWith(fontSize: 13),
+                              style: smallMedium.copyWith(fontSize: 12),
                             )),
                             Tab(
                                 child: Text(
                               'Pengikut',
-                              style: smallMedium.copyWith(fontSize: 13),
+                              style: smallMedium.copyWith(fontSize: 12),
                             )),
                             Tab(
                                 child: Text(
                               'Diikuti',
-                              style: smallMedium.copyWith(fontSize: 13),
+                              style: smallMedium.copyWith(fontSize: 12),
                             )),
                           ],
                         ),
