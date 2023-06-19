@@ -14,7 +14,7 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
   @override
   Widget build(BuildContext context) {
     List<String> status = ['Postingan Terbaru', 'Terakhir Dilihat'];
-    String? selectedStatus = 'Postingan Terbaru';
+    String? selectedStatus = status.first;
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -30,18 +30,17 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
                   child: DropdownButton<String>(
                     underline: Container(),
                     value: selectedStatus,
-                    items: status
-                        .map((status) => DropdownMenuItem<String>(
-                              value: status,
-                              child: Text(
-                                status,
-                                style: smallMedium,
-                              ),
-                            ))
-                        .toList(),
-                    onChanged: (name) {
+                    items: status.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: smallMedium,
+                          ));
+                    }).toList(),
+                    onChanged: (String? value) {
                       setState(() {
-                        selectedStatus = name;
+                        selectedStatus = value!;
                       });
                     },
                   ),
@@ -65,7 +64,7 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
           ),
           Container(
             width: double.infinity,
-            height: 1,
+            height: 0.5,
             decoration: BoxDecoration(
               color: Colors.black,
               border: Border.all(
