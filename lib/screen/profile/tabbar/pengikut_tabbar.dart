@@ -26,8 +26,4 @@ class _PengikutTabBarState extends State<PengikutTabBar> {
       ],
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> profile_orang_lain
