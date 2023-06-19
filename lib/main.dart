@@ -13,6 +13,7 @@ import 'package:capstone_mobile/screen/settings/pengaturan_akun_screen.dart';
 import 'package:capstone_mobile/screen/settings/setting_screen.dart';
 import 'package:capstone_mobile/screen/splash_screen.dart';
 
+import 'package:capstone_mobile/screen/profil_user_lain/profile_orang_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
           SettingScreen.routename: (context) => const SettingScreen(),
           PengaturanAkunScreen.routename: (context) =>
               const PengaturanAkunScreen(),
+          ProfileOrangScreen.routename: (context) => const ProfileOrangScreen(),
         });
   }
 }
