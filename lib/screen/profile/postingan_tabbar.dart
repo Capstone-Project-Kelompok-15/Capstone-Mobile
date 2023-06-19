@@ -69,12 +69,12 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
             decoration: BoxDecoration(
               color: Colors.black,
               border: Border.all(
-                color: Color(0xffAAAAAA),
+                color: const Color(0xffAAAAAA),
               ),
             ),
           ),
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 200,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,

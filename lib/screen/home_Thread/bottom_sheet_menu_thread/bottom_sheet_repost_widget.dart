@@ -8,10 +8,6 @@ class BottomSheetRepostThreadWidget extends StatelessWidget {
   const BottomSheetRepostThreadWidget({
     super.key,
   });
-  
-  get argumentHeight => null;
-  
-  get mediaQueryWidth => null;
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +62,6 @@ class BottomSheetRepostThreadWidget extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return AlertDialogCustomWidget(
-                    bodyHeight: argumentHeight,
-                    mediaQueryWidth: mediaQueryWidth,
                     warna: primary500,
                     text: "Thread berhasil dilaporkan",
                   );

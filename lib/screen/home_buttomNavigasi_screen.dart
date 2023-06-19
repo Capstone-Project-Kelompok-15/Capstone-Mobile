@@ -49,6 +49,7 @@ class _HomeButtonmNavigasiScreen extends State<HomeButtonmNavigasiScreen> {
           ),
         ]),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Image(

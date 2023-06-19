@@ -110,7 +110,7 @@ class _KomentarScreenState extends State<KomentarScreen> {
                       builder: (context) {
                         return AlertDialogCustomWidget(
                           warna: primary500,
-                          text: "Komentar telah terkirim", bodyHeight: bodyHeight, mediaQueryWidth: mediaQueryWidth,
+                          text: "Komentar telah terkirim",
                         );
                       });
                 }

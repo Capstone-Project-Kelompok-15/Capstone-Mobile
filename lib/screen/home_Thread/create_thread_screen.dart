@@ -30,6 +30,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
   @override
   Widget build(BuildContext context) {
     String content = "";
+    // ignore: unused_local_variable
     final argumentHeight =
         (ModalRoute.of(context)?.settings.arguments ?? "") as double;
 
@@ -53,8 +54,6 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                       context: context,
                       builder: (context) {
                         return AlertDialogCustomWidget(
-                          bodyHeight: argumentHeight,
-                          mediaQueryWidth: mediaQueryWidth,  
                           warna: primary500,
                           text: "Komentar telah terkirim",
                         );
@@ -64,8 +63,6 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                       context: context,
                       builder: (context) {
                         return AlertDialogCustomWidget(
-                          bodyHeight: argumentHeight,
-                          mediaQueryWidth: mediaQueryWidth,                          
                           warna: danger500,
                           text: "Gagal",
                         );
@@ -90,6 +87,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
         ),
       ],
     );
+    // ignore: unused_local_variable
     final bodyHeight = mediaQueryHeight -
         myAppbar.preferredSize.height -
         MediaQuery.of(context).padding.top;

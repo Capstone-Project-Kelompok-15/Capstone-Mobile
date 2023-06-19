@@ -36,7 +36,7 @@ class _LupaPassword1State extends State<LupaPassword1> {
               "Masukkan Email Anda",
               style: largeReguler,
             ),
-            InputField(
+            const InputField(
               title: " ",
               hintText: "e.g., lexliealexander@gmail.com",
             ),

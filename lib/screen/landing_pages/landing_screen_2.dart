@@ -1,8 +1,5 @@
-// import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
-
-// import 'landing_screen_3.dart';
 
 class LandingScreen2 extends StatefulWidget {
   const LandingScreen2({super.key});
@@ -16,9 +13,7 @@ class _LandingScreen2State extends State<LandingScreen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onTap: () {
-          
-        },
+        onTap: () {},
         child: Stack(
           children: [
             Container(
