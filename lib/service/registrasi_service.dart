@@ -6,7 +6,7 @@ class Registrasi {
     required String username,
     required String email,
     required String password,
-    required String age,
+    required int age,
   }) async {
     try {
       final response = await Dio().post(
