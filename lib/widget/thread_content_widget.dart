@@ -16,7 +16,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
-  Image? image;
+  Image images;
 
   ThreadContentCustomWidget({
     super.key,
@@ -27,7 +27,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
     this.bodyheight,
     this.isLeaderBoard = false,
     this.ranking,
-    this.image,
+    required this.images,
   });
 
   final Faker faker;
@@ -54,7 +54,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
             leading: CircleAvatar(
-              child: widget.image,
+              child: Image.asset("assets/images/fotodummy.png"),
             ),
             title: IntrinsicHeight(
               child: Row(
@@ -192,10 +192,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                                 ),
                               ),
                               builder: (BuildContext context) {
-                                return BottomShereWidget(
-                                  bodyHeight: widget.bodyheight,
-                                  mediaWidth: widget.mediaWidth,
-                                );
+                                return const BottomSheetShereWidget();
                               },
                             );
                           },
@@ -219,10 +216,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return bottomThreadMenu(
-                          bodyHeight: widget.bodyheight,
-                          mediaWidth: widget.mediaWidth,
-                        );
+                        return const BottomSheetThreadMenu();
                       },
                     );
                   },

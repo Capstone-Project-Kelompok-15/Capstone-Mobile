@@ -62,9 +62,3 @@ TextStyle buttonMedium = GoogleFonts.sourceSansPro(
 TextStyle buttonReguler = GoogleFonts.sourceSansPro(
   fontSize: 16,
 );
-
-//thimoty
-TextStyle tinyRegular = GoogleFonts.sourceSansPro(
-  fontSize: 10,
-  fontWeight: FontWeight.w400,
-);

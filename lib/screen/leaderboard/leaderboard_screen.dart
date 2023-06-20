@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../style/font_style.dart';
 import '../../widget/thread_content_widget.dart';
 
-class LeaderboardScreen extends StatelessWidget {
-  static const routename = "/leaderboardScreen";
-  const LeaderboardScreen({super.key});
+class LeaderBoardScreen extends StatelessWidget {
+  static const routename = "/leaderboard";
+  const LeaderBoardScreen({super.key});
 
   get color => null;
 
@@ -35,7 +35,7 @@ class LeaderboardScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                'Peringkat',
+                'Leaderboard',
                 style: largeBold.copyWith(
                   color: Colors.black,
                   fontSize: 20,
@@ -93,7 +93,7 @@ class LeaderboardScreen extends StatelessWidget {
                     return ThreadContentCustomWidget(
                       isLeaderBoard: true,
                       ranking: index + 1,
-                      image: Image.asset("assets/images/fotodummy.png"),
+                      images: Image.asset("assets/images/fotodummy.png"),
                       faker: faker,
                       name: faker.person.name(),
                       contentThread: faker.lorem.sentences(7).join(''),
@@ -108,7 +108,7 @@ class LeaderboardScreen extends StatelessWidget {
                     return ThreadContentCustomWidget(
                       isLeaderBoard: true,
                       ranking: index + 1,
-                      image: Image.asset("assets/images/fotodummy.png"),
+                      images: Image.asset("assets/images/fotodummy.png"),
                       faker: faker,
                       name: faker.person.name(),
                       contentThread: faker.lorem.sentences(7).join(''),

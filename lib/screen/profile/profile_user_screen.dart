@@ -1,3 +1,41 @@
+import 'package:capstone_mobile/screen/profile/menu_profile.dart';
+import 'package:capstone_mobile/screen/profile/postingan_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/tabbar/diikuti_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/tabbar/komentar_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/tabbar/pengikut_tabbar.dart';
+import 'package:capstone_mobile/screen/profile/ubah_profile.dart';
+
+import 'package:capstone_mobile/style/color_style.dart';
+import 'package:capstone_mobile/style/font_style.dart';
+import 'package:capstone_mobile/widget/circular_tab_indicator.dart';
+import 'package:flutter/material.dart';
+
+class ProfileUserScreen extends StatefulWidget {
+  const ProfileUserScreen({super.key});
+
+  @override
+  State<ProfileUserScreen> createState() => _ProfileUserScreenState();
+}
+
+class _ProfileUserScreenState extends State<ProfileUserScreen>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 4, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaQueryWidth = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: Scaffold(

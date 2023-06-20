@@ -1,4 +1,6 @@
+import 'package:capstone_mobile/screen/login/login_screen.dart';
 import 'package:capstone_mobile/screen/settings/pengaturan_akun_screen.dart';
+import 'package:capstone_mobile/service/login_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +22,10 @@ class _SettingScreenState extends State<SettingScreen> {
     final myAppBar = AppBar(
       iconTheme: IconThemeData(color: typography500),
       leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
       title: Text(
         "Pengaturan",
@@ -48,7 +50,8 @@ class _SettingScreenState extends State<SettingScreen> {
               padding: const EdgeInsets.fromLTRB(28, 15, 15, 15),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed(PengaturanAkunScreen.routename);// Aksi yang ingin Anda lakukan saat diklik pada "Pengaturan Akun"
+                  Navigator.of(context).pushNamed(PengaturanAkunScreen
+                      .routename); // Aksi yang ingin Anda lakukan saat diklik pada "Pengaturan Akun"
                 },
                 child: Row(
                   children: [
@@ -66,7 +69,8 @@ class _SettingScreenState extends State<SettingScreen> {
                         fontStyle: FontStyle.normal,
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
-                        height: 1.4, // Menggunakan faktor 1.4 untuk line-height 140%
+                        height:
+                            1.4, // Menggunakan faktor 1.4 untuk line-height 140%
                         color: Color(0xFF222628),
                       ),
                     ),
@@ -124,12 +128,14 @@ class _SettingScreenState extends State<SettingScreen> {
                     context: context,
                     builder: (context) => BasicDialogAlert(
                       title: const Text("Apakah anda yakin?"),
-                      content: const Text("Apakah anda yakin ingin keluar dari aplikasi Squad Space."),
+                      content: const Text(
+                          "Apakah anda yakin ingin keluar dari aplikasi Squad Space."),
                       actions: <Widget>[
                         BasicDialogAction(
                           title: const Text("Ya"),
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.pushNamed(context, LoginScreen.routename);
+                            removeToken();
                           },
                         ),
                         BasicDialogAction(
@@ -149,7 +155,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
-                    height: 1.4, // Menggunakan faktor 1.4 untuk line-height 140%
+                    height:
+                        1.4, // Menggunakan faktor 1.4 untuk line-height 140%
                     color: Color(0xFFB92B27),
                   ),
                 ),

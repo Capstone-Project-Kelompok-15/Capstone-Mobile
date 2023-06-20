@@ -87,6 +87,10 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
         ),
       ],
     );
+    // ignore: unused_local_variable
+    final bodyHeight = mediaQueryHeight -
+        myAppbar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
 
     return Scaffold(
       appBar: myAppbar,

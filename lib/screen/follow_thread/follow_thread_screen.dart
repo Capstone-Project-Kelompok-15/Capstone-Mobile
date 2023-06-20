@@ -91,6 +91,7 @@ class FollowByThread extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ThreadContentCustomWidget(
+                      images: Image.asset("assets/images/fotodummy.png"),
                       faker: faker,
                       name: faker.person.name(),
                       contentThread: faker.lorem.sentences(7).join(''),
@@ -103,6 +104,7 @@ class FollowByThread extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ThreadContentCustomWidget(
+                      images: Image.asset("assets/images/fotodummy.png"),
                       faker: faker,
                       name: faker.person.name(),
                       contentThread: faker.lorem.sentences(7).join(''),
