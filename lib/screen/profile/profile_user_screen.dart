@@ -39,42 +39,52 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              'fariswht',
-              style: largeMedium.copyWith(color: typography500),
-            ),
-          ),
-          actions: [
-            GestureDetector(
-              onTap: () {},
-              child: Image.asset(
-                "assets/icon/Message.png",
-                color: Colors.black,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MenuProfile(),
-                  ),
-                );
-              },
-              child: Image.asset(
-                "assets/icon/Menu.png",
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
         body: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 24,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'fariswht',
+                    style: largeMedium.copyWith(color: typography500),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Image.asset(
+                          "assets/icon/Menu.png",
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 24,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MenuProfile(),
+                            ),
+                          );
+                        },
+                        child: Image.asset(
+                          "assets/icon/Menu.png",
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
             Container(
               width: mediaQueryWidth,
               margin: const EdgeInsets.symmetric(horizontal: 14),
@@ -90,7 +100,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                     ),
                   ),
                   const SizedBox(height: 18),
-                  Container(
+                  SizedBox(
                     height: 40,
                     width: 160,
                     child: Row(
@@ -116,15 +126,18 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                             )
                           ],
                         ),
-                        Column(
-                          children: [
-                            const Text('4'),
-                            Text(
-                              'Diikuti',
-                              style:
-                                  smallReguler.copyWith(color: typography600),
-                            )
-                          ],
+                        GestureDetector(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              const Text('4'),
+                              Text(
+                                'Diikuti',
+                                style:
+                                    smallReguler.copyWith(color: typography600),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ),
@@ -151,7 +164,8 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => UbahProfileScreen()));
+                                    builder: (context) =>
+                                        const UbahProfileScreen()));
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -183,7 +197,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                     children: [
                       Container(
                         color: Colors.transparent,
-                        width: 350,
+                        width: 360,
                         height: 55,
                         child: TabBar(
                           controller: _tabController,
@@ -191,7 +205,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                           unselectedLabelColor: const Color(0xff939598),
                           indicator: RectangleTabIndicator(
                               color: primary500,
-                              width: 60,
+                              width: 70,
                               height: 4,
                               radius: 3),
                           tabs: [

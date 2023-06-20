@@ -13,7 +13,7 @@ class KomentarTabBar extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 200,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
@@ -22,6 +22,7 @@ class KomentarTabBar extends StatelessWidget {
                   return ThreadContentCustomWidget(
                     faker: faker,
                     name: faker.person.name(),
+                    title: 'UU Tenaga Kerja',
                     contentThread: faker.lorem.sentences(7).join(''),
                     mediaWidth: mediaQueryWidth,
                     bodyheight: 1,

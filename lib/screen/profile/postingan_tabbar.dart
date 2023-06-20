@@ -69,12 +69,12 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
             decoration: BoxDecoration(
               color: Colors.black,
               border: Border.all(
-                color: Color(0xffAAAAAA),
+                color: const Color(0xffAAAAAA),
               ),
             ),
           ),
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 200,
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
@@ -84,6 +84,7 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
                     faker: faker,
                     name: faker.person.name(),
                     contentThread: faker.lorem.sentences(7).join(''),
+                    title: 'UU Tenaga Kerja',
                     mediaWidth: mediaQueryWidth,
                     bodyheight: 1,
                   );

@@ -1,3 +1,5 @@
+import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
+import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
@@ -30,9 +32,8 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
   @override
   Widget build(BuildContext context) {
     String content = "";
-    final argumentHeight =
-        (ModalRoute.of(context)?.settings.arguments ?? "") as double;
-
+    String title = "";
+    // ignore: unused_local_variable
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     // ignore: unused_local_variable
     final mediaQueryWidth = MediaQuery.of(context).size.width;
@@ -48,24 +49,30 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
           child: Center(
             child: ElevatedButton(
               onPressed: () {
-                if (content.isNotEmpty) {
+                if (content.isNotEmpty && title.isNotEmpty) {
+                  ThreadService().postThread(title: title, content: content);
                   showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialogCustomWidget(
-                          warna: primary500,
-                          text: "Komentar telah terkirim",
-                        );
-                      });
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogCustomWidget(
+                        warna: primary500,
+                        text: "Komentar telah terkirim",
+                      );
+                    },
+                  );
+                  ThreadService().postThread(title: title, content: content);
+                  Navigator.pushReplacementNamed(
+                      context, HomeButtonmNavigasiScreen.routename);
                 } else {
                   showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialogCustomWidget(
-                          warna: danger500,
-                          text: "Gagal",
-                        );
-                      });
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogCustomWidget(
+                        warna: danger500,
+                        text: "Gagal",
+                      );
+                    },
+                  );
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -86,6 +93,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
         ),
       ],
     );
+    // ignore: unused_local_variable
     final bodyHeight = mediaQueryHeight -
         myAppbar.preferredSize.height -
         MediaQuery.of(context).padding.top;
@@ -105,6 +113,9 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     border: Border.all(color: typography400),
                   ),
                   child: TextFormField(
+                    onChanged: (value) {
+                      title = value;
+                    },
                     decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,

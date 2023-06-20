@@ -5,7 +5,6 @@ import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class UbahProfileScreen extends StatefulWidget {
   const UbahProfileScreen({super.key});
 
@@ -113,7 +112,7 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                 const SizedBox(
                   height: 19.5,
                 ),
-                Container(
+                SizedBox(
                   width: 345,
                   height: 38,
                   child: TextField(
@@ -141,7 +140,7 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                 const SizedBox(
                   height: 19.5,
                 ),
-                Container(
+                SizedBox(
                   width: 345,
                   height: 196,
                   child: TextField(

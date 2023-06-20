@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
-import '../../style/color_style.dart';
 import '../../style/font_style.dart';
-import 'landing_screen_2.dart';
-import 'landing_screen_3.dart';
 
 class LandingScreen1 extends StatefulWidget {
   const LandingScreen1({super.key});
@@ -28,7 +22,6 @@ class _LandingScreen1State extends State<LandingScreen1> {
                     image: AssetImage('assets/images/landing_1.png'),
                     fit: BoxFit.cover)),
           ),
-          
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
