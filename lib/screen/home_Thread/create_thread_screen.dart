@@ -1,3 +1,5 @@
+import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
+import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
@@ -30,6 +32,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
   @override
   Widget build(BuildContext context) {
     String content = "";
+    String title = "";
     // ignore: unused_local_variable
     final argumentHeight =
         (ModalRoute.of(context)?.settings.arguments ?? "") as double;
@@ -49,25 +52,31 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
           child: Center(
             child: ElevatedButton(
               onPressed: () {
-                if (content.isNotEmpty) {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialogCustomWidget(
-                          warna: primary500,
-                          text: "Komentar telah terkirim",
-                        );
-                      });
-                } else {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialogCustomWidget(
-                          warna: danger500,
-                          text: "Gagal",
-                        );
-                      });
-                }
+                ThreadService().postThread(title: title, content: content);
+                // if (content.isNotEmpty) {
+                //   ThreadService().postThread(title: title, content: content);
+                //   showDialog(
+                //     context: context,
+                //     builder: (context) {
+                //       return AlertDialogCustomWidget(
+                //         warna: primary500,
+                //         text: "Komentar telah terkirim",
+                //       );
+                //     },
+                //   );
+                //   Navigator.pushNamed(
+                //       context, HomeButtonmNavigasiScreen.routename);
+                // } else {
+                //   showDialog(
+                //     context: context,
+                //     builder: (context) {
+                //       return AlertDialogCustomWidget(
+                //         warna: danger500,
+                //         text: "Gagal",
+                //       );
+                //     },
+                //   );
+                // }
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: primary500,
@@ -107,6 +116,9 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     border: Border.all(color: typography400),
                   ),
                   child: TextFormField(
+                    onChanged: (value) {
+                      title = value;
+                    },
                     decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,

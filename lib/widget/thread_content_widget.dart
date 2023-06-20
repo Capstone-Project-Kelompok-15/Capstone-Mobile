@@ -12,6 +12,7 @@ import 'package:readmore/readmore.dart';
 class ThreadContentCustomWidget extends StatefulWidget {
   String name;
   String contentThread;
+  String title;
   double? mediaWidth;
   double? bodyheight;
   bool? isLeaderBoard;
@@ -21,6 +22,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
     super.key,
     required this.faker,
     required this.name,
+    required this.title,
     required this.contentThread,
     this.mediaWidth,
     this.bodyheight,
@@ -115,7 +117,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: Text(
-              "UU TENAGA KERJA",
+              widget.title,
               style: regulerBold,
             ),
           ),

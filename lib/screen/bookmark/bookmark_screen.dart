@@ -102,6 +102,7 @@ class BookmarkScreen extends StatelessWidget {
             contentThread: faker.lorem.sentences(7).join(''),
             mediaWidth: mediaQueryWidth,
             bodyheight: bodyHeight,
+            title: 'UU Tenaga Kerja',
           );
         },
       ),
