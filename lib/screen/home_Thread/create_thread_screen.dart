@@ -34,9 +34,6 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
     String content = "";
     String title = "";
     // ignore: unused_local_variable
-    final argumentHeight =
-        (ModalRoute.of(context)?.settings.arguments ?? "") as double;
-
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     // ignore: unused_local_variable
     final mediaQueryWidth = MediaQuery.of(context).size.width;
@@ -52,31 +49,31 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
           child: Center(
             child: ElevatedButton(
               onPressed: () {
-                ThreadService().postThread(title: title, content: content);
-                // if (content.isNotEmpty) {
-                //   ThreadService().postThread(title: title, content: content);
-                //   showDialog(
-                //     context: context,
-                //     builder: (context) {
-                //       return AlertDialogCustomWidget(
-                //         warna: primary500,
-                //         text: "Komentar telah terkirim",
-                //       );
-                //     },
-                //   );
-                //   Navigator.pushNamed(
-                //       context, HomeButtonmNavigasiScreen.routename);
-                // } else {
-                //   showDialog(
-                //     context: context,
-                //     builder: (context) {
-                //       return AlertDialogCustomWidget(
-                //         warna: danger500,
-                //         text: "Gagal",
-                //       );
-                //     },
-                //   );
-                // }
+                if (content.isNotEmpty && title.isNotEmpty) {
+                  ThreadService().postThread(title: title, content: content);
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogCustomWidget(
+                        warna: primary500,
+                        text: "Komentar telah terkirim",
+                      );
+                    },
+                  );
+                  ThreadService().postThread(title: title, content: content);
+                  Navigator.pushReplacementNamed(
+                      context, HomeButtonmNavigasiScreen.routename);
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogCustomWidget(
+                        warna: danger500,
+                        text: "Gagal",
+                      );
+                    },
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: primary500,

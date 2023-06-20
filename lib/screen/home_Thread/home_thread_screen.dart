@@ -79,9 +79,10 @@ class HomeThreadScreen extends StatelessWidget {
       body: Column(
         children: [
           GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(CreateThreadScreen.routename,
-                  arguments: bodyHeight);
+            onTap: () async {
+              final result = await Navigator.of(context).pushNamed(
+                CreateThreadScreen.routename,
+              );
             },
             child: Container(
               margin: const EdgeInsets.all(20),
