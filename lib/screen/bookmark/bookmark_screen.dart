@@ -97,7 +97,7 @@ class BookmarkScreen extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, index) {
           return ThreadContentCustomWidget(
-            image: Image.asset("assets/images/fotodummy.png"),
+            images: Image.asset("assets/images/fotodummy.png"),
             faker: faker,
             name: faker.person.name(),
             contentThread: faker.lorem.sentences(7).join(''),

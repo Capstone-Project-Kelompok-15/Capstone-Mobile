@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../style/font_style.dart';
 import '../../widget/thread_content_widget.dart';
 
-class FollowByThread extends StatelessWidget {
-  static const routename = "/followThread";
-  const FollowByThread({super.key});
+class LeaderBoardScreen extends StatelessWidget {
+  static const routename = "/leaderboard";
+  const LeaderBoardScreen({super.key});
 
   get color => null;
 
@@ -29,13 +29,13 @@ class FollowByThread extends StatelessWidget {
                   right: 10,
                 ),
                 child: Image.asset(
-                  "assets/icon/Follow.png",
+                  "assets/icon/Award.png",
                   width: 24,
                   height: 24,
                 ),
               ),
               Text(
-                'Ikuti',
+                'Leaderboard',
                 style: largeBold.copyWith(
                   color: Colors.black,
                   fontSize: 20,
@@ -74,12 +74,12 @@ class FollowByThread extends StatelessWidget {
                       horizontal: 10,
                       vertical: 10,
                     ),
-                    child: Text('Postingan'),
+                    child: Text('Mingguan'),
                   ),
                   Padding(
                     padding:
                         EdgeInsets.only(top: 10, bottom: 10, left: 3, right: 3),
-                    child: Text('Pengguna'),
+                    child: Text('Bulanan'),
                   ),
                 ],
               ),
@@ -91,6 +91,8 @@ class FollowByThread extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ThreadContentCustomWidget(
+                      isLeaderBoard: true,
+                      ranking: index + 1,
                       images: Image.asset("assets/images/fotodummy.png"),
                       faker: faker,
                       name: faker.person.name(),
@@ -104,6 +106,8 @@ class FollowByThread extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ThreadContentCustomWidget(
+                      isLeaderBoard: true,
+                      ranking: index + 1,
                       images: Image.asset("assets/images/fotodummy.png"),
                       faker: faker,
                       name: faker.person.name(),
@@ -139,4 +143,3 @@ class FollowByThread extends StatelessWidget {
     );
   }
 }
-
