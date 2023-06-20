@@ -66,10 +66,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               width: 110,
               onPressed: () async {
                 await Registrasi().createUser(
-                    username: _username,
-                    email: _email,
-                    password: _password,
-                    age: _age);
+                  username: _username,
+                  email: _email,
+                  password: _password,
+                  age: int.parse(_age),
+                );
                 setState(() {});
                 // final snackBar = showRegisterDialog(true);
                 // ScaffoldMessenger.of(context).showSnackBar(snackBar);
