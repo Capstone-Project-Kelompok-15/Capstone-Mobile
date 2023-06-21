@@ -73,21 +73,21 @@ class HomeThreadScreen extends StatelessWidget {
       appBar: myAppBar,
       body: Column(
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(CreateThreadScreen.routename,
-                  arguments: bodyHeight);
-            },
-            child: Container(
-              margin: const EdgeInsets.all(20),
-              height: bodyHeight * 0.07,
-              width: mediaQueryWidth,
-              decoration: const BoxDecoration(
-                color: Color(0xffEEEEEE),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(50),
-                ),
+          Container(
+            margin: const EdgeInsets.all(20),
+            height: bodyHeight * 0.07,
+            width: mediaQueryWidth,
+            decoration: const BoxDecoration(
+              color: Color(0xffEEEEEE),
+              borderRadius: BorderRadius.all(
+                Radius.circular(50),
               ),
+            ),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(CreateThreadScreen.routename,
+                    arguments: bodyHeight);
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
