@@ -5,6 +5,8 @@ import 'package:capstone_mobile/widget/button.dart';
 import 'package:capstone_mobile/widget/input_field.dart';
 import 'package:flutter/material.dart';
 
+import '../login/login_screen.dart';
+
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -13,6 +15,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool _obsecureText = true;
   String _username = "";
   String _email = "";
   String _password = "";
@@ -48,6 +51,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             onChanged: (value) {
               _password = value;
             },
+            isPassword: true,
+            obsecureText: _obsecureText,
+            onTap: () {
+              setState(() {
+                _obsecureText = !_obsecureText;
+              });
+            },
           ),
           const SizedBox(
             height: 16,
@@ -65,18 +75,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
               buttonText: "Daftar",
               width: 110,
               onPressed: () async {
-                await Registrasi().createUser(
+                int x = await Registrasi().createUser(
                   username: _username,
                   email: _email,
                   password: _password,
                   age: int.parse(_age),
                 );
-                setState(() {});
-                // final snackBar = showRegisterDialog(true);
-                // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                // Navigator.of(context).pushNamed(
-                //   LoginScreen.routename,
-                // );
+                print(x);
+
+                if (x == 1) {
+                  setState(() {
+                    final snackBar = showRegisterDialog(true);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.of(context).pushNamed(
+                      LoginScreen.routename,
+                    );
+                  });
+                } else {
+                  setState(() {
+                    final snackBar = showRegisterDialog(false);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  });
+                }
               },
             ),
           )
