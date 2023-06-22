@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 
@@ -16,7 +14,6 @@ class Login {
         },
       );
       if (response.statusCode == 200) {
-        print((response.data['user']['token']));
         saveToken(response.data['user']['token']);
         return 1;
       } else {

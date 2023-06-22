@@ -15,7 +15,8 @@ class Registrasi {
           "username": username,
           "email": email,
           "password": password,
-          "age": age
+          "age": age,
+          "image_url":"https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"
         },
       );
       print(response);
