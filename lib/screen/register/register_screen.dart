@@ -16,10 +16,10 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _obsecureText = true;
-  String _username = "";
-  String _email = "";
-  String _password = "";
-  String _age = "";
+  TextEditingController _username = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  TextEditingController _age = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           InputField(
             title: "Username",
             hintText: "e.g., fariswht",
-            onChanged: (value) {
-              _username = value;
-            },
+            controller: _username,
           ),
           const SizedBox(
             height: 16,
@@ -39,18 +37,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           InputField(
             title: "Alamat Email / Nomor Handphone",
             hintText: "e.g., lexliealexander@gmail.com",
-            onChanged: (value) {
-              _email = value;
-            },
+            controller: _email,
           ),
           const SizedBox(
             height: 16,
           ),
           InputField(
             title: "Kata Sandi",
-            onChanged: (value) {
-              _password = value;
-            },
+            controller: _password,
             isPassword: true,
             obsecureText: _obsecureText,
             onTap: () {
@@ -65,9 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           InputField(
             title: "Umur",
             hintText: "e.g., 22",
-            onChanged: (value) {
-              _age = value;
-            },
+            controller: _age,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 139, left: 141, top: 24),
@@ -76,12 +68,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               width: 110,
               onPressed: () async {
                 int x = await Registrasi().createUser(
-                  username: _username,
-                  email: _email,
-                  password: _password,
-                  age: int.parse(_age),
+                  username: _username.text,
+                  email: _email.text,
+                  password: _password.text,
+                  age: int.parse(_age.text),
                 );
-                print(x);
 
                 if (x == 1) {
                   setState(() {
