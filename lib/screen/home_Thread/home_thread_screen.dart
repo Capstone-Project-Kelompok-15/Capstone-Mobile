@@ -94,12 +94,6 @@ class HomeThreadScreen extends StatelessWidget {
                   Radius.circular(50),
                 ),
               ),
-            ),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed(CreateThreadScreen.routename,
-                    arguments: bodyHeight);
-              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
