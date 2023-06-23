@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 
@@ -7,7 +8,7 @@ class Login {
   Future<int> loginUser(String email, String password) async {
     try {
       final response = await Dio().post(
-        "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/login",
+        "$baseUrl/login",
         data: {
           "email": email,
           "password": password,

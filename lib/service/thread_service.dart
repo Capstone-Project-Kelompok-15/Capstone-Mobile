@@ -10,7 +10,7 @@ class ThreadService {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
           'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODc0NDcyMTMsIm5hbWUiOiJraGFpcmFhYSIsInJvbGUiOiJVc2VyIiwidXNlcl9pZCI6Nn0.65d2yORIEGV8tVmTjutl3_T9eHVwC_FISN5i0DCKL9Y'
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODc2MTY2OTksIm5hbWUiOiJraGFpcmFhYSIsInJvbGUiOiJVc2VyIiwidXNlcl9pZCI6N30.WJE89XykMBsBMUZgDBgBVHpnwJvybyYwl7S7JLYCXkk'
         },
       ),
     );

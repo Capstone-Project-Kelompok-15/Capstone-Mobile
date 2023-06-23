@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/constant.dart';
 import 'package:dio/dio.dart';
 // import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class Registrasi {
   }) async {
     try {
       final response = await Dio().post(
-        "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/user",
+        "$baseUrl:8000/user",
         data: {
           "username": username,
           "email": email,
