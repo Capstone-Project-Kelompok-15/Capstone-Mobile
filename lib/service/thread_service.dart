@@ -1,39 +1,48 @@
+import 'dart:io';
+
 import 'package:capstone_mobile/model/create_thread_response.dart';
 import 'package:capstone_mobile/model/list_thread_response.dart';
+import 'package:capstone_mobile/service/login_service.dart';
 import 'package:dio/dio.dart';
 
 class ThreadService {
   Future<ResponseThread> getAllThread() async {
+    // ignore: unused_local_variable
+    String cekUser = await getToken();
+
     final response = await Dio().get(
-      "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/Allthreads",
+      "https://capstone-production-c8c9.up.railway.app/Allthreads",
       options: Options(
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODc0NDcyMTMsIm5hbWUiOiJraGFpcmFhYSIsInJvbGUiOiJVc2VyIiwidXNlcl9pZCI6Nn0.65d2yORIEGV8tVmTjutl3_T9eHVwC_FISN5i0DCKL9Y'
+          'Authorization': 'Bearer $cekUser'
         },
       ),
     );
-    // print(response);
     return ResponseThread.fromJson(response.data);
   }
 
   // create Thread
   Future<void> postThread(
-      {required String title, required String content}) async {
-    final response = await Dio().post(
-        "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/threads",
-        options: Options(headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization':
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODcyNzY2OTQsIm5hbWUiOiJyYXloYW4iLCJyb2xlIjoiVXNlciIsInVzZXJfaWQiOjN9.z7M0E7pouLB3VTHDEqxLpBusEmNztZjixFVrZr4U0v8'
-        }),
-        data: {
-          "title": title,
-          "content": content,
-        });
-    if (response.statusCode == 200) {
-      print("berhasil");
+      {required String title, required String content, File? imageFile}) async {
+    String cekUser = await getToken();
+    try {
+      final response = await Dio()
+          .post("https://capstone-production-c8c9.up.railway.app/threads",
+              options: Options(headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                'Authorization': 'Bearer $cekUser'
+              }),
+              data: {
+            "title": title,
+            "content": content,
+            "file": imageFile,
+          });
+      if (response.statusCode == 200) {
+        print("berhasil");
+      }
+    } on DioException catch (e) {
+      print(e);
     }
   }
 }

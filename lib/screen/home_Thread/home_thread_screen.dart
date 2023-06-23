@@ -120,34 +120,30 @@ class HomeThreadScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child:
-                // RefreshIndicator(
-                //   onRefresh: ,
-                //   child:
-                FutureBuilder(
-                    future: ThreadService().getAllThread(),
-                    builder: ((context, snapshot) {
-                      var thread = snapshot.data?.data;
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          itemCount: thread?.length,
-                          itemBuilder: (context, index) {
-                            // return Text(thread?[index].title ?? "");
-                            return ThreadContentCustomWidget(
-                              faker: faker,
-                              name: thread?[index].user.username ?? "",
-                              title: thread?[index].title ?? "",
-                              contentThread: thread?[index].content ?? "",
-                              mediaWidth: mediaQueryWidth,
-                              bodyheight: bodyHeight,
-                            );
-                          },
+            child: FutureBuilder(
+                future: ThreadService().getAllThread(),
+                builder: ((context, snapshot) {
+                  var thread = snapshot.data?.data;
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: thread?.length,
+                      itemBuilder: (context, index) {
+                        // return Text(thread?[index].title ?? "");
+                        return ThreadContentCustomWidget(
+                          faker: faker,
+                          name: thread?[index].user.username ?? "",
+                          title: thread?[index].title ?? "",
+                          contentThread: thread?[index].content ?? "",
+                          mediaWidth: mediaQueryWidth,
+                          bodyheight: bodyHeight,
                         );
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    })),
+                      },
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                })),
           ),
           // )
         ],

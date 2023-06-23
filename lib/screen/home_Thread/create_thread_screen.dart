@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
 import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
@@ -17,17 +19,21 @@ class CreateThreadScreen extends StatefulWidget {
 }
 
 class _CreateThreadScreenState extends State<CreateThreadScreen> {
+  File? imageFile;
   void _pickerFile() async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) return;
 
     final file = result.files.first;
-    _openFIle(file);
+    print(file.path);
+    imageFile = File(file.path ?? "");
+    setState(() {});
+    // _openFIle(file);
   }
 
-  void _openFIle(PlatformFile file) {
-    OpenFile.open(file.path);
-  }
+  // void _openFIle(PlatformFile file) {
+  //   OpenFile.open(file.path);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +55,9 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
           child: Center(
             child: ElevatedButton(
               onPressed: () {
-                if (content.isNotEmpty && title.isNotEmpty) {
-                  ThreadService().postThread(title: title, content: content);
+                print(title);
+                print(content);
+                if (title.isNotEmpty && content.isNotEmpty) {
                   showDialog(
                     context: context,
                     builder: (context) {
@@ -60,9 +67,14 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                       );
                     },
                   );
-                  ThreadService().postThread(title: title, content: content);
+                  ThreadService().postThread(
+                    title: title,
+                    content: content,
+                    imageFile: imageFile,
+                  );
                   Navigator.pushReplacementNamed(
                       context, HomeButtonmNavigasiScreen.routename);
+                  setState(() {});
                 } else {
                   showDialog(
                     context: context,
@@ -173,15 +185,17 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                       ],
                     ),
                     TextButton(
-                        onPressed: () {
-                          _pickerFile();
-                        },
-                        child: Text(
-                          "add",
-                          style: TextStyle(color: primary500),
-                        ))
+                      onPressed: () {
+                        _pickerFile();
+                      },
+                      child: Text(
+                        "add",
+                        style: TextStyle(color: primary500),
+                      ),
+                    ),
                   ],
                 ),
+                imageFile != null ? Image.file(imageFile!) : Container(),
               ],
             ),
           ),

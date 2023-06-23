@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-// import 'package:flutter/material.dart';
 
 class Registrasi {
   Future<int> createUser({
@@ -16,18 +15,18 @@ class Registrasi {
           "email": email,
           "password": password,
           "age": age,
-          "image_url":"https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"
+          "image_url":
+              "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"
         },
       );
       print(response);
       if (response.statusCode == 200) {
         print("User berhasil dibuat");
         return 1;
-      } else  {
+      } else {
         return 0;
       }
-      
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       print(e);
       return 0;
     }
