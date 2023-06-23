@@ -7,6 +7,7 @@ import 'package:capstone_mobile/screen/profile/ubah_profile.dart';
 
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
+import 'package:capstone_mobile/utils/scale._size.dart';
 import 'package:capstone_mobile/widget/circular_tab_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -197,7 +198,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                     children: [
                       Container(
                         color: Colors.transparent,
-                        width: 317,
+                        width: 300,
                         height: 55,
                         child: TabBar(
                           controller: _tabController,
@@ -212,22 +213,30 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                             Tab(
                                 child: Text(
                               'Postingan',
-                              style: smallMedium.copyWith(fontSize: 12),
+                              style: smallMedium.copyWith(
+                                  fontSize: AdaptiveTextSize()
+                                      .getadaptiveTextSize(context, 9)),
                             )),
                             Tab(
                                 child: Text(
                               'Komentar',
-                              style: smallMedium.copyWith(fontSize: 12),
+                              style: smallMedium.copyWith(
+                                  fontSize: AdaptiveTextSize()
+                                      .getadaptiveTextSize(context, 9)),
                             )),
                             Tab(
                                 child: Text(
                               'Pengikut',
-                              style: smallMedium.copyWith(fontSize: 12),
+                              style: smallMedium.copyWith(
+                                  fontSize: AdaptiveTextSize()
+                                      .getadaptiveTextSize(context, 9)),
                             )),
                             Tab(
                                 child: Text(
                               'Diikuti',
-                              style: smallMedium.copyWith(fontSize: 12),
+                              style: smallMedium.copyWith(
+                                  fontSize: AdaptiveTextSize()
+                                      .getadaptiveTextSize(context, 9)),
                             )),
                           ],
                         ),

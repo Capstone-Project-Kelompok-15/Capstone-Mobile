@@ -47,14 +47,14 @@ class _DiikutiProfileState extends State<DiikutiProfile> {
                           children: [
                             isFollowing == true
                                 ? Image.asset(
-                                    'assets/icon/Following.png',
-                                    color: Colors.black,
-                                    scale: 1,
-                                  )
-                                : Image.asset(
                                     'assets/icon/Follow.png',
                                     color: Colors.black,
                                     scale: 20,
+                                  )
+                                : Image.asset(
+                                    'assets/icon/Following.png',
+                                    color: Colors.black,
+                                    scale: 1,
                                   )
                           ],
                         ),
