@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 // import 'package:flutter/material.dart';
 
 class Registrasi {
-  Future<void> createUser({
+  Future<int> createUser({
     required String username,
     required String email,
     required String password,
@@ -15,16 +15,21 @@ class Registrasi {
           "username": username,
           "email": email,
           "password": password,
-          "age": age
+          "age": age,
+          "image_url":"https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"
         },
       );
       print(response);
       if (response.statusCode == 200) {
         print("User berhasil dibuat");
+        return 1;
+      } else  {
+        return 0;
       }
-      return;
+      
     } on DioError catch (e) {
       print(e);
+      return 0;
     }
   }
 }
