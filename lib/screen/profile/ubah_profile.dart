@@ -4,6 +4,8 @@ import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UbahProfileScreen extends StatefulWidget {
   const UbahProfileScreen({super.key});
@@ -15,6 +17,20 @@ class UbahProfileScreen extends StatefulWidget {
 class _UbahProfileScreenState extends State<UbahProfileScreen> {
   File? _imageFile;
   final ImagePicker _picker = ImagePicker();
+  String? _profileImagePath;
+
+  @override
+  void initState() {
+    super.initState();
+    loadProfileImagePath();
+  }
+
+  void loadProfileImagePath() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _profileImagePath = prefs.getString('profile_image_path');
+    });
+  }
 
   void selectPhoto(ImageSource source) async {
     final pickedFile = await _picker.pickImage(source: source);
@@ -23,6 +39,17 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
         _imageFile = File(pickedFile.path);
       });
     }
+
+    final appDir = await getApplicationDocumentsDirectory();
+    const fileName = 'profile_image.png';
+    final savedImage = await _imageFile!.copy('${appDir.path}/$fileName');
+
+    saveData('profile_image_path', savedImage.path);
+  }
+
+  void saveData(String key, String value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(key, value);
   }
 
   @override
@@ -75,17 +102,17 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _imageFile == null
-                        ? const CircleAvatar(
+                    _imageFile != null || _profileImagePath != null
+                        ? CircleAvatar(
+                            radius: 50,
+                            backgroundImage: _imageFile != null
+                                ? FileImage(_imageFile!)
+                                : FileImage(File(_profileImagePath!)),
+                          )
+                        : const CircleAvatar(
                             radius: 50,
                             backgroundImage: AssetImage(
                               "assets/images/fotodummy.png",
-                            ),
-                          )
-                        : CircleAvatar(
-                            radius: 50,
-                            backgroundImage: FileImage(
-                              File(_imageFile?.path ?? ''),
                             ),
                           ),
                     const SizedBox(

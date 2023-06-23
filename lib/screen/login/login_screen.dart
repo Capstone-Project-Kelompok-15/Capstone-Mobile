@@ -21,8 +21,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obsecureText = true;
   bool akunInvalid = false;
-  String _email = "";
-  String _password = "";
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -78,18 +78,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ? InputField(
                             title: "Alamat Email / Nomor Handphone",
                             hintText: "e.g., alexiealexander@gmail.com",
-                            onChanged: (value) {
-                              _email = value;
-                            },
+                            controller: _email,
                           )
                         : InputField(
                             title: "Alamat Email / Nomor Handphone",
                             hintText: "e.g., alexiealexander@gmail.com",
                             error: true,
                             textError: "Email yang anda masukkan tidak sesuai",
-                            onChanged: (value) {
-                              _email = value;
-                            },
+                            controller: _email,
                           ),
                     const SizedBox(
                       height: 16,
@@ -97,9 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     akunInvalid == false
                         ? InputField(
                             title: "Kata Sandi",
-                            onChanged: (value) {
-                              _password = value;
-                            },
+                            controller: _password,
                             obsecureText: _obsecureText,
                             isPassword: true,
                             onTap: () {
@@ -112,9 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             title: "Kata Sandi",
                             error: true,
                             textError: "Kata sandi yang anda masukkan salah",
-                            onChanged: (value) {
-                              _password = value;
-                            },
+                            controller: _password,
                             isPassword: true,
                             obsecureText: _obsecureText,
                             onTap: () {
@@ -145,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           buttonText: "Masuk",
                           width: 111,
                           onPressed: () async {
-                            int x = await Login().loginUser(_email, _password);
+                            int x = await Login().loginUser(_email.text, _password.text);
                             setState(() {
                               if (x == 1) {
                                 Navigator.of(context).pushNamed(

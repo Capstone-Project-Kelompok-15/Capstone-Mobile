@@ -19,6 +19,7 @@ class ResponseThread {
   });
 
   factory ResponseThread.fromJson(Map<String, dynamic> json) => ResponseThread(
+
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
         message: json["message"],
       );

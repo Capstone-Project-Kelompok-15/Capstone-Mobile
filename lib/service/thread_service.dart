@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:capstone_mobile/constant.dart';
 import 'package:capstone_mobile/model/create_thread_response.dart';
 import 'package:capstone_mobile/model/list_thread_response.dart';
 import 'package:capstone_mobile/service/login_service.dart';
@@ -11,7 +12,7 @@ class ThreadService {
     String cekUser = await getToken();
 
     final response = await Dio().get(
-      "https://capstone-production-c8c9.up.railway.app/Allthreads",
+      "$baseUrl/Allthreads",
       options: Options(
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
@@ -27,13 +28,12 @@ class ThreadService {
       {required String title, required String content, File? imageFile}) async {
     String cekUser = await getToken();
     try {
-      final response = await Dio()
-          .post("https://capstone-production-c8c9.up.railway.app/threads",
-              options: Options(headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
-                'Authorization': 'Bearer $cekUser'
-              }),
-              data: {
+      final response = await Dio().post("$baseUrl/threads",
+          options: Options(headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'Authorization': 'Bearer $cekUser'
+          }),
+          data: {
             "title": title,
             "content": content,
             "file": imageFile,
