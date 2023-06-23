@@ -86,49 +86,50 @@ class FollowByThread extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(
-              children: [
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return ThreadContentCustomWidget(
-                      images: Image.asset("assets/images/fotodummy.png"),
-                      faker: faker,
-                      name: faker.person.name(),
-                      contentThread: faker.lorem.sentences(7).join(''),
-                      mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight,
-                    );
-                  },
-                ),
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return ThreadContentCustomWidget(
-                      images: Image.asset("assets/images/fotodummy.png"),
-                      faker: faker,
-                      name: faker.person.name(),
-                      contentThread: faker.lorem.sentences(7).join(''),
-                      mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight,
-                    );
-                  },
-                ),
-              ],
-            ),)
-          //   Expanded(
-          //   child: ListView.builder(
-          //     itemCount: 10,
-          //     itemBuilder: (context, index) {
-          //       return ThreadContentCustomWidget(
-          //         faker: faker,
-          //         name: faker.person.name(),
-          //         contentThread: faker.lorem.sentences(7).join(''),
-          //         mediaWidth: mediaQueryWidth,
-          //         bodyheight: bodyHeight,
-          //       );
-          //     },
-          //   ),
-          // )
+                children: [
+                  ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return ThreadContentCustomWidget(
+                        faker: faker,
+                        name: faker.person.name(),
+                        contentThread: faker.lorem.sentences(7).join(''),
+                        mediaWidth: mediaQueryWidth,
+                        bodyheight: bodyHeight,
+                        title: 'UU Tenaga Kerja',
+                      );
+                    },
+                  ),
+                  ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return ThreadContentCustomWidget(
+                        faker: faker,
+                        name: faker.person.name(),
+                        contentThread: faker.lorem.sentences(7).join(''),
+                        mediaWidth: mediaQueryWidth,
+                        bodyheight: bodyHeight,
+                        title: 'UU Tenaga Kerja',
+                      );
+                    },
+                  ),
+                ],
+              ),
+            )
+            //   Expanded(
+            //   child: ListView.builder(
+            //     itemCount: 10,
+            //     itemBuilder: (context, index) {
+            //       return ThreadContentCustomWidget(
+            //         faker: faker,
+            //         name: faker.person.name(),
+            //         contentThread: faker.lorem.sentences(7).join(''),
+            //         mediaWidth: mediaQueryWidth,
+            //         bodyheight: bodyHeight,
+            //       );
+            //     },
+            //   ),
+            // )
             // const SizedBox(
             //   height: 20,
             //   width: double.infinity,
