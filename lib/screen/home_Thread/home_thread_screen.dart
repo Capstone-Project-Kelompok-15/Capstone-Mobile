@@ -80,6 +80,7 @@ class HomeThreadScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () async {
+              // ignore: unused_local_variable
               final result = await Navigator.of(context).pushNamed(
                 CreateThreadScreen.routename,
               );
@@ -120,37 +121,33 @@ class HomeThreadScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child:
-                // RefreshIndicator(
-                //   onRefresh: ,
-                //   child:
-                FutureBuilder(
-                    future: ThreadService().getAllThread(),
-                    builder: ((context, snapshot) {
-                      var thread = snapshot.data?.data;
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          itemCount: thread?.length,
-                          itemBuilder: (context, index) {
-                            // return Text(thread?[index].title ?? "");
-                            return ThreadContentCustomWidget(
-                              faker: faker,
-                              name: thread?[index].user.username ?? "",
-                              title: thread?[index].title ?? "",
-                              contentThread: thread?[index].content ?? "",
-                              mediaWidth: mediaQueryWidth,
-                              bodyheight: bodyHeight,
-                            );
-                          },
+            child: FutureBuilder(
+                future: ThreadService().getAllThread(),
+                builder: ((context, snapshot) {
+                  var thread = snapshot.data?.data;
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: thread?.length,
+                      itemBuilder: (context, index) {
+                        // return Text(thread?[index].title ?? "");
+                        return ThreadContentCustomWidget(
+                          faker: faker,
+                          name: thread?[index].user.username ?? "",
+                          title: thread?[index].title ?? "",
+                          contentThread: thread?[index].content ?? "",
+                          mediaWidth: mediaQueryWidth,
+                          bodyheight: bodyHeight,
+                          images: Image.asset("assets/images/fotodummy.png"),
                         );
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    })),
+                      },
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                })),
           ),
           // )
-
         ],
       ),
     );
