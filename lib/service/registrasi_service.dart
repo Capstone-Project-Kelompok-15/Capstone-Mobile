@@ -11,7 +11,7 @@ class Registrasi {
   }) async {
     try {
       final response = await Dio().post(
-        "$baseUrl:8000/user",
+        "$baseUrl/user",
         data: {
           "username": username,
           "email": email,
