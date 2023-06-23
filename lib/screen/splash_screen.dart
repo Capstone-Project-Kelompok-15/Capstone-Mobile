@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field
+// ignore_for_file: unused_field, duplicate_ignore
 
 import 'dart:async';
 import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';

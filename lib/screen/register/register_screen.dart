@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:capstone_mobile/service/registrasi_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';

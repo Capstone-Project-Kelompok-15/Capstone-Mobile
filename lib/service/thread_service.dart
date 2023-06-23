@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:capstone_mobile/constant.dart';
-import 'package:capstone_mobile/model/create_thread_response.dart';
 import 'package:capstone_mobile/model/list_thread_response.dart';
 import 'package:capstone_mobile/service/login_service.dart';
 import 'package:dio/dio.dart';

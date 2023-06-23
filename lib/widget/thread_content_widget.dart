@@ -56,7 +56,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
             leading: CircleAvatar(
-              child: Image.asset("assets/images/fotodummy.png"),
+              child: widget.images,
             ),
             title: IntrinsicHeight(
               child: Row(

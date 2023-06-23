@@ -80,6 +80,7 @@ class HomeThreadScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () async {
+              // ignore: unused_local_variable
               final result = await Navigator.of(context).pushNamed(
                 CreateThreadScreen.routename,
               );
@@ -136,6 +137,7 @@ class HomeThreadScreen extends StatelessWidget {
                           contentThread: thread?[index].content ?? "",
                           mediaWidth: mediaQueryWidth,
                           bodyheight: bodyHeight,
+                          images: Image.asset("assets/images/fotodummy.png"),
                         );
                       },
                     );
@@ -146,7 +148,6 @@ class HomeThreadScreen extends StatelessWidget {
                 })),
           ),
           // )
-
         ],
       ),
     );
