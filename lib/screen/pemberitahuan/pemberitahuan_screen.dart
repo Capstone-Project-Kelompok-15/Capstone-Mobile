@@ -1,6 +1,5 @@
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/widget/item_notification_widget.dart';
-import 'package:capstone_mobile/widget/item_pemberitahuan_widget.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -87,7 +86,7 @@ class _PemberitahuanScreenState extends State<PemberitahuanScreen> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(left: 25, right: 16, bottom: 8),
-                  child: ItemPemberitahuanWidget(
+                  child: ItemNotificationWidget(
                     faker: faker,
                     mediaQueryWidth: mediaQueryWidth,
                   ),

@@ -1,3 +1,9 @@
+// ignore_for_file: unused_import
+
+import 'dart:io';
+
+import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
+import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
@@ -15,25 +21,27 @@ class CreateThreadScreen extends StatefulWidget {
 }
 
 class _CreateThreadScreenState extends State<CreateThreadScreen> {
+  File? imageFile;
   void _pickerFile() async {
     final result = await FilePicker.platform.pickFiles();
     if (result == null) return;
 
     final file = result.files.first;
-    _openFIle(file);
+    print(file.path);
+    imageFile = File(file.path ?? "");
+    setState(() {});
+    // _openFIle(file);
   }
 
-  void _openFIle(PlatformFile file) {
-    OpenFile.open(file.path);
-  }
+  // void _openFIle(PlatformFile file) {
+  //   OpenFile.open(file.path);
+  // }
 
   @override
   Widget build(BuildContext context) {
     String content = "";
+    String title = "";
     // ignore: unused_local_variable
-    final argumentHeight =
-        (ModalRoute.of(context)?.settings.arguments ?? "") as double;
-
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     // ignore: unused_local_variable
     final mediaQueryWidth = MediaQuery.of(context).size.width;
@@ -49,24 +57,36 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
           child: Center(
             child: ElevatedButton(
               onPressed: () {
-                if (content.isNotEmpty) {
+                print(title);
+                print(content);
+                if (title.isNotEmpty && content.isNotEmpty) {
                   showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialogCustomWidget(
-                          warna: primary500,
-                          text: "Komentar telah terkirim",
-                        );
-                      });
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogCustomWidget(
+                        warna: primary500,
+                        text: "Komentar telah terkirim",
+                      );
+                    },
+                  );
+                  ThreadService().postThread(
+                    title: title,
+                    content: content,
+                    imageFile: imageFile,
+                  );
+                  Navigator.pushReplacementNamed(
+                      context, HomeButtonmNavigasiScreen.routename);
+                  setState(() {});
                 } else {
                   showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialogCustomWidget(
-                          warna: danger500,
-                          text: "Gagal",
-                        );
-                      });
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogCustomWidget(
+                        warna: danger500,
+                        text: "Gagal",
+                      );
+                    },
+                  );
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -107,6 +127,9 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     border: Border.all(color: typography400),
                   ),
                   child: TextFormField(
+                    onChanged: (value) {
+                      title = value;
+                    },
                     decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,
@@ -164,15 +187,17 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                       ],
                     ),
                     TextButton(
-                        onPressed: () {
-                          _pickerFile();
-                        },
-                        child: Text(
-                          "add",
-                          style: TextStyle(color: primary500),
-                        ))
+                      onPressed: () {
+                        _pickerFile();
+                      },
+                      child: Text(
+                        "add",
+                        style: TextStyle(color: primary500),
+                      ),
+                    ),
                   ],
                 ),
+                imageFile != null ? Image.file(imageFile!) : Container(),
               ],
             ),
           ),

@@ -12,22 +12,24 @@ import 'package:readmore/readmore.dart';
 class ThreadContentCustomWidget extends StatefulWidget {
   String name;
   String contentThread;
+  String title;
   double? mediaWidth;
   double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
-  Image? image;
+  Image? images;
 
   ThreadContentCustomWidget({
     super.key,
     required this.faker,
     required this.name,
+    required this.title,
     required this.contentThread,
     this.mediaWidth,
     this.bodyheight,
     this.isLeaderBoard = false,
     this.ranking,
-    this.image,
+    this.images,
   });
 
   final Faker faker;
@@ -54,7 +56,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
             leading: CircleAvatar(
-              child: widget.image,
+              child: widget.images,
             ),
             title: IntrinsicHeight(
               child: Row(
@@ -117,7 +119,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: Text(
-              "UU TENAGA KERJA",
+              widget.title,
               style: regulerBold,
             ),
           ),

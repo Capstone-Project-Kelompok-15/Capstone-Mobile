@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, duplicate_ignore
+
 import 'dart:async';
 import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
 import 'package:capstone_mobile/screen/landing_pages/landing_screen.dart';
@@ -25,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.of(context).pushNamed(
           HomeButtonmNavigasiScreen.routename,
         );
+        print(cekUser);
       } else {
         // ignore: use_build_context_synchronously
         Navigator.of(context).pushNamed(
