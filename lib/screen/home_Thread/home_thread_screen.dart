@@ -1,5 +1,6 @@
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
+import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
@@ -68,15 +69,20 @@ class HomeThreadScreen extends StatelessWidget {
         myAppBar.preferredSize.height -
         MediaQuery.of(context).padding.top;
 
+    // Future refresh()async{
+
+    // }
+
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       appBar: myAppBar,
       body: Column(
         children: [
           GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(CreateThreadScreen.routename,
-                  arguments: bodyHeight);
+            onTap: () async {
+              final result = await Navigator.of(context).pushNamed(
+                CreateThreadScreen.routename,
+              );
             },
             child: Container(
               margin: const EdgeInsets.all(20),
@@ -114,19 +120,36 @@ class HomeThreadScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return ThreadContentCustomWidget(
-                  faker: faker,
-                  name: faker.person.name(),
-                  contentThread: faker.lorem.sentences(7).join(''),
-                  mediaWidth: mediaQueryWidth,
-                  bodyheight: bodyHeight,
-                );
-              },
-            ),
-          )
+            child:
+                // RefreshIndicator(
+                //   onRefresh: ,
+                //   child:
+                FutureBuilder(
+                    future: ThreadService().getAllThread(),
+                    builder: ((context, snapshot) {
+                      var thread = snapshot.data?.data;
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: thread?.length,
+                          itemBuilder: (context, index) {
+                            // return Text(thread?[index].title ?? "");
+                            return ThreadContentCustomWidget(
+                              faker: faker,
+                              name: thread?[index].user.username ?? "",
+                              title: thread?[index].title ?? "",
+                              contentThread: thread?[index].content ?? "",
+                              mediaWidth: mediaQueryWidth,
+                              bodyheight: bodyHeight,
+                            );
+                          },
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    })),
+          ),
+          // )
         ],
       ),
     );

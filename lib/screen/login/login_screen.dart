@@ -1,6 +1,7 @@
 import 'package:capstone_mobile/screen/login/lupa_password/lupa_password_screen_1.dart';
 import 'package:capstone_mobile/screen/register/register_screen.dart';
 import 'package:capstone_mobile/service/login_service.dart';
+import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/button.dart';
@@ -20,11 +21,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obsecureText = true;
   bool akunInvalid = false;
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  String email = "kelompok15@gmail.com";
-  String password = "kel15jaya";
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -80,14 +78,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         ? InputField(
                             title: "Alamat Email / Nomor Handphone",
                             hintText: "e.g., alexiealexander@gmail.com",
-                            controller: emailController,
+                            controller: _email,
                           )
                         : InputField(
                             title: "Alamat Email / Nomor Handphone",
                             hintText: "e.g., alexiealexander@gmail.com",
                             error: true,
                             textError: "Email yang anda masukkan tidak sesuai",
-                            controller: emailController,
+                            controller: _email,
                           ),
                     const SizedBox(
                       height: 16,
@@ -95,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     akunInvalid == false
                         ? InputField(
                             title: "Kata Sandi",
-                            controller: passwordController,
+                            controller: _password,
                             obsecureText: _obsecureText,
                             isPassword: true,
                             onTap: () {
@@ -108,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             title: "Kata Sandi",
                             error: true,
                             textError: "Kata sandi yang anda masukkan salah",
-                            controller: passwordController,
+                            controller: _password,
                             isPassword: true,
                             obsecureText: _obsecureText,
                             onTap: () {
@@ -138,21 +136,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Button(
                           buttonText: "Masuk",
                           width: 111,
-                          onPressed: () {
+                          onPressed: () async {
+                            int x = await Login().loginUser(_email.text, _password.text);
                             setState(() {
-                              if (emailController.text == email &&
-                                  passwordController.text == password) {
+                              if (x == 1) {
                                 Navigator.of(context).pushNamed(
                                     HomeButtonmNavigasiScreen.routename);
                                 final snackBar = showLoginDialog();
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);
-                                saveToken(emailController.text);
                               } else {
                                 akunInvalid = true;
                               }
                             });
-                            //
                           }),
                     )
                   ],
