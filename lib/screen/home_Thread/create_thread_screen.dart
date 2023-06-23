@@ -7,8 +7,10 @@ import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
 
 class CreateThreadScreen extends StatefulWidget {
@@ -22,20 +24,41 @@ class CreateThreadScreen extends StatefulWidget {
 
 class _CreateThreadScreenState extends State<CreateThreadScreen> {
   File? imageFile;
-  void _pickerFile() async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) return;
+  String urlImage = "";
 
-    final file = result.files.first;
-    print(file.path);
-    imageFile = File(file.path ?? "");
+  Future getImage() async {
+    final XFile? images =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (images != null) {
+      imageFile = File(images.path);
+    }
+    print(imageFile);
+    uploadImage();
     setState(() {});
-    // _openFIle(file);
   }
 
-  // void _openFIle(PlatformFile file) {
-  //   OpenFile.open(file.path);
-  // }
+  Future<void> uploadImage() async {
+    String fileName = imageFile!.path.split('/').last;
+    FormData formData = FormData.fromMap({
+      'image_url': await MultipartFile.fromFile(imageFile!.path),
+    });
+    try {
+      final response = await Dio().post(
+          "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/uploadImage",
+          data: formData);
+      print(response.data["Data"]);
+      final url = response.data["Data"];
+      if (urlImage != null) {
+        urlImage = url;
+      }
+      print("ini dalah url image terbaru $urlImage");
+      return url;
+      // Berhasil mengunggah gambar
+    } catch (error) {
+      print(error.toString());
+      // Error saat mengunggah gambar
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +95,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                   ThreadService().postThread(
                     title: title,
                     content: content,
-                    imageFile: imageFile,
+                    imageFile: urlImage,
                   );
                   Navigator.pushReplacementNamed(
                       context, HomeButtonmNavigasiScreen.routename);
@@ -188,7 +211,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        _pickerFile();
+                        getImage();
                       },
                       child: Text(
                         "add",
@@ -197,7 +220,6 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     ),
                   ],
                 ),
-                imageFile != null ? Image.file(imageFile!) : Container(),
               ],
             ),
           ),
