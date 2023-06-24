@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/service/bookmark_service.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
@@ -45,12 +46,6 @@ class BookmarkScreen extends StatelessWidget {
             // DropdownButton<String>(
             //   value: selectedValue,
             //   onChanged: (newValue) {
-            //     // Tambahkan logika untuk menangani perubahan nilai dropdown di sini
-            //     // Misalnya, setState() untuk mengubah nilai terpilih dan memperbarui tampilan
-            //     // Contoh:
-            //     // setState(() {
-            //     //   selectedValue = newValue;
-            //     // });
             //   },
             //   items: [
             //     DropdownMenuItem<String>(
@@ -85,24 +80,39 @@ class BookmarkScreen extends StatelessWidget {
             //         ),
             //       ),
             //     ),
-            //     // ... tambahkan item dropdown lainnya sesuai kebutuhan
             //   ],
             // ),
           ],
         ),
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return ThreadContentCustomWidget(
-            faker: faker,
-            name: faker.person.name(),
-            contentThread: faker.lorem.sentences(7).join(''),
-            mediaWidth: mediaQueryWidth,
-            bodyheight: bodyHeight,
+      body: 
+      FutureBuilder(
+          future: BookmarkService().getAllBookmark(),
+            builder: ((context, snapshot) {
+              var Bookmark = snapshot.data?.data;
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: Bookmark?.length,
+                      itemBuilder: (context, index) {
+                        // return Text(thread?[index].title ?? "");
+                        return ThreadContentCustomWidget(
+                          faker: faker,
+                          name: Bookmark?[index].author?.username ?? "",
+                          title: Bookmark?[index].title ?? "",
+                          contentThread: Bookmark?[index].content ?? "",
+                          mediaWidth: mediaQueryWidth,
+                          bodyheight: bodyHeight,
+                          images: Image.asset("assets/images/fotodummy.png"),
+                        );
+                      },
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              ),
+            )
           );
-        },
-      ),
-    );
-  }
-}
+        }
+      }

@@ -11,6 +11,8 @@ import 'package:readmore/readmore.dart';
 // ignore: must_be_immutable
 class ThreadContentCustomWidget extends StatefulWidget {
   String name;
+  String title;
+  Image images;
   String contentThread;
   double mediaWidth;
   double bodyheight;
@@ -21,6 +23,8 @@ class ThreadContentCustomWidget extends StatefulWidget {
     super.key,
     required this.faker,
     required this.name,
+    required this.images,
+    required this.title,
     required this.contentThread,
     required this.mediaWidth,
     required this.bodyheight,
