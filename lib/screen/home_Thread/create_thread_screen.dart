@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, prefer_final_fields
 
 import 'dart:io';
 
@@ -25,6 +25,9 @@ class CreateThreadScreen extends StatefulWidget {
 class _CreateThreadScreenState extends State<CreateThreadScreen> {
   File? imageFile;
   String urlImage = "";
+  bool isImage = false;
+  TextEditingController _title = TextEditingController();
+  TextEditingController _content = TextEditingController();
 
   Future getImage() async {
     final XFile? images =
@@ -32,12 +35,13 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
     if (images != null) {
       imageFile = File(images.path);
     }
-    print(imageFile);
+    // print(imageFile);
     uploadImage();
     setState(() {});
   }
 
   Future<void> uploadImage() async {
+    // ignore: unused_local_variable
     String fileName = imageFile!.path.split('/').last;
     FormData formData = FormData.fromMap({
       'image_url': await MultipartFile.fromFile(imageFile!.path),
@@ -46,15 +50,19 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
       final response = await Dio().post(
           "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/uploadImage",
           data: formData);
-      print(response.data["Data"]);
       final url = response.data["Data"];
+      // ignore: unnecessary_null_comparison
       if (urlImage != null) {
         urlImage = url;
+        isImage = true;
       }
-      print("ini dalah url image terbaru $urlImage");
+      setState(() {});
+      // print("ini dalah url image terbaru $urlImage");
       return url;
+
       // Berhasil mengunggah gambar
     } catch (error) {
+      // ignore: avoid_print
       print(error.toString());
       // Error saat mengunggah gambar
     }
@@ -62,8 +70,8 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String content = "";
-    String title = "";
+    // String content = "";
+    // String title = "";
     // ignore: unused_local_variable
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     // ignore: unused_local_variable
@@ -80,9 +88,7 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
           child: Center(
             child: ElevatedButton(
               onPressed: () {
-                print(title);
-                print(content);
-                if (title.isNotEmpty && content.isNotEmpty) {
+                if (_title.text.isNotEmpty && _content.text.isNotEmpty) {
                   showDialog(
                     context: context,
                     builder: (context) {
@@ -93,8 +99,8 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     },
                   );
                   ThreadService().postThread(
-                    title: title,
-                    content: content,
+                    title: _title.text,
+                    content: _content.text,
                     imageFile: urlImage,
                   );
                   Navigator.pushReplacementNamed(
@@ -150,9 +156,10 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     border: Border.all(color: typography400),
                   ),
                   child: TextFormField(
-                    onChanged: (value) {
-                      title = value;
-                    },
+                    // onChanged: (value) {
+                    //   title = value;
+                    // },
+                    controller: _title,
                     decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,
@@ -171,10 +178,10 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     ),
                   ),
                   child: TextFormField(
-                    onChanged: (value) {
-                      content = value;
-                    },
-
+                    // onChanged: (value) {
+                    //   content = value;
+                    // },
+                    controller: _content,
                     minLines:
                         15, // any number you need (It works as the rows for the textarea)
                     // keyboardType: TextInputType.multiline,
@@ -220,6 +227,12 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     ),
                   ],
                 ),
+                isImage == true
+                    ? Image.network(
+                        urlImage,
+                        width: 150,
+                      )
+                    : Container(),
               ],
             ),
           ),

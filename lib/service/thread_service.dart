@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:io';
 
 import 'package:capstone_mobile/constant.dart';
@@ -24,10 +26,11 @@ class ThreadService {
   }
 
   // create Thread
-  Future<void> postThread(
-      {required String title,
-      required String content,
-      String? imageFile}) async {
+  Future<void> postThread({
+    required String title,
+    required String content,
+    String? imageFile,
+  }) async {
     String cekUser = await getToken();
     try {
       final response = await Dio().post("$baseUrl/threads",
