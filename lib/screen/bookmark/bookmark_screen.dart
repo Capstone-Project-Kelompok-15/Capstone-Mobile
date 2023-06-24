@@ -8,6 +8,8 @@ class BookmarkScreen extends StatelessWidget {
 
   final faker = Faker();
 
+  BookmarkScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
@@ -102,7 +104,8 @@ class BookmarkScreen extends StatelessWidget {
                           contentThread: Bookmark?[index].content ?? "",
                           mediaWidth: mediaQueryWidth,
                           bodyheight: bodyHeight,
-                          images: Image.asset("assets/images/fotodummy.png"),
+                          imageContent: thread?[index].file ?? "",
+                          Image.asset("assets/images/fotodummy.png"),
                         );
                       },
                     );
