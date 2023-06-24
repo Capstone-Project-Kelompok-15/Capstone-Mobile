@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import '../../service/followthread_servis.dart';
 import '../../style/font_style.dart';
 import '../../widget/thread_content_widget.dart';
 
@@ -86,49 +87,64 @@ class FollowByThread extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(
-              children: [
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return ThreadContentCustomWidget(
-                      images: Image.asset("assets/images/fotodummy.png"),
-                      faker: faker,
-                      name: faker.person.name(),
-                      contentThread: faker.lorem.sentences(7).join(''),
-                      mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight,
-                    );
-                  },
-                ),
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return ThreadContentCustomWidget(
-                      images: Image.asset("assets/images/fotodummy.png"),
-                      faker: faker,
-                      name: faker.person.name(),
-                      contentThread: faker.lorem.sentences(7).join(''),
-                      mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight,
-                    );
-                  },
-                ),
-              ],
-            ),)
-          //   Expanded(
-          //   child: ListView.builder(
-          //     itemCount: 10,
-          //     itemBuilder: (context, index) {
-          //       return ThreadContentCustomWidget(
-          //         faker: faker,
-          //         name: faker.person.name(),
-          //         contentThread: faker.lorem.sentences(7).join(''),
-          //         mediaWidth: mediaQueryWidth,
-          //         bodyheight: bodyHeight,
-          //       );
-          //     },
-          //   ),
-          // )
+                children: [
+                  FutureBuilder(
+                    future: FollowThreadService().getAllFollowThread(),
+                    builder: ((context, snapshot) {
+                      var followthread = snapshot.data?.data;
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: followthread?.length,
+                          itemBuilder: (context, index) {
+                            // return Text(thread?[index].title ?? "");
+                            return ThreadContentCustomWidget(
+                              faker: faker,
+                              name: followthread?[index].thread?.user?.username ?? "",
+                              title: followthread?[index].thread?.title ?? "",
+                              contentThread: followthread?[index].thread?.content ?? "",
+                              mediaWidth: mediaQueryWidth,
+                              bodyheight: bodyHeight,
+                              images: Image.network(followthread?[index].thread?.user?.imageUrl ?? "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"),
+                            );
+                          },
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }),
+                  ),
+                  ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return ThreadContentCustomWidget(
+                        title: "",
+                        images: Image.asset("assets/images/fotodummy.png"),
+                        faker: faker,
+                        name: faker.person.name(),
+                        contentThread: faker.lorem.sentences(7).join(''),
+                        mediaWidth: mediaQueryWidth,
+                        bodyheight: bodyHeight,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            )
+            //   Expanded(
+            //   child: ListView.builder(
+            //     itemCount: 10,
+            //     itemBuilder: (context, index) {
+            //       return ThreadContentCustomWidget(
+            //         faker: faker,
+            //         name: faker.person.name(),
+            //         contentThread: faker.lorem.sentences(7).join(''),
+            //         mediaWidth: mediaQueryWidth,
+            //         bodyheight: bodyHeight,
+            //       );
+            //     },
+            //   ),
+            // )
             // const SizedBox(
             //   height: 20,
             //   width: double.infinity,

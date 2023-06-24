@@ -1,26 +1,25 @@
 // To parse this JSON data, do
 //
-//     final responseChreateThread = responseChreateThreadFromJson(jsonString);
+//     final responseThread = responseThreadFromJson(jsonString);
 
 import 'dart:convert';
 
-ResponseChreateThread responseChreateThreadFromJson(String str) =>
-    ResponseChreateThread.fromJson(json.decode(str));
+ResponseThread responseThreadFromJson(String str) =>
+    ResponseThread.fromJson(json.decode(str));
 
-String responseChreateThreadToJson(ResponseChreateThread data) =>
-    json.encode(data.toJson());
+String responseThreadToJson(ResponseThread data) => json.encode(data.toJson());
 
-class ResponseChreateThread {
+class ResponseThread {
   List<Datum> data;
   String message;
 
-  ResponseChreateThread({
+  ResponseThread({
     required this.data,
     required this.message,
   });
 
-  factory ResponseChreateThread.fromJson(Map<String, dynamic> json) =>
-      ResponseChreateThread(
+  factory ResponseThread.fromJson(Map<String, dynamic> json) => ResponseThread(
+
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
         message: json["message"],
       );

@@ -20,9 +20,11 @@ class KomentarTabBar extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return ThreadContentCustomWidget(
+                    title: "",
                     images: Image.asset("assets/images/fotodummy.png"),
                     faker: faker,
                     name: faker.person.name(),
+                    title: 'UU Tenaga Kerja',
                     contentThread: faker.lorem.sentences(7).join(''),
                     mediaWidth: mediaQueryWidth,
                     bodyheight: 1,

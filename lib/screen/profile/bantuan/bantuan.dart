@@ -37,7 +37,7 @@ class BantuanScreen extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 23.5,
               ),
               Column(

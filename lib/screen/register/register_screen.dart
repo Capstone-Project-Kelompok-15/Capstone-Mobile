@@ -1,9 +1,13 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:capstone_mobile/service/registrasi_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/button.dart';
 import 'package:capstone_mobile/widget/input_field.dart';
 import 'package:flutter/material.dart';
+
+import '../login/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -13,10 +17,11 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  String _username = "";
-  String _email = "";
-  String _password = "";
-  String _age = "";
+  bool _obsecureText = true;
+  TextEditingController _username = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  TextEditingController _age = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           InputField(
             title: "Username",
             hintText: "e.g., fariswht",
-            onChanged: (value) {
-              _username = value;
-            },
+            controller: _username,
           ),
           const SizedBox(
             height: 16,
@@ -36,17 +39,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
           InputField(
             title: "Alamat Email / Nomor Handphone",
             hintText: "e.g., lexliealexander@gmail.com",
-            onChanged: (value) {
-              _email = value;
-            },
+            controller: _email,
           ),
           const SizedBox(
             height: 16,
           ),
           InputField(
             title: "Kata Sandi",
-            onChanged: (value) {
-              _password = value;
+            controller: _password,
+            isPassword: true,
+            obsecureText: _obsecureText,
+            onTap: () {
+              setState(() {
+                _obsecureText = !_obsecureText;
+              });
             },
           ),
           const SizedBox(
@@ -55,9 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           InputField(
             title: "Umur",
             hintText: "e.g., 22",
-            onChanged: (value) {
-              _age = value;
-            },
+            controller: _age,
           ),
           Padding(
             padding: const EdgeInsets.only(right: 139, left: 141, top: 24),
@@ -65,17 +69,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
               buttonText: "Daftar",
               width: 110,
               onPressed: () async {
-                await Registrasi().createUser(
-                    username: _username,
-                    email: _email,
-                    password: _password,
-                    age: _age);
-                setState(() {});
-                // final snackBar = showRegisterDialog(true);
-                // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                // Navigator.of(context).pushNamed(
-                //   LoginScreen.routename,
-                // );
+                int x = await Registrasi().createUser(
+                  username: _username.text,
+                  email: _email.text,
+                  password: _password.text,
+                  age: int.parse(_age.text),
+                );
+
+                if (x == 1) {
+                  setState(() {
+                    final snackBar = showRegisterDialog(true);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.of(context).pushNamed(
+                      LoginScreen.routename,
+                    );
+                  });
+                } else {
+                  setState(() {
+                    final snackBar = showRegisterDialog(false);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  });
+                }
               },
             ),
           )
