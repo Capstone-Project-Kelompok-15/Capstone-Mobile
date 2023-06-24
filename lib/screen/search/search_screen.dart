@@ -14,6 +14,9 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context)!.settings.arguments;
+    final argumentsString = arguments.toString();
+
     final myAppBar = AppBar(
       leading: IconButton(
         icon: const Icon(
@@ -27,6 +30,7 @@ class SearchScreen extends StatelessWidget {
       title: Container(
         margin: const EdgeInsets.only(top: 11, bottom: 8),
         width: 234,
+        height: 38,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(24),
@@ -43,11 +47,11 @@ class SearchScreen extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Cari',
+                hintStyle: regulerReguler.copyWith(color: typography500)
               ),
               onFieldSubmitted: (value) {
-                Navigator.of(context).pushNamed(
-                  SearchScreen.routename,
-                );
+                Navigator.of(context)
+                    .pushNamed(SearchScreen.routename, arguments: value);
               },
             ),
           ),
@@ -82,6 +86,7 @@ class SearchScreen extends StatelessWidget {
                 indicatorWeight: 3,
                 indicatorSize: TabBarIndicatorSize.label,
                 labelColor: typography500,
+                unselectedLabelColor: typography500.withOpacity(0.5),
                 tabs: [
                   SizedBox(
                     width: 57,
@@ -113,9 +118,9 @@ class SearchScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(
+             Expanded(
               child: TabBarView(
-                children: [SearchAll(), SearchPostingan(), SearchOrang()],
+                children: [SearchAll(), SearchPostingan(argument: argumentsString,), SearchOrang()],
               ),
             )
           ],
