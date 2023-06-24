@@ -19,6 +19,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   bool? isLeaderBoard;
   int? ranking;
   Image? images;
+  bool? isShowReadLessImage;
 
   ThreadContentCustomWidget({
     super.key,
@@ -32,6 +33,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
     this.isLeaderBoard = false,
     this.ranking,
     this.images,
+    this.isShowReadLessImage = true,
   });
 
   final Faker faker;
@@ -146,13 +148,13 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                     fontWeight: FontWeight.bold,
                     color: primary500),
               ),
-              isReadMore == true
+              widget.isShowReadLessImage == true && isReadMore == true
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                             // ignore: unnecessary_null_comparison
-                            child: widget.imageContent == ""
+                            child: widget.imageContent == "" || widget.imageContent == null
                                 ? Container()
                                 : Image.network(
                                     widget.imageContent ?? "",
@@ -173,7 +175,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                       ],
                     )
                   : Container(),
-              Container(
+              widget.isShowReadLessImage == true ? Container(
                 child: isReadMore == false
                     ? GestureDetector(
                         onTap: () {
@@ -188,7 +190,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       )
                     : Container(),
-              ),
+              ):Container(),
             ],
           ),
           Padding(

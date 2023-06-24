@@ -97,11 +97,12 @@ class BookmarkScreen extends StatelessWidget {
                         // return Text(thread?[index].title ?? "");
                         return ThreadContentCustomWidget(
                           faker: faker,
-                          name: Bookmark?[index].author?.username ?? "",
-                          title: Bookmark?[index].title ?? "",
-                          contentThread: Bookmark?[index].content ?? "",
+                          name: Bookmark?[index].author?.username != ""? (Bookmark?[index].author?.username??"") :"-",
+                          title: Bookmark?[index].title ?? "-",
+                          contentThread: Bookmark?[index].content ?? "-",
                           mediaWidth: mediaQueryWidth,
                           bodyheight: bodyHeight,
+                          isShowReadLessImage: false,
                           images: Image.asset("assets/images/fotodummy.png"),
                         );
                       },

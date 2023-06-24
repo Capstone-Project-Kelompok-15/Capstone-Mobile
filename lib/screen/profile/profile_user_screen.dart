@@ -57,16 +57,6 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        onTap: () {},
-                        child: Image.asset(
-                          "assets/icon/Menu.png",
-                          color: Colors.black,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 24,
-                      ),
-                      GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
