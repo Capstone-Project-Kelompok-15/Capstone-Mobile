@@ -13,7 +13,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   String name;
   String contentThread;
   String title;
-  Image imageContent;
+  String imageContent;
   double? mediaWidth;
   double? bodyheight;
   bool? isLeaderBoard;
@@ -127,6 +127,8 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
             ),
           ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ReadMoreText(
                 // content masih menggunakan data dari faker
@@ -146,40 +148,46 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
               ),
               isReadMore == true
                   ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        widget.imageContent,
+                        Container(
+                            // ignore: unnecessary_null_comparison
+                            child: widget.imageContent == ""
+                                ? Container()
+                                : Image.network(
+                                    widget.imageContent,
+                                    width: double.infinity,
+                                  )),
                         GestureDetector(
                           onTap: () {
                             if (isReadMore = true) {
                               isReadMore = false;
-                              print("true");
-                              print(widget.imageContent);
                             }
-                            print("object");
                             setState(() {});
                           },
                           child: Text(
                             "read less Image",
-                            style: smallReguler,
+                            style: smallBold.copyWith(color: primary500),
                           ),
                         )
                       ],
                     )
                   : Container(),
-              GestureDetector(
-                onTap: () {
-                  if (isReadMore = true) {
-                    isReadMore = true;
-                    print("true");
-                    print(widget.imageContent);
-                  }
-                  print("object");
-                  setState(() {});
-                },
-                child: Text(
-                  "read more Image",
-                  style: smallReguler,
-                ),
+              Container(
+                child: isReadMore == false
+                    ? GestureDetector(
+                        onTap: () {
+                          if (isReadMore = true) {
+                            isReadMore = true;
+                          }
+                          setState(() {});
+                        },
+                        child: Text(
+                          "read more Image",
+                          style: smallBold.copyWith(color: primary500),
+                        ),
+                      )
+                    : Container(),
               ),
             ],
           ),

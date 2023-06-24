@@ -23,7 +23,7 @@ class KomentarTabBar extends StatelessWidget {
                     images: Image.asset("assets/images/fotodummy.png"),
                     faker: faker,
                     name: faker.person.name(),
-                    imageContent: Image.network(""),
+                    imageContent: "",
                     title: 'UU Tenaga Kerja',
                     contentThread: faker.lorem.sentences(7).join(''),
                     mediaWidth: mediaQueryWidth,

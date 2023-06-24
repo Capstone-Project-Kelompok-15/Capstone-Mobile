@@ -83,7 +83,7 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
                     images: Image.asset("assets/images/fotodummy.png"),
                     faker: faker,
                     name: faker.person.name(),
-                    imageContent: Image.network(""),
+                    imageContent: "",
                     contentThread: faker.lorem.sentences(7).join(''),
                     title: 'UU Tenaga Kerja',
                     mediaWidth: mediaQueryWidth,

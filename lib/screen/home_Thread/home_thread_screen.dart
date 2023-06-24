@@ -137,10 +137,7 @@ class HomeThreadScreen extends StatelessWidget {
                           contentThread: thread?[index].content ?? "",
                           mediaWidth: mediaQueryWidth,
                           bodyheight: bodyHeight,
-                          imageContent: Image.network(
-                            thread?[index].file ?? "",
-                            width: 20,
-                          ),
+                          imageContent: thread?[index].file ?? "",
                           images: Image.asset("assets/images/fotodummy.png"),
                         );
                       },
