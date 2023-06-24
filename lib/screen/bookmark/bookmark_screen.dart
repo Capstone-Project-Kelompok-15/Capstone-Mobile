@@ -31,9 +31,9 @@ class BookmarkScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title:  Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:const [
+          children: const [
             Text(
               'Bookmark',
               style: TextStyle(
@@ -105,7 +105,6 @@ class BookmarkScreen extends StatelessWidget {
             mediaWidth: mediaQueryWidth,
             bodyheight: bodyHeight,
             title: 'UU Tenaga Kerja',
-
           );
         },
       ),

@@ -1,14 +1,21 @@
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
+import 'package:capstone_mobile/screen/search/search_screen.dart';
 import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
-class HomeThreadScreen extends StatelessWidget {
+class HomeThreadScreen extends StatefulWidget {
   static const routename = "/homeThread";
   HomeThreadScreen({super.key});
+
+  @override
+  State<HomeThreadScreen> createState() => _HomeThreadScreenState();
+}
+
+class _HomeThreadScreenState extends State<HomeThreadScreen> {
   // ignore: unnecessary_new
   final faker = new Faker();
 
@@ -40,6 +47,10 @@ class HomeThreadScreen extends StatelessWidget {
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Cari',
               ),
+              onFieldSubmitted: (value) {
+                Navigator.of(context)
+                    .pushNamed(SearchScreen.routename, arguments: value);
+              },
             ),
           ),
         ),

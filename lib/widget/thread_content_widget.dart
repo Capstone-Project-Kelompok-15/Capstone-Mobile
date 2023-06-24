@@ -18,7 +18,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
-  Image? images;
+  Image images;
 
   ThreadContentCustomWidget({
     super.key,
@@ -31,7 +31,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
     this.bodyheight,
     this.isLeaderBoard = false,
     this.ranking,
-    this.images,
+    required this.images,
   });
 
   final Faker faker;
