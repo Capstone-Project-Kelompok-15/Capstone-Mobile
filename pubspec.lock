@@ -56,7 +56,7 @@ packages:
       sha256: "4a07be6cb69c84d677a6c3096fcf960cc3285a8330b4603e0d463d15d9bd934c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.17.0"
+    version: "1.17.1"
   cross_file:
     dependency: transitive
     description:
@@ -232,6 +232,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  icon:
+    dependency: "direct main"
+    description:
+      name: icon
+      sha256: "2e21b9495c26ceec6178a897e90130c61238d6cdaabb4e1ee7c4f13c72c8ba73"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   image_picker:
     dependency: "direct main"
     description:
@@ -335,7 +343,7 @@ packages:
       sha256: "3c74dbf8763d36539f114c799d8a2d87343b5067e9d796ca22b5eb8437090ee3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.0"
+    version: "1.9.1"
   mime:
     dependency: transitive
     description:

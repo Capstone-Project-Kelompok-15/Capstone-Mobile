@@ -13,7 +13,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   String name;
   String title;
   String contentThread;
-  String imageContent;
+  String? imageContent;
   double? mediaWidth;
   double? bodyheight;
   bool? isLeaderBoard;
@@ -26,7 +26,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
     required this.name,
     required this.title,
     required this.contentThread,
-    required this.imageContent,
+     this.imageContent,
     this.mediaWidth,
     this.bodyheight,
     this.isLeaderBoard = false,
@@ -155,7 +155,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                             child: widget.imageContent == ""
                                 ? Container()
                                 : Image.network(
-                                    widget.imageContent,
+                                    widget.imageContent ?? "",
                                     width: double.infinity,
                                   )),
                         GestureDetector(
