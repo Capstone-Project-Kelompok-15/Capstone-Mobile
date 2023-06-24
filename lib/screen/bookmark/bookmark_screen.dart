@@ -110,4 +110,3 @@ class BookmarkScreen extends StatelessWidget {
     );
   }
 }
-

@@ -1,5 +1,6 @@
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
+import 'package:capstone_mobile/screen/search/search_screen.dart';
 import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
@@ -40,6 +41,9 @@ class HomeThreadScreen extends StatelessWidget {
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Cari',
               ),
+              onFieldSubmitted: (value) {
+                Navigator.of(context).pushNamed(SearchScreen.routename, arguments: value);
+              },
             ),
           ),
         ),

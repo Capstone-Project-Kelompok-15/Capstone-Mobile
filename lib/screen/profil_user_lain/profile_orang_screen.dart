@@ -38,6 +38,7 @@ class _ProfileOrangScreenState extends State<ProfileOrangScreen>
     final mediaQueryWidth = MediaQuery.of(context).size.width;
     final mediaQueryHeight = MediaQuery.of(context).size.height;
 
+    // ignore: unused_local_variable
     final bodyHeight = mediaQueryHeight - kToolbarHeight - MediaQuery.of(context).padding.top;
 
 
