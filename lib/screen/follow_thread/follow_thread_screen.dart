@@ -93,6 +93,7 @@ class FollowByThread extends StatelessWidget {
                       return ThreadContentCustomWidget(
                         faker: faker,
                         name: faker.person.name(),
+                        imageContent: Image.network(""),
                         contentThread: faker.lorem.sentences(7).join(''),
                         mediaWidth: mediaQueryWidth,
                         bodyheight: bodyHeight,
@@ -106,6 +107,7 @@ class FollowByThread extends StatelessWidget {
                       return ThreadContentCustomWidget(
                         faker: faker,
                         name: faker.person.name(),
+                        imageContent: Image.network(""),
                         contentThread: faker.lorem.sentences(7).join(''),
                         mediaWidth: mediaQueryWidth,
                         bodyheight: bodyHeight,
@@ -140,4 +142,3 @@ class FollowByThread extends StatelessWidget {
     );
   }
 }
-

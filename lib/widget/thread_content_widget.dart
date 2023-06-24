@@ -13,6 +13,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   String name;
   String contentThread;
   String title;
+  Image imageContent;
   double? mediaWidth;
   double? bodyheight;
   bool? isLeaderBoard;
@@ -25,6 +26,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
     required this.name,
     required this.title,
     required this.contentThread,
+    required this.imageContent,
     this.mediaWidth,
     this.bodyheight,
     this.isLeaderBoard = false,
@@ -42,6 +44,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
 class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
   bool isFollowing = false;
   bool islike = false;
+  bool isReadMore = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -123,17 +126,62 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
               style: regulerBold,
             ),
           ),
-          ReadMoreText(
-            // content masih menggunakan data dari faker
-            widget.contentThread,
-            trimLines: 4,
-            trimMode: TrimMode.Line,
-            trimCollapsedText: 'Lihat Selengkapnya',
-            trimExpandedText: 'Tampilkan lebih Sedikit',
-            moreStyle: TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
-            lessStyle: TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
+          Column(
+            children: [
+              ReadMoreText(
+                // content masih menggunakan data dari faker
+                widget.contentThread,
+                trimLines: 4,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: 'Lihat Selengkapnya',
+                trimExpandedText: 'Tampilkan lebih Sedikit',
+                moreStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: primary500),
+                lessStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: primary500),
+              ),
+              isReadMore == true
+                  ? Column(
+                      children: [
+                        widget.imageContent,
+                        GestureDetector(
+                          onTap: () {
+                            if (isReadMore = true) {
+                              isReadMore = false;
+                              print("true");
+                              print(widget.imageContent);
+                            }
+                            print("object");
+                            setState(() {});
+                          },
+                          child: Text(
+                            "read less Image",
+                            style: smallReguler,
+                          ),
+                        )
+                      ],
+                    )
+                  : Container(),
+              GestureDetector(
+                onTap: () {
+                  if (isReadMore = true) {
+                    isReadMore = true;
+                    print("true");
+                    print(widget.imageContent);
+                  }
+                  print("object");
+                  setState(() {});
+                },
+                child: Text(
+                  "read more Image",
+                  style: smallReguler,
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
