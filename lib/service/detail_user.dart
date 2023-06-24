@@ -4,9 +4,10 @@ import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:dio/dio.dart';
 
 class UserService {
+  String path = 'https://capstone-production-c8c9.up.railway.app/user';
   Future<DetailUserResponse> getdetailUser() async {
     final response = await Dio().get(
-      'https://capstone-production-c8c9.up.railway.app/user',
+      path,
       options: Options(
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
@@ -23,7 +24,7 @@ class UserService {
       {required String bio, required String username}) async {
     try {
       var response = await Dio().put(
-        "https://capstone-production-c8c9.up.railway.app/user",
+        path,
         data: {
           'username': username,
           'bio': bio,

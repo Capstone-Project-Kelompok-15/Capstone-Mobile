@@ -43,7 +43,7 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
-        _profileImagePath = null; // Reset the profile image path
+        _profileImagePath = null; 
       });
     }
   }
