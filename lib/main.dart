@@ -16,6 +16,7 @@ import 'package:capstone_mobile/screen/settings/setting_screen.dart';
 import 'package:capstone_mobile/screen/splash_screen.dart';
 
 import 'package:capstone_mobile/screen/profil_user_lain/profile_orang_screen.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -52,5 +53,6 @@ class MyApp extends StatelessWidget {
           ProfileOrangScreen.routename: (context) => const ProfileOrangScreen(),
           SearchScreen.routename:(context) => const SearchScreen()
         });
+
   }
 }

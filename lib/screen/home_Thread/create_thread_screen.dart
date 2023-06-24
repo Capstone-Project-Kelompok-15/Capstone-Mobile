@@ -103,9 +103,9 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     content: _content.text,
                     imageFile: urlImage,
                   );
+                  setState(() {});
                   Navigator.pushReplacementNamed(
                       context, HomeButtonmNavigasiScreen.routename);
-                  setState(() {});
                 } else {
                   showDialog(
                     context: context,
