@@ -91,6 +91,7 @@ class LeaderBoardScreen extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ThreadContentCustomWidget(
+                      title: "",
                       isLeaderBoard: true,
                       ranking: index + 1,
                       images: Image.asset("assets/images/fotodummy.png"),
@@ -106,6 +107,7 @@ class LeaderBoardScreen extends StatelessWidget {
                   itemCount: 10,
                   itemBuilder: (context, index) {
                     return ThreadContentCustomWidget(
+                      title: "",
                       isLeaderBoard: true,
                       ranking: index + 1,
                       images: Image.asset("assets/images/fotodummy.png"),
