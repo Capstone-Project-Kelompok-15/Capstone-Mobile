@@ -59,7 +59,8 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                       GestureDetector(
                         onTap: () {},
                         child: Image.asset(
-                          "assets/icon/Menu.png",
+                          "assets/icon/Statistics.png",
+                          width: 25,
                           color: Colors.black,
                         ),
                       ),
