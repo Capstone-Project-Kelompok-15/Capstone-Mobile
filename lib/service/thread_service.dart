@@ -18,7 +18,7 @@ class ThreadService {
       options: Options(
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization': 'Bearer $cekUser'
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODc2ODE2ODksIm5hbWUiOiJraGFpcmEiLCJyb2xlIjoiVXNlciIsInVzZXJfaWQiOjE5fQ.I57r0kcxNOTzNI_m9nF5SagiUjug98T7jbOVcjKLhWA'
         },
       ),
     );
