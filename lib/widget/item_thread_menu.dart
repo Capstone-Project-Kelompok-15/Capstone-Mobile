@@ -2,11 +2,11 @@ import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class BtnThreadMenu extends StatelessWidget {
+class ItemThreadMenu extends StatelessWidget {
   String imageIcon;
   String namaButton;
   Function() navigasi;
-  BtnThreadMenu({
+  ItemThreadMenu({
     super.key,
     required this.imageIcon,
     required this.namaButton,

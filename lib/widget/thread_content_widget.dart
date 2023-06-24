@@ -1,8 +1,8 @@
 import 'package:capstone_mobile/screen/home_Thread/komentar_screen.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
-import 'package:capstone_mobile/widget/bottom_shere_widget.dart';
-import 'package:capstone_mobile/widget/bottom_thread_menu_widget.dart';
+import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_shere_widget.dart';
+import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_menu_widget.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,20 +12,26 @@ import 'package:readmore/readmore.dart';
 class ThreadContentCustomWidget extends StatefulWidget {
   String name;
   String contentThread;
-  double mediaWidth;
-  double bodyheight;
+  String title;
+  String imageContent;
+  double? mediaWidth;
+  double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
+  Image? images;
 
   ThreadContentCustomWidget({
     super.key,
     required this.faker,
     required this.name,
+    required this.title,
     required this.contentThread,
-    required this.mediaWidth,
-    required this.bodyheight,
+    required this.imageContent,
+    this.mediaWidth,
+    this.bodyheight,
     this.isLeaderBoard = false,
     this.ranking,
+    this.images,
   });
 
   final Faker faker;
@@ -38,6 +44,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
 class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
   bool isFollowing = false;
   bool islike = false;
+  bool isReadMore = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -51,8 +58,8 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           ),
           ListTile(
             contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
-            leading: const CircleAvatar(
-              child: Text("T"),
+            leading: CircleAvatar(
+              child: widget.images,
             ),
             title: IntrinsicHeight(
               child: Row(
@@ -115,21 +122,74 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: Text(
-              "UU TENAGA KERJA",
+              widget.title,
               style: regulerBold,
             ),
           ),
-          ReadMoreText(
-            // content masih menggunakan data dari faker
-            widget.contentThread,
-            trimLines: 4,
-            trimMode: TrimMode.Line,
-            trimCollapsedText: 'Lihat Selengkapnya',
-            trimExpandedText: 'Tampilkan lebih Sedikit',
-            moreStyle: TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
-            lessStyle: TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ReadMoreText(
+                // content masih menggunakan data dari faker
+                widget.contentThread,
+                trimLines: 4,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: 'Lihat Selengkapnya',
+                trimExpandedText: 'Tampilkan lebih Sedikit',
+                moreStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: primary500),
+                lessStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: primary500),
+              ),
+              isReadMore == true
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            // ignore: unnecessary_null_comparison
+                            child: widget.imageContent == ""
+                                ? Container()
+                                : Image.network(
+                                    widget.imageContent,
+                                    width: double.infinity,
+                                  )),
+                        GestureDetector(
+                          onTap: () {
+                            if (isReadMore = true) {
+                              isReadMore = false;
+                            }
+                            setState(() {});
+                          },
+                          child: Text(
+                            "read less Image",
+                            style: smallBold.copyWith(color: primary500),
+                          ),
+                        )
+                      ],
+                    )
+                  : Container(),
+              Container(
+                child: isReadMore == false
+                    ? GestureDetector(
+                        onTap: () {
+                          if (isReadMore = true) {
+                            isReadMore = true;
+                          }
+                          setState(() {});
+                        },
+                        child: Text(
+                          "read more Image",
+                          style: smallBold.copyWith(color: primary500),
+                        ),
+                      )
+                    : Container(),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -140,7 +200,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: SizedBox(
-                    width: widget.mediaWidth * 0.25,
+                    width: widget.mediaWidth! * 0.25,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -190,10 +250,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                                 ),
                               ),
                               builder: (BuildContext context) {
-                                return BottomShereWidget(
-                                  bodyHeight: widget.bodyheight,
-                                  mediaWidth: widget.mediaWidth,
-                                );
+                                return const BottomSheetShereWidget();
                               },
                             );
                           },
@@ -217,10 +274,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return bottomThreadMenu(
-                          bodyHeight: widget.bodyheight,
-                          mediaWidth: widget.mediaWidth,
-                        );
+                        return const BottomSheetThreadMenu();
                       },
                     );
                   },
