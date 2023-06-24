@@ -17,6 +17,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   bool? isLeaderBoard;
   int? ranking;
   Image images;
+  String title;
 
   ThreadContentCustomWidget({
     super.key,
@@ -28,6 +29,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
     this.isLeaderBoard = false,
     this.ranking,
     required this.images,
+    required this.title,
   });
 
   final Faker faker;
@@ -54,7 +56,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
             leading: CircleAvatar(
-              child: Image.asset("assets/images/fotodummy.png"),
+              child: widget.images,
             ),
             title: IntrinsicHeight(
               child: Row(
