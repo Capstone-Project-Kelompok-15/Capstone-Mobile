@@ -22,10 +22,10 @@ class _SettingScreenState extends State<SettingScreen> {
     final myAppBar = AppBar(
       iconTheme: IconThemeData(color: typography500),
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
       ),
       title: Text(
         "Pengaturan",
