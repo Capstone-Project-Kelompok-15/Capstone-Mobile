@@ -44,7 +44,7 @@ class _FaqScreenState extends State<FaqScreen> {
                 const SizedBox(
                   height: 24,
                 ),
-                FaqDropDown()
+                const FaqDropDown()
               ],
             ),
           ),
