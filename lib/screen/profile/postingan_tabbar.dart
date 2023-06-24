@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/service/detail_user.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:faker/faker.dart';
@@ -75,19 +76,40 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
           Expanded(
             child: SizedBox(
               height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return ThreadContentCustomWidget(
-                    images: Image.asset("assets/images/fotodummy.png"),
-                    faker: faker,
-                    name: faker.person.name(),
-                    contentThread: faker.lorem.sentences(7).join(''),
-                    title: 'UU Tenaga Kerja',
-                    mediaWidth: mediaQueryWidth,
-                    bodyheight: 1,
-                  );
+              child: FutureBuilder(
+                future: UserService().getdetailUser(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasData) {
+                    var posting = snapshot.data?.user;
+                    return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: posting?.length,
+                      itemBuilder: (context, index) {
+                        var threads = posting?[index].threads;
+                        return Column(
+                          children: threads?.map((thread) {
+                                return ThreadContentCustomWidget(
+                                  images: Image.asset(
+                                      "assets/images/fotodummy.png"),
+                                  faker: faker,
+                                  name: posting?[index].username ?? '',
+                                  contentThread: thread.content.toString(),
+                                  title: thread.title ?? '',
+                                  mediaWidth: mediaQueryWidth,
+                                  bodyheight: (threads.length).toDouble(),
+                                );
+                              }).toList() ??
+                              [],
+                        );
+                      },
+                    );
+                  } else {
+                    return Container();
+                  }
                 },
               ),
             ),

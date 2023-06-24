@@ -4,12 +4,15 @@ import 'package:capstone_mobile/screen/profile/tabbar/diikuti_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/tabbar/komentar_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/tabbar/pengikut_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/ubah_profile.dart';
+import 'package:capstone_mobile/service/detail_user.dart';
 
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/utils/scale._size.dart';
 import 'package:capstone_mobile/widget/circular_tab_indicator.dart';
 import 'package:flutter/material.dart';
+
+import '../../model/detail_user_response.dart';
 
 class ProfileUserScreen extends StatefulWidget {
   const ProfileUserScreen({super.key});
@@ -21,10 +24,12 @@ class ProfileUserScreen extends StatefulWidget {
 class _ProfileUserScreenState extends State<ProfileUserScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  Future<DetailUserResponse>? _userDetailsFuture;
 
   @override
   void initState() {
     _tabController = TabController(length: 4, vsync: this);
+    _userDetailsFuture = UserService().getdetailUser();
     super.initState();
   }
 
@@ -40,234 +45,245 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
 
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 24,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'fariswht',
-                    style: largeMedium.copyWith(color: typography500),
+        body: FutureBuilder(
+          future: _userDetailsFuture,
+          builder: (context, snapshot) {
+            final userDetails = snapshot.data?.user;
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 24,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onTap: () {},
+                      Text(
+                        userDetails?[0].username ?? '',
+                        style: largeMedium.copyWith(color: typography500),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Image.asset(
+                              "assets/icon/Menu.png",
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 24,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const MenuProfile(),
+                                ),
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/icon/Menu.png",
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: mediaQueryWidth,
+                  margin: const EdgeInsets.symmetric(horizontal: 14),
+                  child: Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipRRect(
                         child: Image.asset(
-                          "assets/icon/Menu.png",
-                          color: Colors.black,
+                          "assets/images/fotodummy.png",
+                          height: 89.0,
+                          width: 89.0,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      SizedBox(
+                        height: 40,
+                        width: 160,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                const Text('1,132'),
+                                Text(
+                                  'Postingan',
+                                  style: smallReguler.copyWith(
+                                      color: typography600),
+                                )
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                const Text('60K'),
+                                Text(
+                                  'Pengikut',
+                                  style: smallReguler.copyWith(
+                                      color: typography600),
+                                )
+                              ],
+                            ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Column(
+                                children: [
+                                  const Text('4'),
+                                  Text(
+                                    'Diikuti',
+                                    style: smallReguler.copyWith(
+                                        color: typography600),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       const SizedBox(
-                        width: 24,
+                        height: 18,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MenuProfile(),
-                            ),
-                          );
-                        },
-                        child: Image.asset(
-                          "assets/icon/Menu.png",
-                          color: Colors.black,
-                        ),
+                      Text(
+                        userDetails?[0].bio ?? '',
+                        style: regulerReguler,
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: mediaQueryWidth,
-              margin: const EdgeInsets.symmetric(horizontal: 14),
-              child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    child: Image.asset(
-                      "assets/images/fotodummy.png",
-                      height: 89.0,
-                      width: 89.0,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  SizedBox(
-                    height: 40,
-                    width: 160,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            const Text('1,132'),
-                            Text(
-                              'Postingan',
-                              style:
-                                  smallReguler.copyWith(color: typography600),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            const Text('60K'),
-                            Text(
-                              'Pengikut',
-                              style:
-                                  smallReguler.copyWith(color: typography600),
-                            )
-                          ],
-                        ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Column(
-                            children: [
-                              const Text('4'),
-                              Text(
-                                'Diikuti',
-                                style:
-                                    smallReguler.copyWith(color: typography600),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Text(
-                    '"Minimal Maximal"',
-                    style: regulerReguler,
-                  ),
-                  const SizedBox(
-                    height: 13,
-                  ),
-                  Container(
-                    color: Colors.transparent,
-                    height: 40,
-                    width: 165,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const UbahProfileScreen()));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              border: Border.all(
-                                color: Colors.grey,
-                              ),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            width: 90,
-                            height: 30,
-                            child: Center(
-                              child: Text(
-                                'Ubah Profil',
-                                style: smallMedium.copyWith(
-                                    color: const Color(0xff636466)),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
+                      const SizedBox(
+                        height: 13,
+                      ),
                       Container(
                         color: Colors.transparent,
-                        width: 300,
-                        height: 55,
-                        child: TabBar(
-                          controller: _tabController,
-                          labelColor: primary500,
-                          unselectedLabelColor: const Color(0xff939598),
-                          indicator: RectangleTabIndicator(
-                              color: primary500,
-                              width: 60,
-                              height: 4,
-                              radius: 3),
-                          tabs: [
-                            Tab(
-                                child: Text(
-                              'Postingan',
-                              style: smallMedium.copyWith(
-                                  fontSize: AdaptiveTextSize()
-                                      .getadaptiveTextSize(context, 9)),
-                            )),
-                            Tab(
-                                child: Text(
-                              'Komentar',
-                              style: smallMedium.copyWith(
-                                  fontSize: AdaptiveTextSize()
-                                      .getadaptiveTextSize(context, 9)),
-                            )),
-                            Tab(
-                                child: Text(
-                              'Pengikut',
-                              style: smallMedium.copyWith(
-                                  fontSize: AdaptiveTextSize()
-                                      .getadaptiveTextSize(context, 9)),
-                            )),
-                            Tab(
-                                child: Text(
-                              'Diikuti',
-                              style: smallMedium.copyWith(
-                                  fontSize: AdaptiveTextSize()
-                                      .getadaptiveTextSize(context, 9)),
-                            )),
+                        height: 40,
+                        width: 165,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UbahProfileScreen(
+                                      id: userDetails?[0].id.toString() ?? '',
+                                      username: userDetails?[0].username ?? '',
+                                      bio: userDetails?[0].bio ?? '',
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  border: Border.all(
+                                    color: Colors.grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                width: 90,
+                                height: 30,
+                                child: Center(
+                                  child: Text(
+                                    'Ubah Profil',
+                                    style: smallMedium.copyWith(
+                                        color: const Color(0xff636466)),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            color: Colors.transparent,
+                            width: 320,
+                            height: 55,
+                            child: TabBar(
+                              controller: _tabController,
+                              labelColor: primary500,
+                              unselectedLabelColor: const Color(0xff939598),
+                              indicator: RectangleTabIndicator(
+                                  color: primary500,
+                                  width: 60,
+                                  height: 4,
+                                  radius: 3),
+                              tabs: [
+                                Tab(
+                                    child: Text(
+                                  'Postingan',
+                                  style: smallMedium.copyWith(
+                                      fontSize: AdaptiveTextSize()
+                                          .getadaptiveTextSize(context, 9)),
+                                )),
+                                Tab(
+                                    child: Text(
+                                  'Komentar',
+                                  style: smallMedium.copyWith(
+                                      fontSize: AdaptiveTextSize()
+                                          .getadaptiveTextSize(context, 9)),
+                                )),
+                                Tab(
+                                    child: Text(
+                                  'Pengikut',
+                                  style: smallMedium.copyWith(
+                                      fontSize: AdaptiveTextSize()
+                                          .getadaptiveTextSize(context, 9)),
+                                )),
+                                Tab(
+                                    child: Text(
+                                  'Diikuti',
+                                  style: smallMedium.copyWith(
+                                      fontSize: AdaptiveTextSize()
+                                          .getadaptiveTextSize(context, 9)),
+                                )),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 0.5,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                border: Border.all(
-                  color: const Color(0xffAAAAAA),
                 ),
-              ),
-            ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: const [
-                  PostinganTabBar(),
-                  KomentarTabBar(),
-                  PengikutTabBar(),
-                  DiikutiTabbar(),
-                ],
-              ),
-            )
-          ],
+                Container(
+                  width: double.infinity,
+                  height: 0.5,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    border: Border.all(
+                      color: const Color(0xffAAAAAA),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: const [
+                      PostinganTabBar(),
+                      KomentarTabBar(),
+                      PengikutTabBar(),
+                      DiikutiTabbar(),
+                    ],
+                  ),
+                )
+              ],
+            );
+          },
         ),
       ),
     );
