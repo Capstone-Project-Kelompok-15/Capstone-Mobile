@@ -99,6 +99,7 @@ class FollowByThread extends StatelessWidget {
                             // return Text(thread?[index].title ?? "");
                             return ThreadContentCustomWidget(
                               faker: faker,
+                              imageContent: "",
                               name: followthread?[index].thread?.user?.username ?? "",
                               title: followthread?[index].thread?.title ?? "",
                               contentThread: followthread?[index].thread?.content ?? "",
@@ -122,6 +123,7 @@ class FollowByThread extends StatelessWidget {
                         images: Image.asset("assets/images/fotodummy.png"),
                         faker: faker,
                         name: faker.person.name(),
+                        imageContent: "",
                         contentThread: faker.lorem.sentences(7).join(''),
                         mediaWidth: mediaQueryWidth,
                         bodyheight: bodyHeight,
@@ -155,4 +157,3 @@ class FollowByThread extends StatelessWidget {
     );
   }
 }
-

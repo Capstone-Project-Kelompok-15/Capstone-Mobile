@@ -97,10 +97,10 @@ class BookmarkScreen extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (context, index) {
           return ThreadContentCustomWidget(
-            title: "",
             images: Image.asset("assets/images/fotodummy.png"),
             faker: faker,
             name: faker.person.name(),
+            imageContent: "",
             contentThread: faker.lorem.sentences(7).join(''),
             mediaWidth: mediaQueryWidth,
             bodyheight: bodyHeight,
@@ -110,4 +110,3 @@ class BookmarkScreen extends StatelessWidget {
     );
   }
 }
-

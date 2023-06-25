@@ -20,7 +20,7 @@ class Registrasi {
               "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"
         },
       );
-      print(response);
+      // print(response);
       if (response.statusCode == 200) {
         print("User berhasil dibuat");
         return 1;
