@@ -7,11 +7,19 @@ import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
+
 import '../../style/color_style.dart';
 
 class HomeThreadScreen extends StatelessWidget {
+
   static const routename = "/homeThread";
   HomeThreadScreen({super.key});
+
+  @override
+  State<HomeThreadScreen> createState() => _HomeThreadScreenState();
+}
+
+class _HomeThreadScreenState extends State<HomeThreadScreen> {
   // ignore: unnecessary_new
   final faker = new Faker();
 
@@ -48,7 +56,8 @@ class HomeThreadScreen extends StatelessWidget {
                 hintStyle: regulerReguler.copyWith(color: typography500)
               ),
               onFieldSubmitted: (value) {
-                Navigator.of(context).pushNamed(SearchScreen.routename, arguments: value);
+                Navigator.of(context)
+                    .pushNamed(SearchScreen.routename, arguments: value);
               },
             ),
           ),
@@ -147,6 +156,7 @@ class HomeThreadScreen extends StatelessWidget {
                           contentThread: thread?[index].content ?? "",
                           mediaWidth: mediaQueryWidth,
                           bodyheight: bodyHeight,
+                          imageContent: thread?[index].file ?? "",
                           images: Image.asset("assets/images/fotodummy.png"),
                         );
                       },

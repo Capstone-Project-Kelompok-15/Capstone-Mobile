@@ -100,6 +100,7 @@ class BookmarkScreen extends StatelessWidget {
             images: Image.asset("assets/images/fotodummy.png"),
             faker: faker,
             name: faker.person.name(),
+            imageContent: "",
             contentThread: faker.lorem.sentences(7).join(''),
             mediaWidth: mediaQueryWidth,
             bodyheight: bodyHeight,
