@@ -1,23 +1,23 @@
 // To parse this JSON data, do
 //
-//     final getAllBookmarkResponse = getAllBookmarkResponseFromJson(jsonString);
+//     final listBookmarkResponse = listBookmarkResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-GetAllBookmarkResponse getAllBookmarkResponseFromJson(String str) => GetAllBookmarkResponse.fromJson(json.decode(str));
+ListBookmarkResponse listBookmarkResponseFromJson(String str) => ListBookmarkResponse.fromJson(json.decode(str));
 
-String getAllBookmarkResponseToJson(GetAllBookmarkResponse data) => json.encode(data.toJson());
+String listBookmarkResponseToJson(ListBookmarkResponse data) => json.encode(data.toJson());
 
-class GetAllBookmarkResponse {
+class ListBookmarkResponse {
     List<Datum>? data;
     String? message;
 
-    GetAllBookmarkResponse({
+    ListBookmarkResponse({
         this.data,
         this.message,
     });
 
-    factory GetAllBookmarkResponse.fromJson(Map<String, dynamic> json) => GetAllBookmarkResponse(
+    factory ListBookmarkResponse.fromJson(Map<String, dynamic> json) => ListBookmarkResponse(
         data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
         message: json["message"],
     );

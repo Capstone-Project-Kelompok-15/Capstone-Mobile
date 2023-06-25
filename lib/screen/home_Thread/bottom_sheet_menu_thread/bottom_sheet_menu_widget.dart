@@ -67,8 +67,7 @@ class BottomSheetThreadMenu extends StatelessWidget {
               imageIcon: "assets/icon/Bookmark.png",
               namaButton: "Tambahkan ke Bookmarks",
               onTap: () async{
-                await BookmarkService().posBookmark(
-                  userId: userId,
+                await BookmarkService().postBookmark(
                   threadId: threadId,
                   context: context,
                 );
@@ -77,7 +76,7 @@ class BottomSheetThreadMenu extends StatelessWidget {
                 // (
                 //   id : id,
                 // );
-                print("Ikuti Thread");
+                print("Tambahkan ke Bookmarks");
               },
             ),
             ItemThreadMenu(
