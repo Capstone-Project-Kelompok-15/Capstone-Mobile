@@ -30,9 +30,9 @@ class BookmarkScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          children: const [
             Text(
               'Bookmark',
               style: TextStyle(
@@ -85,35 +85,21 @@ class BookmarkScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: 
-      FutureBuilder(
-          future: BookmarkService().getAllBookmark(),
-            builder: ((context, snapshot) {
-              var Bookmark = snapshot.data?.data;
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: Bookmark?.length,
-                      itemBuilder: (context, index) {
-                        // return Text(thread?[index].title ?? "");
-                        return ThreadContentCustomWidget(
-                          faker: faker,
-                          name: Bookmark?[index].author?.username != ""? (Bookmark?[index].author?.username??"") :"-",
-                          title: Bookmark?[index].title ?? "-",
-                          contentThread: Bookmark?[index].content ?? "-",
-                          mediaWidth: mediaQueryWidth,
-                          bodyheight: bodyHeight,
-                          isShowReadLessImage: false,
-                          images: Image.asset("assets/images/fotodummy.png"),
-                        );
-                      },
-                    );
-                  }
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              ),
-            )
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return ThreadContentCustomWidget(
+            title: '',
+            images: Image.asset("assets/images/fotodummy.png"),
+            faker: faker,
+            name: faker.person.name(),
+            imageContent: "",
+            contentThread: faker.lorem.sentences(7).join(''),
+            mediaWidth: mediaQueryWidth,
+            bodyheight: bodyHeight,
           );
-        }
-      }
+        },
+      ),
+    );
+  }
+}

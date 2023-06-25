@@ -45,10 +45,10 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
     );
     return Scaffold(
       appBar: myAppBar,
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Padding(
               padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
@@ -101,7 +101,7 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
                   ),
                 ),
               ),
-            ),            
+            ),
             Padding(
               padding: EdgeInsets.fromLTRB(28, 5, 10, 5),
               child: Text(
@@ -157,7 +157,7 @@ class _PengaturanAkunScreenState extends State<PengaturanAkunScreen> {
                   ),
                 ),
               ),
-            ),    
+            ),
           ],
         ),
       ),
