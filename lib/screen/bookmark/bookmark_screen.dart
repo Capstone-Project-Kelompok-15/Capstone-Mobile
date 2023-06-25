@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/service/bookmark_service.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
@@ -6,8 +7,6 @@ class BookmarkScreen extends StatelessWidget {
   static const routename = "/bookmark";
 
   final faker = Faker();
-
-  BookmarkScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +46,6 @@ class BookmarkScreen extends StatelessWidget {
             // DropdownButton<String>(
             //   value: selectedValue,
             //   onChanged: (newValue) {
-            //     // Tambahkan logika untuk menangani perubahan nilai dropdown di sini
-            //     // Misalnya, setState() untuk mengubah nilai terpilih dan memperbarui tampilan
-            //     // Contoh:
-            //     // setState(() {
-            //     //   selectedValue = newValue;
-            //     // });
             //   },
             //   items: [
             //     DropdownMenuItem<String>(
@@ -87,7 +80,6 @@ class BookmarkScreen extends StatelessWidget {
             //         ),
             //       ),
             //     ),
-            //     // ... tambahkan item dropdown lainnya sesuai kebutuhan
             //   ],
             // ),
           ],

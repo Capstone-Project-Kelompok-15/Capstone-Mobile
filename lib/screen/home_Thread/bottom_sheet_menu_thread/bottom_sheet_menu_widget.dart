@@ -1,4 +1,5 @@
 // ignore_for_file: camel_case_types, must_be_immutable
+import 'package:capstone_mobile/service/bookmark_service.dart';
 import 'package:capstone_mobile/service/followthread_servis.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_laporkan_widget.dart';
@@ -65,9 +66,19 @@ class BottomSheetThreadMenu extends StatelessWidget {
             ItemThreadMenu(
               imageIcon: "assets/icon/Bookmark.png",
               namaButton: "Tambahkan ke Bookmarks",
-              onTap: (() {
-                print("object");
-              }),
+              onTap: () async{
+                await BookmarkService().posBookmark(
+                  userId: userId,
+                  threadId: threadId,
+                  context: context,
+                );
+                Navigator.pop(context);
+                // await FollowThreadService().
+                // (
+                //   id : id,
+                // );
+                print("Ikuti Thread");
+              },
             ),
             ItemThreadMenu(
               imageIcon: "assets/icon/RotateRight.png",
