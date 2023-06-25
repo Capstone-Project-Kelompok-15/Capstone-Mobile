@@ -1,4 +1,4 @@
-import 'package:capstone_mobile/model/list_followthread_response.dart';
+// import 'package:capstone_mobile/model/list_followthread_response.dart';
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
 import 'package:capstone_mobile/screen/search/search_screen.dart';
