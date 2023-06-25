@@ -7,7 +7,11 @@ import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
-class HomeThreadScreen extends StatefulWidget {
+
+import '../../style/color_style.dart';
+
+class HomeThreadScreen extends StatelessWidget {
+
   static const routename = "/homeThread";
   HomeThreadScreen({super.key});
 
@@ -25,11 +29,14 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
     final myAppBar = AppBar(
+      centerTitle: true,
       leading: Image.asset(
         "assets/images/logo.png",
       ),
       title: Container(
         margin: const EdgeInsets.only(top: 5),
+        width: 234,
+        height: 38,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(24),
@@ -41,11 +48,12 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
             child: TextFormField(
               textAlignVertical: TextAlignVertical.center,
               style: regulerReguler,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Cari',
+                hintStyle: regulerReguler.copyWith(color: typography500)
               ),
               onFieldSubmitted: (value) {
                 Navigator.of(context)
