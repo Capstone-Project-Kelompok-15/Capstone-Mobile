@@ -11,15 +11,16 @@ import 'package:readmore/readmore.dart';
 // ignore: must_be_immutable
 class ThreadContentCustomWidget extends StatefulWidget {
   String name;
-  String title;
   String contentThread;
-  String? imageContent;
+  String title;
+  String imageContent;
   double? mediaWidth;
   double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
-  Image? images;
-  bool? isShowReadLessImage;
+  Image images;
+  int? threadId;
+  int? userId;
 
   ThreadContentCustomWidget({
     super.key,
@@ -27,13 +28,14 @@ class ThreadContentCustomWidget extends StatefulWidget {
     required this.name,
     required this.title,
     required this.contentThread,
-     this.imageContent,
+    required this.imageContent,
     this.mediaWidth,
     this.bodyheight,
     this.isLeaderBoard = false,
     this.ranking,
-    this.images,
-    this.isShowReadLessImage = true,
+    required this.images,
+    this.userId,
+    this.threadId,
   });
 
   final Faker faker;
@@ -148,16 +150,16 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                     fontWeight: FontWeight.bold,
                     color: primary500),
               ),
-              widget.isShowReadLessImage == true && isReadMore == true
+              isReadMore == true
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                             // ignore: unnecessary_null_comparison
-                            child: widget.imageContent == "" || widget.imageContent == null
+                            child: widget.imageContent == ""
                                 ? Container()
                                 : Image.network(
-                                    widget.imageContent ?? "",
+                                    widget.imageContent,
                                     width: double.infinity,
                                   )),
                         GestureDetector(
@@ -175,7 +177,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                       ],
                     )
                   : Container(),
-              widget.isShowReadLessImage == true ? Container(
+              Container(
                 child: isReadMore == false
                     ? GestureDetector(
                         onTap: () {
@@ -190,7 +192,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       )
                     : Container(),
-              ):Container(),
+              ),
             ],
           ),
           Padding(
@@ -276,7 +278,10 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return const BottomSheetThreadMenu();
+                        return BottomSheetThreadMenu(
+                          userId: widget.userId??-1,
+                          threadId: widget.threadId??-1,
+                        );
                       },
                     );
                   },
