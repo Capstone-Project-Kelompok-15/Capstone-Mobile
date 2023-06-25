@@ -64,6 +64,7 @@ class _SearchAllState extends State<SearchAll> {
                         mediaWidth: mediaQueryWidth,
                         bodyheight: 5,
                         title: thread[index].title,
+                        imageContent: thread[index].file,
                       );
                     },
                   );

@@ -10,7 +10,7 @@ import 'package:faker/faker.dart';
 
 import '../../style/color_style.dart';
 
-class HomeThreadScreen extends StatelessWidget {
+class HomeThreadScreen extends StatefulWidget {
 
   static const routename = "/homeThread";
   HomeThreadScreen({super.key});
