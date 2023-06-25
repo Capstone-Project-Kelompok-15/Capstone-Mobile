@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, must_be_immutable
-import 'package:capstone_mobile/service/bookmark_servis.dart';
+import 'package:capstone_mobile/service/bookmark_service.dart';
+
 import 'package:capstone_mobile/service/followthread_servis.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_laporkan_widget.dart';
