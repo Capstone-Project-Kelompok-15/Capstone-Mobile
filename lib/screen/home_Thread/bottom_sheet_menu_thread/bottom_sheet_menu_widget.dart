@@ -1,4 +1,5 @@
 // ignore_for_file: camel_case_types, must_be_immutable
+import 'package:capstone_mobile/service/bookmark_servis.dart';
 import 'package:capstone_mobile/service/followthread_servis.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_laporkan_widget.dart';
@@ -6,11 +7,11 @@ import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bott
 import 'package:capstone_mobile/widget/item_thread_menu.dart';
 import 'package:flutter/material.dart';
 
-
-
 class BottomSheetThreadMenu extends StatelessWidget {
   const BottomSheetThreadMenu({
-    super.key, required this.threadId, required this.userId,
+    super.key,
+    required this.threadId,
+    required this.userId,
   });
 
   final int userId;
@@ -48,24 +49,25 @@ class BottomSheetThreadMenu extends StatelessWidget {
             ItemThreadMenu(
               imageIcon: "assets/icon/Census.png",
               namaButton: "Ikuti Thread",
-              onTap: () async{
+              onTap: () async {
                 await FollowThreadService().postFollowThread(
                   userId: userId,
                   threadId: threadId,
                   context: context,
                 );
                 Navigator.pop(context);
-                // await FollowThreadService().
-                // (
-                //   id : id,
-                // );
                 print("Ikuti Thread");
               },
-              ),
+            ),
             ItemThreadMenu(
               imageIcon: "assets/icon/Bookmark.png",
               namaButton: "Tambahkan ke Bookmarks",
-              onTap: (() {
+              onTap: (() async {
+                await BookmarkService().postBookmark(
+                  threadId: threadId,
+                  context: context,
+                );
+                Navigator.pop(context);
                 print("object");
               }),
             ),
@@ -89,7 +91,7 @@ class BottomSheetThreadMenu extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child:const  BottomSheetRepostThreadWidget(),
+                      child: const BottomSheetRepostThreadWidget(),
                     );
                   },
                 );
