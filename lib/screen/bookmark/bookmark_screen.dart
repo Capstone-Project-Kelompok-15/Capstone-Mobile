@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 
-import '../../service/bookmark_servis.dart';
 class BookmarkScreen extends StatelessWidget {
   static const routename = "/bookmark";
   final faker = Faker();
