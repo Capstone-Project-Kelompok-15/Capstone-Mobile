@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/model/list_followthread_response.dart';
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
 import 'package:capstone_mobile/service/thread_service.dart';
@@ -131,6 +132,7 @@ class HomeThreadScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         // return Text(thread?[index].title ?? "");
                         return ThreadContentCustomWidget(
+                          threadId : thread?[index].id,
                           faker: faker,
                           name: thread?[index].user.username ?? "",
                           title: thread?[index].title ?? "",

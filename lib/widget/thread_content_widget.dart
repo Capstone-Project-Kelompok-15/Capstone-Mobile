@@ -18,6 +18,8 @@ class ThreadContentCustomWidget extends StatefulWidget {
   bool? isLeaderBoard;
   int? ranking;
   Image images;
+  int? threadId;
+  int? userId;
 
   ThreadContentCustomWidget({
     super.key,
@@ -30,6 +32,8 @@ class ThreadContentCustomWidget extends StatefulWidget {
     this.isLeaderBoard = false,
     this.ranking,
     required this.images,
+    this.userId,
+    this.threadId,
   });
 
   final Faker faker;
@@ -218,7 +222,10 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return const BottomSheetThreadMenu();
+                        return BottomSheetThreadMenu(
+                          userId: widget.userId??-1,
+                          threadId: widget.threadId??-1,
+                        );
                       },
                     );
                   },

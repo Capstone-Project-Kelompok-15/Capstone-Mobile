@@ -99,7 +99,7 @@ class LeaderBoardScreen extends StatelessWidget {
                       name: faker.person.name(),
                       contentThread: faker.lorem.sentences(7).join(''),
                       mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight, title: '',
+                      bodyheight: bodyHeight,
                     );
                   },
                 ),
@@ -115,7 +115,7 @@ class LeaderBoardScreen extends StatelessWidget {
                       name: faker.person.name(),
                       contentThread: faker.lorem.sentences(7).join(''),
                       mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight, title: '',
+                      bodyheight: bodyHeight,
                     );
                   },
                 ),
