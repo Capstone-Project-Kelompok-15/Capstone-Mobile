@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 // import '../constant.dart';
 import '../constant.dart';
 import '../model/list_followthread_response.dart';
+import '../style/color_style.dart';
+import '../style/font_style.dart';
 import 'login_service.dart';
 
 class FollowThreadService {
@@ -46,26 +48,50 @@ class FollowThreadService {
         print("Ikuti Thread");
         print(response.data);
         final snackBar = SnackBar(
-            content: const Text('Yay! A SnackBar!'),
-          );
-
-          // Find the ScaffoldMessenger in the widget tree
-          // and use it to show a SnackBar.
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          content: Container(
+            height: 47,
+            decoration: BoxDecoration(
+                color: primary500, borderRadius: BorderRadius.circular(24)),
+            child: Center(
+                child: Text(
+              "Thread Telah Diikuti",
+              style: smallBold.copyWith(color: Colors.white),
+            )),
+          ),
+          behavior: SnackBarBehavior.floating,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
+
     } on DioError catch (e) {
       print(e.response?.data);
       final snackBar = SnackBar(
-            content: const Text('Yay! A Gagal!'),
-          );
-
-          // Find the ScaffoldMessenger in the widget tree
-          // and use it to show a SnackBar.
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        content: const Text('Thread Gagal Diikuti'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
-}
 
+//   SnackBar showLoginDialog() {
+//     return SnackBar(
+//       content: Container(
+//         height: 47,
+//         decoration: BoxDecoration(
+//             color: primary500, borderRadius: BorderRadius.circular(24)),
+//         child: Center(
+//             child: Text(
+//           "Login Berhasil",
+//           style: smallBold.copyWith(color: Colors.white),
+//         )),
+//       ),
+//       behavior: SnackBarBehavior.floating,
+//       elevation: 0,
+//       backgroundColor: Colors.transparent,
+//     );
+//   }
+// }
 
 // class FollowThreadService {
 //   Future<ListFollowThreadResponse> getAllFollowThread() async {
@@ -82,6 +108,4 @@ class FollowThreadService {
 //     return ListFollowThreadResponse.fromJson(response.data);
 //   }
 // }
-
-
-
+}
