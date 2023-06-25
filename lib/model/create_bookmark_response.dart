@@ -4,20 +4,20 @@
 
 import 'dart:convert';
 
-GetAllBookmarkResponse getAllBookmarkResponseFromJson(String str) => GetAllBookmarkResponse.fromJson(json.decode(str));
+CreateBookmarkResponse CreateBookmarkResponseFromJson(String str) => CreateBookmarkResponse.fromJson(json.decode(str));
 
-String getAllBookmarkResponseToJson(GetAllBookmarkResponse data) => json.encode(data.toJson());
+String CreateBookmarkResponseToJson(CreateBookmarkResponse data) => json.encode(data.toJson());
 
-class GetAllBookmarkResponse {
+class CreateBookmarkResponse {
     Data? data;
     String? message;
 
-    GetAllBookmarkResponse({
+    CreateBookmarkResponse({
         this.data,
         this.message,
     });
 
-    factory GetAllBookmarkResponse.fromJson(Map<String, dynamic> json) => GetAllBookmarkResponse(
+    factory CreateBookmarkResponse.fromJson(Map<String, dynamic> json) => CreateBookmarkResponse(
         data: json["data"] == null ? null : Data.fromJson(json["data"]),
         message: json["message"],
     );
