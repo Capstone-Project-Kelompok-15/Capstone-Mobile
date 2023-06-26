@@ -1,6 +1,9 @@
+// ignore_for_file: unused_import
+
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ItemComentarWidget extends StatefulWidget {
   final double mediaQueryWidth;
   String? nama;

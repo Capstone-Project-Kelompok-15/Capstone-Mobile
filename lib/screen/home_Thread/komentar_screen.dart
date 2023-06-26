@@ -1,12 +1,11 @@
-import 'package:capstone_mobile/model/thread_id_response.dart';
 import 'package:capstone_mobile/service/comment_thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
 import 'package:capstone_mobile/widget/item_komentar_widget.dart';
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class KomentarScreen extends StatefulWidget {
   static const routename = "/komentarScreen";
   int? idThread;

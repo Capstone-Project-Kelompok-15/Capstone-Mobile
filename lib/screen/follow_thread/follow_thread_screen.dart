@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import '../../service/followthread_servis.dart';
+import '../../service/followthread_service.dart';
 import '../../style/font_style.dart';
 import '../../widget/thread_content_widget.dart';
 

@@ -19,7 +19,8 @@ class ThreadContentCustomWidget extends StatefulWidget {
   bool? isLeaderBoard;
   int? ranking;
   String images;
-  int? idThread;
+  int? threadId;
+  int? userId;
 
   ThreadContentCustomWidget({
     super.key,
@@ -33,11 +34,11 @@ class ThreadContentCustomWidget extends StatefulWidget {
     this.isLeaderBoard = false,
     this.ranking,
     required this.images,
-    this.idThread,
+    this.userId,
+    this.threadId,
   });
 
   final Faker faker;
-
   @override
   State<ThreadContentCustomWidget> createState() =>
       _ThreadContentCustomWidgetState();
@@ -250,7 +251,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                               context,
                               MaterialPageRoute(
                                 builder: ((context) =>
-                                    KomentarScreen(idThread: widget.idThread!)),
+                                    KomentarScreen(idThread: widget.threadId!)),
                               ),
                             );
                           },
@@ -296,7 +297,10 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return const BottomSheetThreadMenu();
+                        return BottomSheetThreadMenu(
+                          userId: widget.userId ?? -1,
+                          threadId: widget.threadId ?? -1,
+                        );
                       },
                     );
                   },

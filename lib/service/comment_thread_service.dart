@@ -24,9 +24,11 @@ class CommentThread {
         ),
       );
       if (response.statusCode == 200) {
+        // ignore: avoid_print
         print("berhasil");
       }
     } on DioException catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }

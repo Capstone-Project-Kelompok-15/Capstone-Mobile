@@ -1,12 +1,14 @@
 // To parse this JSON data, do
 //
-//     final listBookmarkResponse = listBookmarkResponseFromJson(jsonString);
+//     final ListBookmarkResponse = ListBookmarkResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-ListBookmarkResponse listBookmarkResponseFromJson(String str) => ListBookmarkResponse.fromJson(json.decode(str));
+// ignore: non_constant_identifier_names
+ListBookmarkResponse ListBookmarkResponseFromJson(String str) => ListBookmarkResponse.fromJson(json.decode(str));
 
-String listBookmarkResponseToJson(ListBookmarkResponse data) => json.encode(data.toJson());
+// ignore: non_constant_identifier_names
+String ListBookmarkResponseToJson(ListBookmarkResponse data) => json.encode(data.toJson());
 
 class ListBookmarkResponse {
     List<Datum>? data;
@@ -67,19 +69,23 @@ class Datum {
 class Author {
     String? username;
     String? email;
+    String? profil;
 
     Author({
         this.username,
         this.email,
+        this.profil,
     });
 
     factory Author.fromJson(Map<String, dynamic> json) => Author(
         username: json["username"],
         email: json["email"],
+        profil: json["profil"],
     );
 
     Map<String, dynamic> toJson() => {
         "username": username,
         "email": email,
+        "profil": profil,
     };
 }

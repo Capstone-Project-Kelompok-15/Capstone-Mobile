@@ -1,14 +1,22 @@
-// ignore_for_file: camel_case_types, must_be_immutable
+// ignore_for_file: camel_case_types, must_be_immutable, use_build_context_synchronously
+import 'package:capstone_mobile/service/bookmark_service.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_laporkan_widget.dart';
 import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_repost_widget.dart';
 import 'package:capstone_mobile/widget/item_thread_menu.dart';
 import 'package:flutter/material.dart';
 
+import '../../../service/followthread_service.dart';
+
 class BottomSheetThreadMenu extends StatelessWidget {
   const BottomSheetThreadMenu({
     super.key,
+    required this.threadId,
+    required this.userId,
   });
+
+  final int userId;
+  final int threadId;
 
   @override
   Widget build(BuildContext context) {
@@ -42,21 +50,30 @@ class BottomSheetThreadMenu extends StatelessWidget {
             ItemThreadMenu(
               imageIcon: "assets/icon/Census.png",
               namaButton: "Ikuti Thread",
-              navigasi: (() {
-                print("Ikuti Thread");
-              }),
+              onTap: () async {
+                await FollowThreadService().postFollowThread(
+                  userId: userId,
+                  threadId: threadId,
+                  context: context,
+                );
+                Navigator.pop(context);
+              },
             ),
             ItemThreadMenu(
               imageIcon: "assets/icon/Bookmark.png",
               namaButton: "Tambahkan ke Bookmarks",
-              navigasi: (() {
-                print("object");
+              onTap: (() async {
+                await BookmarkService().postBookmark(
+                  threadId: threadId,
+                  context: context,
+                );
+                Navigator.pop(context);
               }),
             ),
             ItemThreadMenu(
               imageIcon: "assets/icon/RotateRight.png",
               namaButton: "Repost Thread",
-              navigasi: (() {
+              onTap: (() {
                 // print("object 1");
                 Navigator.pop(context);
                 showModalBottomSheet<void>(
@@ -73,7 +90,7 @@ class BottomSheetThreadMenu extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child:const  BottomSheetRepostThreadWidget(),
+                      child: const BottomSheetRepostThreadWidget(),
                     );
                   },
                 );
@@ -82,7 +99,7 @@ class BottomSheetThreadMenu extends StatelessWidget {
             ItemThreadMenu(
               imageIcon: "assets/icon/Info.png",
               namaButton: "Laporkan Thread",
-              navigasi: (() {
+              onTap: (() {
                 Navigator.pop(context);
                 showModalBottomSheet<void>(
                   isDismissible: false,
@@ -102,7 +119,8 @@ class BottomSheetThreadMenu extends StatelessWidget {
             ItemThreadMenu(
                 imageIcon: "assets/icon/Statistics.png",
                 namaButton: "Direct Message to Joko Santoso",
-                navigasi: (() {
+                onTap: (() {
+                  // ignore: avoid_print
                   print("Direct Message to Joko Santoso");
                 })),
           ],

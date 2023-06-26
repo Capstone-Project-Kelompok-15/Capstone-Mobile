@@ -9,7 +9,7 @@ import 'package:faker/faker.dart';
 
 class HomeThreadScreen extends StatefulWidget {
   static const routename = "/homeThread";
-  HomeThreadScreen({super.key});
+  const HomeThreadScreen({super.key});
 
   @override
   State<HomeThreadScreen> createState() => _HomeThreadScreenState();
@@ -142,12 +142,11 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
                     var thread = snapshot.data?.data;
                     if (snapshot.hasData) {
                       return ListView.builder(
-                        reverse: true,
                         itemCount: thread?.length,
                         itemBuilder: (context, index) {
                           return ThreadContentCustomWidget(
                             faker: faker,
-                            idThread: thread?[index].id ?? 0,
+                            threadId: thread?[index].id ?? 0,
                             name: thread?[index].author.username ?? "",
                             title: thread?[index].title ?? "",
                             contentThread: thread?[index].content ?? "",
