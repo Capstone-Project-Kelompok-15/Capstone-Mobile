@@ -2,12 +2,15 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 class ItemComentarWidget extends StatefulWidget {
-  final Faker faker;
   final double mediaQueryWidth;
-
-  const ItemComentarWidget({
+  String? nama;
+  String? komentar;
+  String? profil;
+  ItemComentarWidget({
     super.key,
-    required this.faker,
+    this.nama,
+    this.komentar,
+    this.profil,
     required this.mediaQueryWidth,
   });
 
@@ -25,70 +28,26 @@ class _ItemComentarWidget extends State<ItemComentarWidget> {
         ListTile(
           horizontalTitleGap: 20,
           contentPadding: const EdgeInsets.all(0),
-          leading: const CircleAvatar(
-            child: Text("D"),
-          ),
-          title: Text(widget.faker.person.name()),
-          subtitle: const Text("Bagus idenya"),
-        ),
-        Padding(
-            padding: EdgeInsets.only(left: widget.mediaQueryWidth * 0.12),
-            child: iskomentar == true
-                // ignore: avoid_unnecessary_containers
-                ? Container(
-                    child: Column(
-                      children: [
-                        const ListTile(
-                          leading: CircleAvatar(
-                            child: Text("K"),
-                          ),
-                          title: Text("nama komentar"),
-                          subtitle: Text("komentar"),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: TextButton(
-                              onPressed: () {
-                                if (iskomentar == true) {
-                                  iskomentar = false;
-                                }
-                                setState(() {});
-                              },
-                              child: const Text("kecilkan")),
-                        ),
-                      ],
+          leading: CircleAvatar(
+            child: ClipOval(
+              child: widget.profil != ""
+                  ? Image.network(
+                      widget.profil!,
+                      fit: BoxFit.cover,
+                      width: 50,
+                      height: 50,
+                    )
+                  : Image.network(
+                      "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg",
+                      fit: BoxFit.cover,
+                      width: 50,
+                      height: 50,
                     ),
-                  )
-                : Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextButton(
-                      onPressed: () {
-                        if (iskomentar == false) {
-                          iskomentar = true;
-                        }
-                        setState(() {});
-                      },
-                      child: const Text("Lihat balasan"),
-                    ),
-                  )
-
-            // child: ListTile(
-            //   horizontalTitleGap: 0,
-            //   contentPadding: const EdgeInsets.all(0),
-            //   leading: const CircleAvatar(
-            //     radius: 15,
-            //     child: Text("K"),
-            //   ),
-            //   title: Text(
-            //     faker.person.name(),
-            //     style: smallMedium,
-            //   ),
-            //   subtitle: Text(
-            //     "Bagus idenya",
-            //     style: smallReguler,
-            //   ),
-            // ),
             ),
+          ),
+          title: Text(widget.nama!),
+          subtitle: Text(widget.komentar!),
+        ),
       ],
     );
   }

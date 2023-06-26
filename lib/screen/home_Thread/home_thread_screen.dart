@@ -142,14 +142,14 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
                       itemBuilder: (context, index) {
                         return ThreadContentCustomWidget(
                           faker: faker,
-                          idThread: thread?[index].id,
+                          idThread: thread?[index].id ?? 0,
                           name: thread?[index].author.username ?? "",
                           title: thread?[index].title ?? "",
                           contentThread: thread?[index].content ?? "",
                           mediaWidth: mediaQueryWidth,
                           bodyheight: bodyHeight,
                           imageContent: thread?[index].file ?? "",
-                          images: Image.asset("assets/images/fotodummy.png"),
+                          images: thread?[index].author.profil ?? "",
                         );
                       },
                     );

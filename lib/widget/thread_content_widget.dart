@@ -18,7 +18,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
-  Image images;
+  String images;
   int? idThread;
 
   ThreadContentCustomWidget({
@@ -61,7 +61,21 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
             leading: CircleAvatar(
-              child: widget.images,
+              child: ClipOval(
+                child: widget.images != ""
+                    ? Image.network(
+                        widget.images,
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                      )
+                    : Image.network(
+                        "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg",
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                      ),
+              ),
             ),
             title: IntrinsicHeight(
               child: Row(
@@ -231,9 +245,14 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
                           onPressed: () {
-                            Navigator.of(context).pushNamed(
-                                KomentarScreen.routename,
-                                arguments: {'idThread': widget.idThread!});
+                            // print(widget.idThread);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) =>
+                                    KomentarScreen(idThread: widget.idThread!)),
+                              ),
+                            );
                           },
                           icon: Image.asset(
                             "assets/icon/chat.png",

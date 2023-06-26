@@ -93,7 +93,7 @@ class LeaderBoardScreen extends StatelessWidget {
                       return ThreadContentCustomWidget(
                         isLeaderBoard: true,
                         ranking: index + 1,
-                        images: Image.asset("assets/images/fotodummy.png"),
+                        images: "",
                         faker: faker,
                         name: faker.person.name(),
                         imageContent: "",
@@ -110,7 +110,7 @@ class LeaderBoardScreen extends StatelessWidget {
                       return ThreadContentCustomWidget(
                         isLeaderBoard: true,
                         ranking: index + 1,
-                        images: Image.asset("assets/images/fotodummy.png"),
+                        images: "",
                         faker: faker,
                         name: faker.person.name(),
                         imageContent: "",
