@@ -1,3 +1,5 @@
+// ignore_for_file: unused_catch_clause, prefer_const_constructors
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -18,10 +20,10 @@ class BookmarkService {
             'Authorization': 'Bearer $cekUser'
           },
         ));
+    // ignore: avoid_print
     print(response);
     return ListBookmarkResponse.fromJson(response.data);
   }
-
 
   // create follow thread
   Future<void> postBookmark({
@@ -39,8 +41,8 @@ class BookmarkService {
             "thread_id": threadId,
           });
       if (response.statusCode == 200) {
+        // ignore: avoid_print
         print("Tambah Ke Bookmark");
-        print(response.data);
         final snackBar = SnackBar(
           content: Container(
             height: 47,
@@ -56,14 +58,14 @@ class BookmarkService {
           elevation: 0,
           backgroundColor: Colors.transparent,
         );
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
-
-    } on DioError catch (e) {
-      print(e.response?.data);
+    } on DioException catch (e) {
       final snackBar = SnackBar(
         content: const Text('Thread Gagal Ditambahkan ke Bookmark'),
       );
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

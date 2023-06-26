@@ -13,6 +13,7 @@ class SearchPostingan extends StatefulWidget {
   @override
   State<SearchPostingan> createState() => _SearchPostinganState();
 }
+
 class _SearchPostinganState extends State<SearchPostingan> {
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _SearchPostinganState extends State<SearchPostingan> {
                     physics: const ScrollPhysics(),
                     itemBuilder: (context, index) {
                       return ThreadContentCustomWidget(
-                        images: Image.asset("assets/images/fotodummy.png"),
+                        images: "",
                         faker: faker,
                         name: thread[index].user?.username ?? "",
                         contentThread: thread[index].content ?? "",

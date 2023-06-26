@@ -5,6 +5,7 @@ import 'package:capstone_mobile/style/color_style.dart';
 import 'package:flutter/material.dart';
 import '../../style/font_style.dart';
 import '../home_buttomNavigasi_screen.dart';
+
 class SearchScreen extends StatelessWidget {
   static const routename = "/searchScreen";
   const SearchScreen({super.key});
@@ -41,12 +42,11 @@ class SearchScreen extends StatelessWidget {
               textAlignVertical: TextAlignVertical.center,
               style: regulerReguler,
               decoration: InputDecoration(
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Cari',
-                hintStyle: regulerReguler.copyWith(color: typography500)
-              ),
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: 'Cari',
+                  hintStyle: regulerReguler.copyWith(color: typography500)),
               onFieldSubmitted: (value) {
                 Navigator.of(context)
                     .pushNamed(SearchScreen.routename, arguments: value);
@@ -114,9 +114,15 @@ class SearchScreen extends StatelessWidget {
                 ],
               ),
             ),
-             Expanded(
+            Expanded(
               child: TabBarView(
-                children: [SearchAll(), SearchPostingan(argument: argumentsString,), SearchOrang()],
+                children: [
+                  const SearchAll(),
+                  SearchPostingan(
+                    argument: argumentsString,
+                  ),
+                  const SearchOrang()
+                ],
               ),
             )
           ],

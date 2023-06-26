@@ -23,7 +23,7 @@ class _HomeButtonmNavigasiScreen extends State<HomeButtonmNavigasiScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static final List<Widget> _widgetOptions = <Widget>[
-    HomeThreadScreen(),
+    const HomeThreadScreen(),
     const FollowByThread(),
     const LeaderBoardScreen(),
     const ProfileUserScreen(),

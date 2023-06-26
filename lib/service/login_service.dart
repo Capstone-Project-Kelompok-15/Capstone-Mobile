@@ -1,3 +1,5 @@
+// ignore_for_file: unused_catch_clause
+
 import 'package:capstone_mobile/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
@@ -21,10 +23,8 @@ class Login {
         return 0;
       }
     } on DioException catch (e) {
-      print(e);
       return 0;
     }
-
   }
 }
 

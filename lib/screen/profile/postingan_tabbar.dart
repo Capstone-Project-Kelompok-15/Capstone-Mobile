@@ -80,7 +80,7 @@ class _PostinganTabBarState extends State<PostinganTabBar> {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return ThreadContentCustomWidget(
-                    images: Image.asset("assets/images/fotodummy.png"),
+                    images: "",
                     faker: faker,
                     name: faker.person.name(),
                     imageContent: "",

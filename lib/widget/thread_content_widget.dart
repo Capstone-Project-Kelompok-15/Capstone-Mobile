@@ -7,6 +7,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
+
 // ignore: must_be_immutable
 class ThreadContentCustomWidget extends StatefulWidget {
   String name;
@@ -17,10 +18,9 @@ class ThreadContentCustomWidget extends StatefulWidget {
   double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
-  Image images;
+  String images;
   int? threadId;
   int? userId;
-  int? idThread;
 
   ThreadContentCustomWidget({
     super.key,
@@ -36,7 +36,6 @@ class ThreadContentCustomWidget extends StatefulWidget {
     required this.images,
     this.userId,
     this.threadId,
-    this.idThread,
   });
 
   final Faker faker;
@@ -44,6 +43,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   State<ThreadContentCustomWidget> createState() =>
       _ThreadContentCustomWidgetState();
 }
+
 class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
   bool isFollowing = false;
   bool islike = false;
@@ -62,7 +62,21 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
             leading: CircleAvatar(
-              child: widget.images,
+              child: ClipOval(
+                child: widget.images != ""
+                    ? Image.network(
+                        widget.images,
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                      )
+                    : Image.network(
+                        "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg",
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                      ),
+              ),
             ),
             title: IntrinsicHeight(
               child: Row(
@@ -232,9 +246,14 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
                           onPressed: () {
-                            Navigator.of(context).pushNamed(
-                                KomentarScreen.routename,
-                                arguments: {'idThread': widget.idThread!});
+                            // print(widget.idThread);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) =>
+                                    KomentarScreen(idThread: widget.threadId!)),
+                              ),
+                            );
                           },
                           icon: Image.asset(
                             "assets/icon/chat.png",
@@ -279,8 +298,8 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                       ),
                       builder: (BuildContext context) {
                         return BottomSheetThreadMenu(
-                          userId: widget.userId??-1,
-                          threadId: widget.threadId??-1,
+                          userId: widget.userId ?? -1,
+                          threadId: widget.threadId ?? -1,
                         );
                       },
                     );

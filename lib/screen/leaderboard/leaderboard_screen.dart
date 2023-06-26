@@ -102,14 +102,13 @@ class LeaderBoardScreen extends StatelessWidget {
                               faker: faker,
                               isLeaderBoard: true,
                               ranking: index + 1,
-                              name: leaderboard?[index].author?.username ?? "",
+                              name: leaderboard?[index].author.username ?? "",
                               title: leaderboard?[index].title ?? "",
                               contentThread: leaderboard?[index].content ?? "",
                               mediaWidth: mediaQueryWidth,
                               bodyheight: bodyHeight,
                               imageContent: leaderboard?[index].file ?? "",
-                              images:
-                                  Image.asset("assets/images/fotodummy.png"),
+                              images: "",
                             );
                           },
                         );
@@ -119,8 +118,6 @@ class LeaderBoardScreen extends StatelessWidget {
                       );
                     }),
                   ),
-
-
                   FutureBuilder(
                     future: ThreadService().getAllThread(),
                     builder: ((context, snapshot) {
@@ -135,14 +132,13 @@ class LeaderBoardScreen extends StatelessWidget {
                               faker: faker,
                               isLeaderBoard: true,
                               ranking: index + 1,
-                              name: leaderboard?[index].author?.username ?? "",
+                              name: leaderboard?[index].author.username ?? "",
                               title: leaderboard?[index].title ?? "",
                               contentThread: leaderboard?[index].content ?? "",
                               mediaWidth: mediaQueryWidth,
                               bodyheight: bodyHeight,
                               imageContent: leaderboard?[index].file ?? "",
-                              images:
-                                  Image.asset("assets/images/fotodummy.png"),
+                              images: "",
                             );
                           },
                         );

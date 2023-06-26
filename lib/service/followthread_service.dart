@@ -1,4 +1,6 @@
 // import 'package:capstone_mobile/service/login_service.dart';
+// ignore_for_file: unused_catch_clause, prefer_const_constructors
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,6 @@ class FollowThreadService {
         },
       ),
     );
-    print(getAllFollowThread());
     return ListFollowThreadResponse.fromJson(response.data);
   }
 
@@ -45,7 +46,6 @@ class FollowThreadService {
             "thread_id": threadId,
           });
       if (response.statusCode == 200) {
-        print("Ikuti Thread");
         final snackBar = SnackBar(
           content: Container(
             height: 47,
@@ -61,13 +61,14 @@ class FollowThreadService {
           elevation: 0,
           backgroundColor: Colors.transparent,
         );
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
-
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       final snackBar = SnackBar(
         content: const Text('Thread Gagal Diikuti'),
       );
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

@@ -9,7 +9,7 @@ import 'package:faker/faker.dart';
 
 class HomeThreadScreen extends StatefulWidget {
   static const routename = "/homeThread";
-  HomeThreadScreen({super.key});
+  const HomeThreadScreen({super.key});
 
   @override
   State<HomeThreadScreen> createState() => _HomeThreadScreenState();
@@ -132,31 +132,37 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
             ),
           ),
           Expanded(
-            child: FutureBuilder(
-                future: ThreadService().getAllThread(),
-                builder: ((context, snapshot) {
-                  var thread = snapshot.data?.data;
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: thread?.length,
-                      itemBuilder: (context, index) {
-                        return ThreadContentCustomWidget(
-                          faker: faker,
-                          name: thread?[index].author?.username ?? "",
-                          title: thread?[index].title ?? "",
-                          contentThread: thread?[index].content ?? "",
-                          mediaWidth: mediaQueryWidth,
-                          bodyheight: bodyHeight,
-                          imageContent: thread?[index].file ?? "",
-                          images: Image.asset("assets/images/fotodummy.png"),
-                        );
-                      },
+            child: RefreshIndicator(
+              onRefresh: () {
+                return ThreadService().getAllThread();
+              },
+              child: FutureBuilder(
+                  future: ThreadService().getAllThread(),
+                  builder: ((context, snapshot) {
+                    var thread = snapshot.data?.data;
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: thread?.length,
+                        itemBuilder: (context, index) {
+                          return ThreadContentCustomWidget(
+                            faker: faker,
+                            threadId: thread?[index].id ?? 0,
+                            name: thread?[index].author.username ?? "",
+                            title: thread?[index].title ?? "",
+                            contentThread: thread?[index].content ?? "",
+                            mediaWidth: mediaQueryWidth,
+                            bodyheight: bodyHeight,
+                            imageContent: thread?[index].file ?? "",
+                            images: thread?[index].author.profil ?? "",
+                          );
+                        },
+                      );
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
                     );
-                  }
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                })),
+                  })),
+            ),
           ),
           // )
         ],

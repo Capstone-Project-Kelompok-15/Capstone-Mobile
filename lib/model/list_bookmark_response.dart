@@ -4,8 +4,10 @@
 
 import 'dart:convert';
 
+// ignore: non_constant_identifier_names
 ListBookmarkResponse ListBookmarkResponseFromJson(String str) => ListBookmarkResponse.fromJson(json.decode(str));
 
+// ignore: non_constant_identifier_names
 String ListBookmarkResponseToJson(ListBookmarkResponse data) => json.encode(data.toJson());
 
 class ListBookmarkResponse {

@@ -10,6 +10,7 @@ class SearchAll extends StatefulWidget {
   @override
   State<SearchAll> createState() => _SearchAllState();
 }
+
 class _SearchAllState extends State<SearchAll> {
   @override
   Widget build(BuildContext context) {
@@ -42,11 +43,19 @@ class _SearchAllState extends State<SearchAll> {
                 builder: (context, snapshot) {
                   var thread = snapshot.data?.thread;
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator(color: primary500,));
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: primary500,
+                    ));
                   }
 
                   if (thread!.isEmpty) {
-                    return Center(child: Text("Tidak ada postingan", style: regulerReguler.copyWith(color: typography500),),);
+                    return Center(
+                      child: Text(
+                        "Tidak ada postingan",
+                        style: regulerReguler.copyWith(color: typography500),
+                      ),
+                    );
                   }
 
                   return ListView.builder(
@@ -55,7 +64,7 @@ class _SearchAllState extends State<SearchAll> {
                     physics: const ScrollPhysics(),
                     itemBuilder: (context, index) {
                       return ThreadContentCustomWidget(
-                        images: Image.asset("assets/images/fotodummy.png"),
+                        images: "",
                         faker: faker,
                         name: thread[index].user!.username ?? "",
                         contentThread: thread[index].content ?? "",
@@ -73,6 +82,7 @@ class _SearchAllState extends State<SearchAll> {
     );
   }
 }
+
 Widget listOrang() {
   return ListView.builder(
     shrinkWrap: true,

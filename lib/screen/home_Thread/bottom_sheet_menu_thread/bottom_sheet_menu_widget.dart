@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, must_be_immutable
+// ignore_for_file: camel_case_types, must_be_immutable, use_build_context_synchronously
 import 'package:capstone_mobile/service/bookmark_service.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/screen/home_Thread/bottom_sheet_menu_thread/bottom_sheet_laporkan_widget.dart';
@@ -57,7 +57,6 @@ class BottomSheetThreadMenu extends StatelessWidget {
                   context: context,
                 );
                 Navigator.pop(context);
-                print("Ikuti Thread");
               },
             ),
             ItemThreadMenu(
@@ -69,7 +68,6 @@ class BottomSheetThreadMenu extends StatelessWidget {
                   context: context,
                 );
                 Navigator.pop(context);
-                print("Tambahkan ke Bookmark");
               }),
             ),
             ItemThreadMenu(
@@ -122,6 +120,7 @@ class BottomSheetThreadMenu extends StatelessWidget {
                 imageIcon: "assets/icon/Statistics.png",
                 namaButton: "Direct Message to Joko Santoso",
                 onTap: (() {
+                  // ignore: avoid_print
                   print("Direct Message to Joko Santoso");
                 })),
           ],

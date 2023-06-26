@@ -23,6 +23,7 @@ class Registrasi {
       if (response.statusCode == 200) {
         return 1;
       } else {
+        // ignore: avoid_print
         print(response.data['message']);
         return 0;
       }
