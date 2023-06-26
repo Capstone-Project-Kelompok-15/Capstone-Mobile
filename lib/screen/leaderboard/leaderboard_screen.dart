@@ -86,53 +86,58 @@ class LeaderBoardScreen extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(
-              children: [
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return ThreadContentCustomWidget(
-                      isLeaderBoard: true,
-                      ranking: index + 1,
-                      images: Image.asset("assets/images/fotodummy.png"),
-                      faker: faker,
-                      name: faker.person.name(),
-                      contentThread: faker.lorem.sentences(7).join(''),
-                      mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight, title: '',
-                    );
-                  },
-                ),
-                ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return ThreadContentCustomWidget(
-                      isLeaderBoard: true,
-                      ranking: index + 1,
-                      images: Image.asset("assets/images/fotodummy.png"),
-                      faker: faker,
-                      name: faker.person.name(),
-                      contentThread: faker.lorem.sentences(7).join(''),
-                      mediaWidth: mediaQueryWidth,
-                      bodyheight: bodyHeight, title: '',
-                    );
-                  },
-                ),
-              ],
-            ),)
-          //   Expanded(
-          //   child: ListView.builder(
-          //     itemCount: 10,
-          //     itemBuilder: (context, index) {
-          //       return ThreadContentCustomWidget(
-          //         faker: faker,
-          //         name: faker.person.name(),
-          //         contentThread: faker.lorem.sentences(7).join(''),
-          //         mediaWidth: mediaQueryWidth,
-          //         bodyheight: bodyHeight,
-          //       );
-          //     },
-          //   ),
-          // )
+                children: [
+                  ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return ThreadContentCustomWidget(
+                        isLeaderBoard: true,
+                        ranking: index + 1,
+                        images: Image.asset("assets/images/fotodummy.png"),
+                        faker: faker,
+                        name: faker.person.name(),
+                        imageContent: "",
+                        contentThread: faker.lorem.sentences(7).join(''),
+                        mediaWidth: mediaQueryWidth,
+                        bodyheight: bodyHeight,
+                        title: '',
+                      );
+                    },
+                  ),
+                  ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return ThreadContentCustomWidget(
+                        isLeaderBoard: true,
+                        ranking: index + 1,
+                        images: Image.asset("assets/images/fotodummy.png"),
+                        faker: faker,
+                        name: faker.person.name(),
+                        imageContent: "",
+                        contentThread: faker.lorem.sentences(7).join(''),
+                        mediaWidth: mediaQueryWidth,
+                        bodyheight: bodyHeight,
+                        title: '',
+                      );
+                    },
+                  ),
+                ],
+              ),
+            )
+            //   Expanded(
+            //   child: ListView.builder(
+            //     itemCount: 10,
+            //     itemBuilder: (context, index) {
+            //       return ThreadContentCustomWidget(
+            //         faker: faker,
+            //         name: faker.person.name(),
+            //         contentThread: faker.lorem.sentences(7).join(''),
+            //         mediaWidth: mediaQueryWidth,
+            //         bodyheight: bodyHeight,
+            //       );
+            //     },
+            //   ),
+            // )
             // const SizedBox(
             //   height: 20,
             //   width: double.infinity,

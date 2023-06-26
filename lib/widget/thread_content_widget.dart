@@ -13,11 +13,14 @@ class ThreadContentCustomWidget extends StatefulWidget {
   String name;
   String contentThread;
   String title;
+  String imageContent;
   double? mediaWidth;
   double? bodyheight;
   bool? isLeaderBoard;
   int? ranking;
-  Image? images;
+  Image images;
+  int? threadId;
+  int? userId;
 
   ThreadContentCustomWidget({
     super.key,
@@ -25,11 +28,14 @@ class ThreadContentCustomWidget extends StatefulWidget {
     required this.name,
     required this.title,
     required this.contentThread,
+    required this.imageContent,
     this.mediaWidth,
     this.bodyheight,
     this.isLeaderBoard = false,
     this.ranking,
-    this.images,
+    required this.images,
+    this.userId,
+    this.threadId,
   });
 
   final Faker faker;
@@ -42,6 +48,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
 class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
   bool isFollowing = false;
   bool islike = false;
+  bool isReadMore = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,7 +63,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
           ListTile(
             contentPadding: const EdgeInsets.only(left: 0.0, right: 0.0),
             leading: CircleAvatar(
-              child: Image.asset("assets/images/fotodummy.png"),
+              child: widget.images,
             ),
             title: IntrinsicHeight(
               child: Row(
@@ -123,17 +130,70 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
               style: regulerBold,
             ),
           ),
-          ReadMoreText(
-            // content masih menggunakan data dari faker
-            widget.contentThread,
-            trimLines: 4,
-            trimMode: TrimMode.Line,
-            trimCollapsedText: 'Lihat Selengkapnya',
-            trimExpandedText: 'Tampilkan lebih Sedikit',
-            moreStyle: TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
-            lessStyle: TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: primary500),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ReadMoreText(
+                // content masih menggunakan data dari faker
+                widget.contentThread,
+                trimLines: 4,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: 'Lihat Selengkapnya',
+                trimExpandedText: 'Tampilkan lebih Sedikit',
+                moreStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: primary500),
+                lessStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: primary500),
+              ),
+              isReadMore == true
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            // ignore: unnecessary_null_comparison
+                            child: widget.imageContent == ""
+                                ? Container()
+                                : Image.network(
+                                    widget.imageContent,
+                                    width: double.infinity,
+                                  )),
+                        GestureDetector(
+                          onTap: () {
+                            if (isReadMore = true) {
+                              isReadMore = false;
+                            }
+                            setState(() {});
+                          },
+                          child: Text(
+                            "read less Image",
+                            style: smallBold.copyWith(color: primary500),
+                          ),
+                        )
+                      ],
+                    )
+                  : Container(),
+              Container(
+                child: isReadMore == false
+                    ? GestureDetector(
+                        onTap: () {
+                          if (isReadMore = true) {
+                            isReadMore = true;
+                          }
+                          setState(() {});
+                        },
+                        child: Text(
+                          "read more Image",
+                          style: smallBold.copyWith(color: primary500),
+                        ),
+                      )
+                    : Container(),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -218,7 +278,10 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return const BottomSheetThreadMenu();
+                        return BottomSheetThreadMenu(
+                          userId: widget.userId??-1,
+                          threadId: widget.threadId??-1,
+                        );
                       },
                     );
                   },

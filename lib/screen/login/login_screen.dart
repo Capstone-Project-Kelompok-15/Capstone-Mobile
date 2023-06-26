@@ -1,7 +1,6 @@
 import 'package:capstone_mobile/screen/login/lupa_password/lupa_password_screen_1.dart';
 import 'package:capstone_mobile/screen/register/register_screen.dart';
 import 'package:capstone_mobile/service/login_service.dart';
-import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/button.dart';
@@ -137,7 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           buttonText: "Masuk",
                           width: 111,
                           onPressed: () async {
-                            int x = await Login().loginUser(_email.text, _password.text);
+                            int x = await Login()
+                                .loginUser(_email.text, _password.text);
                             setState(() {
                               if (x == 1) {
                                 Navigator.of(context).pushNamed(

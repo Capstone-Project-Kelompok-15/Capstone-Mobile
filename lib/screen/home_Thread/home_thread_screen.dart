@@ -1,14 +1,26 @@
+// import 'package:capstone_mobile/model/list_followthread_response.dart';
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
+import 'package:capstone_mobile/screen/search/search_screen.dart';
 import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
-class HomeThreadScreen extends StatelessWidget {
+
+import '../../style/color_style.dart';
+
+class HomeThreadScreen extends StatefulWidget {
+
   static const routename = "/homeThread";
   HomeThreadScreen({super.key});
+
+  @override
+  State<HomeThreadScreen> createState() => _HomeThreadScreenState();
+}
+
+class _HomeThreadScreenState extends State<HomeThreadScreen> {
   // ignore: unnecessary_new
   final faker = new Faker();
 
@@ -18,11 +30,14 @@ class HomeThreadScreen extends StatelessWidget {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
     final myAppBar = AppBar(
+      centerTitle: true,
       leading: Image.asset(
         "assets/images/logo.png",
       ),
       title: Container(
         margin: const EdgeInsets.only(top: 5),
+        width: 234,
+        height: 38,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(24),
@@ -34,12 +49,17 @@ class HomeThreadScreen extends StatelessWidget {
             child: TextFormField(
               textAlignVertical: TextAlignVertical.center,
               style: regulerReguler,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Cari',
+                hintStyle: regulerReguler.copyWith(color: typography500)
               ),
+              onFieldSubmitted: (value) {
+                Navigator.of(context)
+                    .pushNamed(SearchScreen.routename, arguments: value);
+              },
             ),
           ),
         ),
@@ -80,6 +100,7 @@ class HomeThreadScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () async {
+              // ignore: unused_local_variable
               final result = await Navigator.of(context).pushNamed(
                 CreateThreadScreen.routename,
               );
@@ -120,37 +141,35 @@ class HomeThreadScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child:
-                // RefreshIndicator(
-                //   onRefresh: ,
-                //   child:
-                FutureBuilder(
-                    future: ThreadService().getAllThread(),
-                    builder: ((context, snapshot) {
-                      var thread = snapshot.data?.data;
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          itemCount: thread?.length,
-                          itemBuilder: (context, index) {
-                            // return Text(thread?[index].title ?? "");
-                            return ThreadContentCustomWidget(
-                              faker: faker,
-                              name: thread?[index].user.username ?? "",
-                              title: thread?[index].title ?? "",
-                              contentThread: thread?[index].content ?? "",
-                              mediaWidth: mediaQueryWidth,
-                              bodyheight: bodyHeight,
-                            );
-                          },
+            child: FutureBuilder(
+                future: ThreadService().getAllThread(),
+                builder: ((context, snapshot) {
+                  var thread = snapshot.data?.data;
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: thread?.length,
+                      itemBuilder: (context, index) {
+                        // return Text(thread?[index].title ?? "");
+                        return ThreadContentCustomWidget(
+                          threadId : thread?[index].id,
+                          faker: faker,
+                          name: thread?[index].user.username ?? "",
+                          title: thread?[index].title ?? "",
+                          contentThread: thread?[index].content ?? "",
+                          mediaWidth: mediaQueryWidth,
+                          bodyheight: bodyHeight,
+                          imageContent: thread?[index].file ?? "",
+                          images: Image.asset("assets/images/fotodummy.png"),
                         );
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    })),
+                      },
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                })),
           ),
           // )
-
         ],
       ),
     );
