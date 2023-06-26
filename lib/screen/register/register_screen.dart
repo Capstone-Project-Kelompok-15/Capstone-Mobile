@@ -86,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               },
               validation: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Username tidak boleh kosong';
+                  return 'Password tidak boleh kosong';
                 } else if (value.length < 6) {
                   return 'Minimal 6 karakter';
                 }

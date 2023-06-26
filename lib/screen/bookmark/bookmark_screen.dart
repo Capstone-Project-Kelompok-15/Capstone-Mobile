@@ -27,10 +27,10 @@ class BookmarkScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               'Bookmark',
               style: TextStyle(
                 color: Colors.black,
