@@ -1,3 +1,4 @@
+// import 'package:capstone_mobile/service/detail_user.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:faker/faker.dart';

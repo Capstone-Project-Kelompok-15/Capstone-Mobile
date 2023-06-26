@@ -1,4 +1,5 @@
 import 'package:capstone_mobile/widget/pengikut_widget.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 class PengikutTabBar extends StatefulWidget {
@@ -19,7 +20,9 @@ class _PengikutTabBarState extends State<PengikutTabBar> {
             itemCount: 10,
             physics: const ScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
-              return const PengikutProfile();
+              return PengikutProfile(
+                name: faker.person.name(),
+              );
             },
           ),
         ),

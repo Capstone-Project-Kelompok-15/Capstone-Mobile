@@ -10,6 +10,7 @@ import 'package:capstone_mobile/screen/leaderboard/leaderboard_screen.dart';
 import 'package:capstone_mobile/screen/login/login_screen.dart';
 import 'package:capstone_mobile/screen/login/lupa_password/lupa_password_screen_1.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
+import 'package:capstone_mobile/screen/profile/profile_user_screen.dart';
 import 'package:capstone_mobile/screen/search/search_screen.dart';
 import 'package:capstone_mobile/screen/settings/pengaturan_akun_screen.dart';
 import 'package:capstone_mobile/screen/settings/setting_screen.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const HomeButtonmNavigasiScreen(),
+        home: const ProfileUserScreen(),
         initialRoute: SplashScreen.routename,
         routes: {
           SplashScreen.routename: (context) => const SplashScreen(),

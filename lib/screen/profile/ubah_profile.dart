@@ -1,14 +1,32 @@
 import 'dart:io';
 
+// import 'package:capstone_mobile/service/detail_user.dart';
+
+import 'package:capstone_mobile/model/detail_user_response.dart';
+import 'package:capstone_mobile/service/detail_user.dart';
+import 'package:capstone_mobile/service/update_user_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class UbahProfileScreen extends StatefulWidget {
-  const UbahProfileScreen({super.key});
+  final String? id;
+  final String? username;
+  final String? bio;
+  final String? email;
+  final String? password;
+
+  const UbahProfileScreen({
+    super.key,
+    this.id,
+    this.username,
+    this.bio,
+    this.email,
+    this.password,
+  });
 
   @override
   State<UbahProfileScreen> createState() => _UbahProfileScreenState();
@@ -18,18 +36,14 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
   File? _imageFile;
   final ImagePicker _picker = ImagePicker();
   String? _profileImagePath;
+  final TextEditingController _controllerUpdateNama = TextEditingController();
+  final TextEditingController _controllerUpdateBio = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    loadProfileImagePath();
-  }
-
-  void loadProfileImagePath() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _profileImagePath = prefs.getString('profile_image_path');
-    });
+    _controllerUpdateNama.text = widget.username ?? '';
+    _controllerUpdateBio.text = widget.bio ?? '';
   }
 
   void selectPhoto(ImageSource source) async {
@@ -37,19 +51,9 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
+        _profileImagePath = null;
       });
     }
-
-    final appDir = await getApplicationDocumentsDirectory();
-    const fileName = 'profile_image.png';
-    final savedImage = await _imageFile!.copy('${appDir.path}/$fileName');
-
-    saveData('profile_image_path', savedImage.path);
-  }
-
-  void saveData(String key, String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(key, value);
   }
 
   @override
@@ -89,11 +93,18 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                       ],
                     ),
                     GestureDetector(
-                      child: Image.asset(
-                        'assets/icon/centang.png',
-                        color: primary500,
-                      ),
-                    ),
+                        onTap: () async {
+                          await UpdateUser().updateUser(
+                            _controllerUpdateNama.text,
+                            _controllerUpdateBio.text,
+                          );
+                          // ignore: use_build_context_synchronously
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          'assets/icon/centang.png',
+                          color: primary500,
+                        )),
                   ],
                 ),
                 const SizedBox(
@@ -102,19 +113,16 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _imageFile != null || _profileImagePath != null
-                        ? CircleAvatar(
-                            radius: 50,
-                            backgroundImage: _imageFile != null
-                                ? FileImage(_imageFile!)
-                                : FileImage(File(_profileImagePath!)),
-                          )
-                        : const CircleAvatar(
-                            radius: 50,
-                            backgroundImage: AssetImage(
-                              "assets/images/fotodummy.png",
-                            ),
-                          ),
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: _imageFile != null
+                          ? FileImage(_imageFile!)
+                          : (_profileImagePath != null
+                                  ? FileImage(File(_profileImagePath!))
+                                  : const AssetImage(
+                                      "assets/images/fotodummy.png"))
+                              as ImageProvider,
+                    ),
                     const SizedBox(
                       width: 20,
                     ),
@@ -143,6 +151,7 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                   width: 345,
                   height: 38,
                   child: TextField(
+                    controller: _controllerUpdateNama,
                     decoration: InputDecoration(
                       hintText: 'e.g., fariswht',
                       hintStyle: regulerReguler,
@@ -171,9 +180,9 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                   width: 345,
                   height: 196,
                   child: TextField(
+                    controller: _controllerUpdateBio,
                     decoration: InputDecoration(
-                      hintText:
-                          'Buat Biomu                                                         0/50',
+                      hintText: 'Buat Biomu',
                       hintStyle: regulerReguler,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),

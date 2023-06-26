@@ -2,7 +2,8 @@ import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
 class DiikutiProfile extends StatefulWidget {
-  const DiikutiProfile({super.key});
+  final String? name;
+  const DiikutiProfile({super.key, required this.name});
 
   @override
   State<DiikutiProfile> createState() => _DiikutiProfileState();
@@ -18,15 +19,15 @@ class _DiikutiProfileState extends State<DiikutiProfile> {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: ListTile(
             leading: ClipRRect(
-              child: Image.asset(
-                "assets/images/fotodummy.png",
+              child: Image.network(
+                "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg",
                 height: 50,
                 width: 49.43,
                 fit: BoxFit.fill,
               ),
             ),
             title: Text(
-              "John doe",
+              widget.name ?? '',
               style: smallMedium,
             ),
             trailing: Container(
