@@ -1,24 +1,26 @@
 // To parse this JSON data, do
 //
-//     final responseThread = responseThreadFromJson(jsonString);
+//     final listResponseThread = listResponseThreadFromJson(jsonString);
 
 import 'dart:convert';
 
-ResponseThread responseThreadFromJson(String str) =>
-    ResponseThread.fromJson(json.decode(str));
+ListResponseThread listResponseThreadFromJson(String str) =>
+    ListResponseThread.fromJson(json.decode(str));
 
-String responseThreadToJson(ResponseThread data) => json.encode(data.toJson());
+String listResponseThreadToJson(ListResponseThread data) =>
+    json.encode(data.toJson());
 
-class ResponseThread {
+class ListResponseThread {
   List<Datum> data;
   String message;
 
-  ResponseThread({
+  ListResponseThread({
     required this.data,
     required this.message,
   });
 
-  factory ResponseThread.fromJson(Map<String, dynamic> json) => ResponseThread(
+  factory ListResponseThread.fromJson(Map<String, dynamic> json) =>
+      ListResponseThread(
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
         message: json["message"],
       );
@@ -34,16 +36,20 @@ class Datum {
   String title;
   String content;
   String file;
-  int userId;
-  User user;
+  int comment;
+  Author author;
+  List<dynamic> likeUser;
+  int like;
 
   Datum({
     required this.id,
     required this.title,
     required this.content,
     required this.file,
-    required this.userId,
-    required this.user,
+    required this.comment,
+    required this.author,
+    required this.likeUser,
+    required this.like,
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -51,8 +57,10 @@ class Datum {
         title: json["title"],
         content: json["content"],
         file: json["file"],
-        userId: json["user_id"],
-        user: User.fromJson(json["user"]),
+        comment: json["comment"],
+        author: Author.fromJson(json["author"]),
+        likeUser: List<dynamic>.from(json["likeUser"].map((x) => x)),
+        like: json["like"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -60,47 +68,29 @@ class Datum {
         "title": title,
         "content": content,
         "file": file,
-        "user_id": userId,
-        "user": user.toJson(),
+        "comment": comment,
+        "author": author.toJson(),
+        "likeUser": List<dynamic>.from(likeUser.map((x) => x)),
+        "like": like,
       };
 }
 
-class User {
-  int id;
+class Author {
   String username;
   String email;
-  String password;
-  String imageUrl;
-  int age;
-  String bio;
 
-  User({
-    required this.id,
+  Author({
     required this.username,
     required this.email,
-    required this.password,
-    required this.imageUrl,
-    required this.age,
-    required this.bio,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json["ID"],
+  factory Author.fromJson(Map<String, dynamic> json) => Author(
         username: json["username"],
         email: json["email"],
-        password: json["password"],
-        imageUrl: json["image_url"],
-        age: json["age"],
-        bio: json["bio"],
       );
 
   Map<String, dynamic> toJson() => {
-        "ID": id,
         "username": username,
         "email": email,
-        "password": password,
-        "image_url": imageUrl,
-        "age": age,
-        "bio": bio,
       };
 }

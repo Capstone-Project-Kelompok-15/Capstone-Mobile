@@ -22,18 +22,14 @@ class Registrasi {
       );
       // print(response);
       if (response.statusCode == 200) {
+        print("User berhasil dibuat");
         return 1;
       } else {
-        print(response.data['message']);
         return 0;
       }
-      
-    } on DioError catch (e) {
-      if (e.response!.data['message'] == "Email already exists") {
-        return 2;
-      }else {
-        return 0;
-      }
+    } on DioException catch (e) {
+      print(e);
+      return 0;
     }
   }
 }

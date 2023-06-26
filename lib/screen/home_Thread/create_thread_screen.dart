@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_final_fields
+// ignore_for_file: unused_import, prefer_final_fields, unnecessary_null_comparison
 
 import 'dart:io';
 
@@ -35,37 +35,14 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
     if (images != null) {
       imageFile = File(images.path);
     }
-    // print(imageFile);
-    uploadImage();
-    setState(() {});
-  }
-
-  Future<void> uploadImage() async {
-    // ignore: unused_local_variable
-    String fileName = imageFile!.path.split('/').last;
-    FormData formData = FormData.fromMap({
-      'image_url': await MultipartFile.fromFile(imageFile!.path),
-    });
-    try {
-      final response = await Dio().post(
-          "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/uploadImage",
-          data: formData);
-      final url = response.data["Data"];
-      // ignore: unnecessary_null_comparison
-      if (urlImage != null) {
-        urlImage = url;
-        isImage = true;
-      }
-      setState(() {});
-      // print("ini dalah url image terbaru $urlImage");
-      return url;
-
-      // Berhasil mengunggah gambar
-    } catch (error) {
-      // ignore: avoid_print
-      print(error.toString());
-      // Error saat mengunggah gambar
+    // uploadImage();
+    final imageupload = await ThreadService().uploadImage(imageFile);
+    if (imageupload != null) {
+      urlImage = imageupload;
+      isImage = true;
     }
+
+    setState(() {});
   }
 
   @override

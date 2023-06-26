@@ -1,13 +1,10 @@
-// import 'package:capstone_mobile/screen/login/login_screen.dart';
 import 'package:capstone_mobile/screen/login/login_screen.dart';
 import 'package:capstone_mobile/screen/settings/pengaturan_akun_screen.dart';
 import 'package:capstone_mobile/service/login_service.dart';
-// import 'package:capstone_mobile/service/login_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogs/flutter_dialogs.dart';
-// import 'package:flutter_dialogs/flutter_dialogs.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -25,10 +22,10 @@ class _SettingScreenState extends State<SettingScreen> {
     final myAppBar = AppBar(
       iconTheme: IconThemeData(color: typography500),
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
       ),
       title: Text(
         "Pengaturan",

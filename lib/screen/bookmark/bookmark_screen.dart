@@ -1,20 +1,24 @@
-
-import 'package:capstone_mobile/service/bookmark_service.dart';
-
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 
 class BookmarkScreen extends StatelessWidget {
   static const routename = "/bookmark";
+
   final faker = Faker();
+
+  BookmarkScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
     final mediaQueryHeight = MediaQuery.of(context).size.height;
+
     final bodyHeight =
         mediaQueryHeight - kToolbarHeight - MediaQuery.of(context).padding.top;
+
     // String selectedValue = 'Item 1'; // Nilai terpilih awal
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: kToolbarHeight,
@@ -29,8 +33,8 @@ class BookmarkScreen extends StatelessWidget {
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
+          children: const [
+            Text(
               'Bookmark',
               style: TextStyle(
                 color: Colors.black,
@@ -43,6 +47,12 @@ class BookmarkScreen extends StatelessWidget {
             // DropdownButton<String>(
             //   value: selectedValue,
             //   onChanged: (newValue) {
+            //     // Tambahkan logika untuk menangani perubahan nilai dropdown di sini
+            //     // Misalnya, setState() untuk mengubah nilai terpilih dan memperbarui tampilan
+            //     // Contoh:
+            //     // setState(() {
+            //     //   selectedValue = newValue;
+            //     // });
             //   },
             //   items: [
             //     DropdownMenuItem<String>(
@@ -77,39 +87,27 @@ class BookmarkScreen extends StatelessWidget {
             //         ),
             //       ),
             //     ),
+            //     // ... tambahkan item dropdown lainnya sesuai kebutuhan
             //   ],
             // ),
           ],
         ),
       ),
-      body: 
-      FutureBuilder(
-          future: BookmarkService().getAllBookmark(),
-            builder: ((context, snapshot) {
-              var Bookmark = snapshot.data?.data;
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: Bookmark?.length,
-                      itemBuilder: (context, index) {
-                        // return Text(thread?[index].title ?? "");
-                        return ThreadContentCustomWidget(
-                          faker: faker,
-                          name: Bookmark?[index].author?.username != ""? (Bookmark?[index].author?.username??"") :"-",
-                          title: Bookmark?[index].title ?? "-",
-                          contentThread: Bookmark?[index].content ?? "-",
-                          mediaWidth: mediaQueryWidth,
-                          bodyheight: bodyHeight,
-                          images: Image.asset("assets/images/fotodummy.png"), imageContent: '',
-                        );
-                      },
-                    );
-                  }
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              ),
-            )
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return ThreadContentCustomWidget(
+            images: Image.asset("assets/images/fotodummy.png"),
+            faker: faker,
+            name: faker.person.name(),
+            imageContent: "",
+            contentThread: faker.lorem.sentences(7).join(''),
+            mediaWidth: mediaQueryWidth,
+            bodyheight: bodyHeight,
+            title: 'UU Tenaga Kerja',
           );
-        }
-      }
+        },
+      ),
+    );
+  }
+}

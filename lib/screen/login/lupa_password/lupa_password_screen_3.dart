@@ -52,8 +52,6 @@ class _LupaPassword3State extends State<LupaPassword3> {
                 buttonText: "Kirim",
                 width: 104,
                 onPressed: () {
-                  final snackBar = showRegisterDialog();
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -64,22 +62,4 @@ class _LupaPassword3State extends State<LupaPassword3> {
       ),
     );
   }
-}
-
-SnackBar showRegisterDialog() {
-  return SnackBar(
-    content: Container(
-      height: 47,
-      decoration: BoxDecoration(
-          color: primary500, borderRadius: BorderRadius.circular(24)),
-      child: Center(
-          child: Text(
-        "Password berhasil diubah",
-        style: smallBold.copyWith(color: Colors.white),
-      )),
-    ),
-    behavior: SnackBarBehavior.floating,
-    elevation: 0,
-    backgroundColor: Colors.transparent,
-  );
 }

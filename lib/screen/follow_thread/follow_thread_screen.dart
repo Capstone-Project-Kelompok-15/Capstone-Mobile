@@ -105,7 +105,7 @@ class FollowByThread extends StatelessWidget {
                               contentThread: followthread?[index].thread?.content ?? "",
                               mediaWidth: mediaQueryWidth,
                               bodyheight: bodyHeight,
-                              images: Image.asset("assets/images/fotodummy.png"),
+                              images: Image.network(followthread?[index].thread?.user?.imageUrl ?? "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"),
                             );
                           },
                         );
