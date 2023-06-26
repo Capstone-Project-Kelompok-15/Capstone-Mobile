@@ -45,9 +45,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
         body: FutureBuilder(
           future: UserService().getdetailUser(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else if (snapshot.hasError) {
+            if (snapshot.hasError) {
               return const Text('Error');
             } else if (snapshot.hasData) {
               final userDetails = snapshot.data?.data;
