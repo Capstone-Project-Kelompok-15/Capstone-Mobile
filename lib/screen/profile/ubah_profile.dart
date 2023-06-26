@@ -43,7 +43,7 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
     if (pickedFile != null) {
       setState(() {
         _imageFile = File(pickedFile.path);
-        _profileImagePath = null; 
+        _profileImagePath = null;
       });
     }
   }
@@ -85,16 +85,17 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                       ],
                     ),
                     GestureDetector(
-                      onTap: () async {
-                        await UserService().updatedetailUser(
-                          username: _controllerUpdateNama.text,
-                          bio: _controllerUpdateBio.text,
-                        );
-                        setState(() {
-                          _profileImagePath =
-                              _imageFile?.path; // Update the profile image path
-                        });
-                      },
+                      onTap: () {},
+                      // onTap: () async {
+                      //   await UserService().updatedetailUser(
+                      //     username: _controllerUpdateNama.text,
+                      //     bio: _controllerUpdateBio.text,
+                      //   );
+                      //   setState(() {
+                      //     _profileImagePath =
+                      //         _imageFile?.path; // Update the profile image path
+                      //   });
+                      // },
                       child: Image.asset(
                         'assets/icon/centang.png',
                         color: primary500,
@@ -114,7 +115,7 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                           ? FileImage(_imageFile!)
                           : (_profileImagePath != null
                                   ? FileImage(File(_profileImagePath!))
-                                  : AssetImage("assets/images/fotodummy.png"))
+                                  : const AssetImage("assets/images/fotodummy.png"))
                               as ImageProvider,
                     ),
                     const SizedBox(
