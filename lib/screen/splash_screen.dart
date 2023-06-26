@@ -27,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.of(context).pushNamed(
           HomeButtonmNavigasiScreen.routename,
         );
+        // ignore: avoid_print
         print(cekUser);
       } else {
         // ignore: use_build_context_synchronously

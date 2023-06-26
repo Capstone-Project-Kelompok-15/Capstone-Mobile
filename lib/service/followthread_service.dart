@@ -1,48 +1,51 @@
+// import 'package:capstone_mobile/service/login_service.dart';
 // ignore_for_file: unused_catch_clause, prefer_const_constructors
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+// import '../constant.dart';
 import '../constant.dart';
-import '../model/list_bookmark_response.dart';
+import '../model/list_followthread_response.dart';
 import '../style/color_style.dart';
 import '../style/font_style.dart';
 import 'login_service.dart';
 
-class BookmarkService {
-  Future<ListBookmarkResponse> getAllBookmark() async {
+class FollowThreadService {
+  Future<ListFollowThreadResponse> getAllFollowThread() async {
+    // ignore: unused_local_variable
     String cekUser = await getToken();
 
-    final response = await Dio().get("$baseUrl/bookmark",
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            'Authorization': 'Bearer $cekUser'
-          },
-        ));
-    // ignore: avoid_print
-    print(response);
-    return ListBookmarkResponse.fromJson(response.data);
+    final response = await Dio().get(
+      "$baseUrl/follow",
+      options: Options(
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Authorization': 'Bearer $cekUser'
+        },
+      ),
+    );
+    return ListFollowThreadResponse.fromJson(response.data);
   }
 
-  // create follow thread
-  Future<void> postBookmark({
+// create follow thread
+  Future<void> postFollowThread({
+    required int userId,
     required int threadId,
     required BuildContext context,
   }) async {
     String cekUser = await getToken();
     try {
-      final response = await Dio().post("$baseUrl/bookmark",
+      final response = await Dio().post("$baseUrl/follow",
           options: Options(headers: {
             'Content-Type': 'application/json;charset=UTF-8',
             'Authorization': 'Bearer $cekUser'
           }),
           data: {
+            "user_id": userId,
             "thread_id": threadId,
           });
       if (response.statusCode == 200) {
-        // ignore: avoid_print
-        print("Tambah Ke Bookmark");
         final snackBar = SnackBar(
           content: Container(
             height: 47,
@@ -50,7 +53,7 @@ class BookmarkService {
                 color: primary500, borderRadius: BorderRadius.circular(24)),
             child: Center(
                 child: Text(
-              "Thread Telah Ditambahkan ke Bookmark",
+              "Thread Telah Diikuti",
               style: smallBold.copyWith(color: Colors.white),
             )),
           ),
@@ -63,32 +66,10 @@ class BookmarkService {
       }
     } on DioException catch (e) {
       final snackBar = SnackBar(
-        content: const Text('Thread Gagal Ditambahkan ke Bookmark'),
+        content: const Text('Thread Gagal Diikuti'),
       );
       // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 }
-
-
-
-
-// GETALLLBOOKMARK
-// class FollowThreadService {
-//   Future<ListFollowThreadResponse> getAllFollowThread() async {
-//     // ignore: unused_local_variable
-//     String cekUser = await getToken();
-
-//     final response = await Dio().get(
-//       "$baseUrl/follow",
-//       options: Options(
-//         headers: {
-//           'Content-Type': 'application/json;charset=UTF-8',
-//           'Authorization': 'Bearer $cekUser'
-//         },
-//       ),
-//     );
-//     print(getAllFollowThread());
-//     return ListFollowThreadResponse.fromJson(response.data);
-//   }

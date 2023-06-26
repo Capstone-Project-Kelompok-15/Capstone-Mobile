@@ -78,19 +78,23 @@ class Datum {
 class Author {
   String username;
   String email;
+  String profil;
 
   Author({
     required this.username,
     required this.email,
+    required this.profil,
   });
 
   factory Author.fromJson(Map<String, dynamic> json) => Author(
         username: json["username"],
         email: json["email"],
+        profil: json["profil"],
       );
 
   Map<String, dynamic> toJson() => {
         "username": username,
         "email": email,
+        "profil": profil,
       };
 }

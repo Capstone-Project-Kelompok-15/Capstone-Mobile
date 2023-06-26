@@ -1,6 +1,5 @@
 import 'package:capstone_mobile/constant.dart';
 import 'package:dio/dio.dart';
-
 class Registrasi {
   Future<int> createUser({
     required String username,
@@ -22,14 +21,20 @@ class Registrasi {
       );
       // print(response);
       if (response.statusCode == 200) {
-        print("User berhasil dibuat");
         return 1;
       } else {
+        // ignore: avoid_print
+        print(response.data['message']);
         return 0;
       }
-    } on DioException catch (e) {
-      print(e);
-      return 0;
+
+    // ignore: deprecated_member_use
+    } on DioError catch (e) {
+      if (e.response!.data['message'] == "Email already exists") {
+        return 2;
+      }else {
+        return 0;
+      }
     }
   }
 }

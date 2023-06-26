@@ -1,14 +1,12 @@
+import 'package:capstone_mobile/service/search_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-
-import '../../widget/pengikut_widget.dart';
 import '../../widget/thread_content_widget.dart';
 
 class SearchAll extends StatefulWidget {
   const SearchAll({super.key});
-
   @override
   State<SearchAll> createState() => _SearchAllState();
 }
@@ -16,6 +14,8 @@ class SearchAll extends StatefulWidget {
 class _SearchAllState extends State<SearchAll> {
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context)!.settings.arguments;
+    final argumentsString = arguments.toString();
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -38,23 +38,44 @@ class _SearchAllState extends State<SearchAll> {
                 style: regulerBold.copyWith(fontSize: 16, color: typography500),
               ),
             ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: 10,
-              physics: const ScrollPhysics(),
-              itemBuilder: (context, index) {
-                return ThreadContentCustomWidget(
-                  images: Image.asset("assets/images/fotodummy.png"),
-                  faker: faker,
-                  name: faker.person.name(),
-                  contentThread: faker.lorem.sentences(7).join(''),
-                  mediaWidth: mediaQueryWidth,
-                  bodyheight: 5,
-                  title: 'hoy',
-                  imageContent: '',
-                );
-              },
-            ),
+            FutureBuilder(
+                future: Search().searchTitle(argumentsString),
+                builder: (context, snapshot) {
+                  var thread = snapshot.data?.thread;
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: primary500,
+                    ));
+                  }
+
+                  if (thread!.isEmpty) {
+                    return Center(
+                      child: Text(
+                        "Tidak ada postingan",
+                        style: regulerReguler.copyWith(color: typography500),
+                      ),
+                    );
+                  }
+
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: thread.length,
+                    physics: const ScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return ThreadContentCustomWidget(
+                        images: "",
+                        faker: faker,
+                        name: thread[index].user!.username ?? "",
+                        contentThread: thread[index].content ?? "",
+                        mediaWidth: mediaQueryWidth,
+                        bodyheight: 5,
+                        title: thread[index].title ?? "",
+                        imageContent: thread[index].file ?? "",
+                      );
+                    },
+                  );
+                }),
           ],
         ),
       ),

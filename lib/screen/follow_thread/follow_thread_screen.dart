@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import '../../service/followthread_servis.dart';
+import '../../service/followthread_service.dart';
 import '../../style/font_style.dart';
 import '../../widget/thread_content_widget.dart';
 
@@ -108,11 +108,7 @@ class FollowByThread extends StatelessWidget {
                                   followthread?[index].thread?.content ?? "",
                               mediaWidth: mediaQueryWidth,
                               bodyheight: bodyHeight,
-                              images: Image.network(followthread?[index]
-                                      .thread
-                                      ?.user
-                                      ?.imageUrl ??
-                                  "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"),
+                              images: "",
                             );
                           },
                         );
@@ -127,7 +123,7 @@ class FollowByThread extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ThreadContentCustomWidget(
                         title: "",
-                        images: Image.asset("assets/images/fotodummy.png"),
+                        images: "",
                         faker: faker,
                         name: faker.person.name(),
                         imageContent: "",

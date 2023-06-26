@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           LupaPassword1.routename: (context) => const LupaPassword1(),
           HomeButtonmNavigasiScreen.routename: (context) =>
               const HomeButtonmNavigasiScreen(),
-          HomeThreadScreen.routename: (context) => HomeThreadScreen(),
+          HomeThreadScreen.routename: (context) => const HomeThreadScreen(),
           CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
           KomentarScreen.routename: (context) => KomentarScreen(),
           LeaderBoardScreen.routename: (context) => const LeaderBoardScreen(),

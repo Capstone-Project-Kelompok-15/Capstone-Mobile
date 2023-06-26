@@ -2,13 +2,14 @@ import 'package:capstone_mobile/service/comment_thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
 import 'package:capstone_mobile/widget/item_komentar_widget.dart';
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class KomentarScreen extends StatefulWidget {
   static const routename = "/komentarScreen";
-  const KomentarScreen({super.key});
+  int? idThread;
+  KomentarScreen({super.key, this.idThread});
 
   @override
   State<KomentarScreen> createState() => _KomentarScreenState();
@@ -20,10 +21,15 @@ class _KomentarScreenState extends State<KomentarScreen> {
   // ignore: prefer_final_fields, unused_field
   TextEditingController _comment = TextEditingController();
 
+  // @override
+  // void initState() {
+  //   // print(widget.idThread!);
+  //   // CommentThread().getThreadByID(id: widget.idThread!);
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
-    // final args = ModalRoute.of(context)?.settings.arguments;
-    Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
     final mediaQueryWidth = MediaQuery.of(context).size.width;
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final myAppBar = AppBar(
@@ -48,12 +54,27 @@ class _KomentarScreenState extends State<KomentarScreen> {
       appBar: myAppBar,
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ItemComentarWidget(
-                faker: faker, mediaQueryWidth: mediaQueryWidth);
+        child: RefreshIndicator(
+          onRefresh: () {
+            return CommentThread().getThreadByID(id: widget.idThread!);
           },
+          child: FutureBuilder(
+            future: CommentThread().getThreadByID(id: widget.idThread!),
+            builder: ((context, snapshot) {
+              var comment = snapshot.data?.data.comment;
+              return ListView.builder(
+                itemCount: comment?.length,
+                itemBuilder: (context, index) {
+                  return ItemComentarWidget(
+                    nama: comment?[index].author.username ?? "kosong",
+                    komentar: comment?[index].comment ?? "",
+                    profil: comment?[index].author.profil ?? "",
+                    mediaQueryWidth: mediaQueryWidth,
+                  );
+                },
+              );
+            }),
+          ),
         ),
       ),
       bottomSheet: Container(
@@ -103,15 +124,14 @@ class _KomentarScreenState extends State<KomentarScreen> {
               ),
             ),
             IconButton(
-              splashRadius: 20,
+              // splashRadius: 20,
               onPressed: () {
-                print(arguments["idThread"]);
-                // print(widget.idThread!);
                 if (_comment.text.isNotEmpty) {
                   CommentThread().postComment(
-                    threadId: int.parse(arguments["idThread"].toString()),
+                    threadId: widget.idThread!,
                     comment: _comment.text,
                   );
+                  _comment.clear();
                   showDialog(
                       context: context,
                       builder: (context) {
@@ -120,6 +140,7 @@ class _KomentarScreenState extends State<KomentarScreen> {
                           text: "Komentar telah terkirim",
                         );
                       });
+
                   setState(() {});
                 }
               },
