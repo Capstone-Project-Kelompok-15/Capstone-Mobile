@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             hintText: "e.g., lexliealexander@gmail.com",
             controller: _email,
             error: true,
-            textError: "Email sudah terdaftar",
+            textError: "Email yang anda masukkan sudah terdaftar",
           ),
           const SizedBox(
             height: 16,
