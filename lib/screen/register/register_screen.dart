@@ -16,10 +16,11 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _obsecureText = true;
-  TextEditingController _username = TextEditingController();
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _age = TextEditingController();
+  bool invalidEmail = false;
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _age = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +35,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(
             height: 16,
           ),
+          invalidEmail == false ?
           InputField(
             title: "Alamat Email / Nomor Handphone",
             hintText: "e.g., lexliealexander@gmail.com",
             controller: _email,
+          ) :
+          InputField(
+            title: "Alamat Email / Nomor Handphone",
+            hintText: "e.g., lexliealexander@gmail.com",
+            controller: _email,
+            error: true,
+            textError: "Email sudah terdaftar",
           ),
           const SizedBox(
             height: 16,
@@ -82,7 +91,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       LoginScreen.routename,
                     );
                   });
-                } else {
+                } else if (x ==2) {
+                  setState(() {
+                    invalidEmail = true;
+                  });
+                }
+                else {
                   setState(() {
                     final snackBar = showRegisterDialog(false);
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);

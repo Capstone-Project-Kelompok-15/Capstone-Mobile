@@ -20,17 +20,19 @@ class Registrasi {
           "image_url":"https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"
         },
       );
-      print(response);
       if (response.statusCode == 200) {
-        print("User berhasil dibuat");
         return 1;
-      } else  {
+      } else {
+        print(response.data['message']);
         return 0;
       }
       
     } on DioError catch (e) {
-      print(e);
-      return 0;
+      if (e.response!.data['message'] == "Email already exists") {
+        return 2;
+      }else {
+        return 0;
+      }
     }
   }
 }
