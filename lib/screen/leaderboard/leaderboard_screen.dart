@@ -1,5 +1,7 @@
+import 'package:capstone_mobile/service/leaderboard_serivice.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import '../../service/thread_service.dart';
 import '../../style/font_style.dart';
 import '../../widget/thread_content_widget.dart';
 
@@ -84,7 +86,7 @@ class LeaderBoardScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
+           Expanded(
               child: TabBarView(
                 children: [
                   ListView.builder(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 
-import '../../service/bookmark_servis.dart';
+import '../../service/bookmark_service.dart';
 class BookmarkScreen extends StatelessWidget {
   static const routename = "/bookmark";
   final faker = Faker();
@@ -81,7 +81,7 @@ class BookmarkScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: 
+      body:
       FutureBuilder(
           future: BookmarkService().getAllBookmark(),
             builder: ((context, snapshot) {
