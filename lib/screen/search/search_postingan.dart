@@ -28,6 +28,7 @@ class _SearchPostinganState extends State<SearchPostingan> {
             mediaWidth: mediaQueryWidth,
             bodyheight: 10,
             title: '',
+            imageContent: '',
           );
         },
       ),

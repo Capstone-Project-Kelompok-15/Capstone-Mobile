@@ -1,23 +1,31 @@
 import 'dart:io';
 
-import 'package:capstone_mobile/service/detail_user.dart';
+// import 'package:capstone_mobile/service/detail_user.dart';
 
+import 'package:capstone_mobile/model/detail_user_response.dart';
+import 'package:capstone_mobile/service/detail_user.dart';
+import 'package:capstone_mobile/service/update_user_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:path_provider/path_provider.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class UbahProfileScreen extends StatefulWidget {
   final String? id;
   final String? username;
   final String? bio;
+  final String? email;
+  final String? password;
+
   const UbahProfileScreen({
     super.key,
     this.id,
     this.username,
     this.bio,
+    this.email,
+    this.password,
   });
 
   @override
@@ -85,22 +93,20 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                       ],
                     ),
                     GestureDetector(
-                      onTap: () {},
-                      // onTap: () async {
-                      //   await UserService().updatedetailUser(
-                      //     username: _controllerUpdateNama.text,
-                      //     bio: _controllerUpdateBio.text,
-                      //   );
-                      //   setState(() {
-                      //     _profileImagePath =
-                      //         _imageFile?.path; // Update the profile image path
-                      //   });
-                      // },
-                      child: Image.asset(
-                        'assets/icon/centang.png',
-                        color: primary500,
-                      ),
-                    ),
+                        onTap: () async {
+                          await UpdateUser().updateUser(
+                            _controllerUpdateNama.text,
+                            _controllerUpdateBio.text,
+                            widget.email ?? '',
+                            widget.password ?? '',
+                          );
+                          // ignore: use_build_context_synchronously
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          'assets/icon/centang.png',
+                          color: primary500,
+                        )),
                   ],
                 ),
                 const SizedBox(
@@ -115,7 +121,8 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                           ? FileImage(_imageFile!)
                           : (_profileImagePath != null
                                   ? FileImage(File(_profileImagePath!))
-                                  : const AssetImage("assets/images/fotodummy.png"))
+                                  : const AssetImage(
+                                      "assets/images/fotodummy.png"))
                               as ImageProvider,
                     ),
                     const SizedBox(

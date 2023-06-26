@@ -11,58 +11,61 @@ String detailUserResponseToMap(DetailUserResponse data) =>
     json.encode(data.toMap());
 
 class DetailUserResponse {
+  Data? data;
   String? message;
-  List<User>? user;
 
   DetailUserResponse({
+    this.data,
     this.message,
-    this.user,
   });
 
   factory DetailUserResponse.fromMap(Map<String, dynamic> json) =>
       DetailUserResponse(
+        data: json["data"] == null ? null : Data.fromMap(json["data"]),
         message: json["message"],
-        user: json["user"] == null
-            ? []
-            : List<User>.from(json["user"]!.map((x) => User.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
+        "data": data?.toMap(),
         "message": message,
-        "user":
-            user == null ? [] : List<dynamic>.from(user!.map((x) => x.toMap())),
       };
 }
 
-class User {
+class Data {
   int? id;
   String? username;
   String? email;
   String? imageUrl;
   int? age;
   String? bio;
-  List<Thread>? threads;
+  List<dynamic>? followed;
+  int? following;
+  int? follower;
 
-  User({
+  Data({
     this.id,
     this.username,
     this.email,
     this.imageUrl,
     this.age,
     this.bio,
-    this.threads,
+    this.followed,
+    this.following,
+    this.follower,
   });
 
-  factory User.fromMap(Map<String, dynamic> json) => User(
+  factory Data.fromMap(Map<String, dynamic> json) => Data(
         id: json["ID"],
         username: json["username"],
         email: json["email"],
         imageUrl: json["image_url"],
         age: json["age"],
         bio: json["bio"],
-        threads: json["threads"] == null
+        followed: json["followed"] == null
             ? []
-            : List<Thread>.from(json["threads"]!.map((x) => Thread.fromMap(x))),
+            : List<dynamic>.from(json["followed"]!.map((x) => x)),
+        following: json["following"],
+        follower: json["follower"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -72,32 +75,9 @@ class User {
         "image_url": imageUrl,
         "age": age,
         "bio": bio,
-        "threads": threads == null
-            ? []
-            : List<dynamic>.from(threads!.map((x) => x.toMap())),
-      };
-}
-
-class Thread {
-  int? id;
-  String? title;
-  String? content;
-
-  Thread({
-    this.id,
-    this.title,
-    this.content,
-  });
-
-  factory Thread.fromMap(Map<String, dynamic> json) => Thread(
-        id: json["ID"],
-        title: json["title"],
-        content: json["content"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "ID": id,
-        "title": title,
-        "content": content,
+        "followed":
+            followed == null ? [] : List<dynamic>.from(followed!.map((x) => x)),
+        "following": following,
+        "follower": follower,
       };
 }

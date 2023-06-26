@@ -7,9 +7,15 @@ import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
-class HomeThreadScreen extends StatelessWidget {
+class HomeThreadScreen extends StatefulWidget {
   static const routename = "/homeThread";
   HomeThreadScreen({super.key});
+
+  @override
+  State<HomeThreadScreen> createState() => _HomeThreadScreenState();
+}
+
+class _HomeThreadScreenState extends State<HomeThreadScreen> {
   // ignore: unnecessary_new
   final faker = new Faker();
 
@@ -42,7 +48,8 @@ class HomeThreadScreen extends StatelessWidget {
                 hintText: 'Cari',
               ),
               onFieldSubmitted: (value) {
-                Navigator.of(context).pushNamed(SearchScreen.routename, arguments: value);
+                Navigator.of(context)
+                    .pushNamed(SearchScreen.routename, arguments: value);
               },
             ),
           ),
@@ -133,14 +140,15 @@ class HomeThreadScreen extends StatelessWidget {
                     return ListView.builder(
                       itemCount: thread?.length,
                       itemBuilder: (context, index) {
-                        // return Text(thread?[index].title ?? "");
                         return ThreadContentCustomWidget(
                           faker: faker,
-                          name: thread?[index].user.username ?? "",
+                          idThread: thread?[index].id,
+                          name: thread?[index].author.username ?? "",
                           title: thread?[index].title ?? "",
                           contentThread: thread?[index].content ?? "",
                           mediaWidth: mediaQueryWidth,
                           bodyheight: bodyHeight,
+                          imageContent: thread?[index].file ?? "",
                           images: Image.asset("assets/images/fotodummy.png"),
                         );
                       },

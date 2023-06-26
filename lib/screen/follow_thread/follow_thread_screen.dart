@@ -99,12 +99,20 @@ class FollowByThread extends StatelessWidget {
                             // return Text(thread?[index].title ?? "");
                             return ThreadContentCustomWidget(
                               faker: faker,
-                              name: followthread?[index].thread?.user?.username ?? "",
+                              imageContent: "",
+                              name:
+                                  followthread?[index].thread?.user?.username ??
+                                      "",
                               title: followthread?[index].thread?.title ?? "",
-                              contentThread: followthread?[index].thread?.content ?? "",
+                              contentThread:
+                                  followthread?[index].thread?.content ?? "",
                               mediaWidth: mediaQueryWidth,
                               bodyheight: bodyHeight,
-                              images: Image.network(followthread?[index].thread?.user?.imageUrl ?? "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"),
+                              images: Image.network(followthread?[index]
+                                      .thread
+                                      ?.user
+                                      ?.imageUrl ??
+                                  "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg"),
                             );
                           },
                         );
@@ -122,6 +130,7 @@ class FollowByThread extends StatelessWidget {
                         images: Image.asset("assets/images/fotodummy.png"),
                         faker: faker,
                         name: faker.person.name(),
+                        imageContent: "",
                         contentThread: faker.lorem.sentences(7).join(''),
                         mediaWidth: mediaQueryWidth,
                         bodyheight: bodyHeight,
@@ -155,4 +164,3 @@ class FollowByThread extends StatelessWidget {
     );
   }
 }
-
