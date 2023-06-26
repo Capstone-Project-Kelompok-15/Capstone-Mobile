@@ -9,7 +9,7 @@ CreateFollowThreadResponse createFollowThreadResponseFromJson(String str) => Cre
 String createFollowThreadResponseToJson(CreateFollowThreadResponse data) => json.encode(data.toJson());
 
 class CreateFollowThreadResponse {
-    Data? data;
+    List<Datum>? data;
     String? message;
 
     CreateFollowThreadResponse({
@@ -18,176 +18,72 @@ class CreateFollowThreadResponse {
     });
 
     factory CreateFollowThreadResponse.fromJson(Map<String, dynamic> json) => CreateFollowThreadResponse(
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
         message: json["message"],
     );
 
     Map<String, dynamic> toJson() => {
-        "data": data?.toJson(),
+        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
         "message": message,
     };
 }
 
-class Data {
-    int? id;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    dynamic deletedAt;
-    int? userId;
+class Datum {
     int? threadId;
-    Thread? thread;
-
-    Data({
-        this.id,
-        this.createdAt,
-        this.updatedAt,
-        this.deletedAt,
-        this.userId,
-        this.threadId,
-        this.thread,
-    });
-
-    factory Data.fromJson(Map<String, dynamic> json) => Data(
-        id: json["ID"],
-        createdAt: json["CreatedAt"] == null ? null : DateTime.parse(json["CreatedAt"]),
-        updatedAt: json["UpdatedAt"] == null ? null : DateTime.parse(json["UpdatedAt"]),
-        deletedAt: json["DeletedAt"],
-        userId: json["user_id"],
-        threadId: json["thread_id"],
-        thread: json["thread"] == null ? null : Thread.fromJson(json["thread"]),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "ID": id,
-        "CreatedAt": createdAt?.toIso8601String(),
-        "UpdatedAt": updatedAt?.toIso8601String(),
-        "DeletedAt": deletedAt,
-        "user_id": userId,
-        "thread_id": threadId,
-        "thread": thread?.toJson(),
-    };
-}
-
-class Thread {
-    int? id;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    dynamic deletedAt;
     String? title;
     String? content;
-    String? file;
-    int? userId;
-    User? user;
-    dynamic comment;
-    dynamic bookmarkedUser;
-    dynamic like;
+    Author? author;
+    DateTime? createdAt;
+    DateTime? updatedAt;
 
-    Thread({
-        this.id,
-        this.createdAt,
-        this.updatedAt,
-        this.deletedAt,
+    Datum({
+        this.threadId,
         this.title,
         this.content,
-        this.file,
-        this.userId,
-        this.user,
-        this.comment,
-        this.bookmarkedUser,
-        this.like,
+        this.author,
+        this.createdAt,
+        this.updatedAt,
     });
 
-    factory Thread.fromJson(Map<String, dynamic> json) => Thread(
-        id: json["ID"],
-        createdAt: json["CreatedAt"] == null ? null : DateTime.parse(json["CreatedAt"]),
-        updatedAt: json["UpdatedAt"] == null ? null : DateTime.parse(json["UpdatedAt"]),
-        deletedAt: json["DeletedAt"],
+    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        threadId: json["thread_id"],
         title: json["title"],
         content: json["content"],
-        file: json["file"],
-        userId: json["user_id"],
-        user: json["user"] == null ? null : User.fromJson(json["user"]),
-        comment: json["comment"],
-        bookmarkedUser: json["BookmarkedUser"],
-        like: json["like"],
+        author: json["author"] == null ? null : Author.fromJson(json["author"]),
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "ID": id,
-        "CreatedAt": createdAt?.toIso8601String(),
-        "UpdatedAt": updatedAt?.toIso8601String(),
-        "DeletedAt": deletedAt,
+        "thread_id": threadId,
         "title": title,
         "content": content,
-        "file": file,
-        "user_id": userId,
-        "user": user?.toJson(),
-        "comment": comment,
-        "BookmarkedUser": bookmarkedUser,
-        "like": like,
+        "author": author?.toJson(),
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
     };
 }
 
-class User {
-    int? id;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    dynamic deletedAt;
+class Author {
     String? username;
     String? email;
-    String? password;
-    String? imageUrl;
-    int? age;
-    String? bio;
-    String? role;
-    dynamic threads;
-    dynamic bookmarked;
+    String? profil;
 
-    User({
-        this.id,
-        this.createdAt,
-        this.updatedAt,
-        this.deletedAt,
+    Author({
         this.username,
         this.email,
-        this.password,
-        this.imageUrl,
-        this.age,
-        this.bio,
-        this.role,
-        this.threads,
-        this.bookmarked,
+        this.profil,
     });
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json["ID"],
-        createdAt: json["CreatedAt"] == null ? null : DateTime.parse(json["CreatedAt"]),
-        updatedAt: json["UpdatedAt"] == null ? null : DateTime.parse(json["UpdatedAt"]),
-        deletedAt: json["DeletedAt"],
+    factory Author.fromJson(Map<String, dynamic> json) => Author(
         username: json["username"],
         email: json["email"],
-        password: json["password"],
-        imageUrl: json["image_url"],
-        age: json["age"],
-        bio: json["bio"],
-        role: json["role"],
-        threads: json["threads"],
-        bookmarked: json["Bookmarked"],
+        profil: json["profil"],
     );
 
     Map<String, dynamic> toJson() => {
-        "ID": id,
-        "CreatedAt": createdAt?.toIso8601String(),
-        "UpdatedAt": updatedAt?.toIso8601String(),
-        "DeletedAt": deletedAt,
         "username": username,
         "email": email,
-        "password": password,
-        "image_url": imageUrl,
-        "age": age,
-        "bio": bio,
-        "role": role,
-        "threads": threads,
-        "Bookmarked": bookmarked,
+        "profil": profil,
     };
 }

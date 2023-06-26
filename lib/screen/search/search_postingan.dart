@@ -58,14 +58,15 @@ class _SearchPostinganState extends State<SearchPostingan> {
                     physics: const ScrollPhysics(),
                     itemBuilder: (context, index) {
                       return ThreadContentCustomWidget(
-                        images: Image.asset("assets/images/fotodummy.png"),
-                        faker: faker,
-                        name: thread[index].user.username,
-                        contentThread: thread[index].content,
-                        mediaWidth: mediaQueryWidth,
-                        bodyheight: 5,
-                        title: thread[index].title,
-                        imageContent: thread[index].file,
+                        threadId : thread[index].id,
+                          faker: faker,
+                          name: thread[index].user?.username ?? "",
+                          title: thread[index].title ?? "",
+                          contentThread: thread[index].content ?? "",
+                          mediaWidth: mediaQueryWidth,
+                          bodyheight: 5,
+                          imageContent: thread[index].file ?? "",
+                          images: Image.asset("assets/images/fotodummy.png"),
                       );
                     },
                   ),

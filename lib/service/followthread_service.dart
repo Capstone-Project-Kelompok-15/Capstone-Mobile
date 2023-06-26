@@ -46,7 +46,6 @@ class FollowThreadService {
           });
       if (response.statusCode == 200) {
         print("Ikuti Thread");
-        print(response.data);
         final snackBar = SnackBar(
           content: Container(
             height: 47,
@@ -66,7 +65,6 @@ class FollowThreadService {
       }
 
     } on DioError catch (e) {
-      print(e.response?.data);
       final snackBar = SnackBar(
         content: const Text('Thread Gagal Diikuti'),
       );

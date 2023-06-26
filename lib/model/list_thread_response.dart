@@ -4,104 +4,94 @@
 
 import 'dart:convert';
 
-ResponseThread responseThreadFromJson(String str) =>
-    ResponseThread.fromJson(json.decode(str));
+ResponseThread responseThreadFromJson(String str) => ResponseThread.fromJson(json.decode(str));
 
 String responseThreadToJson(ResponseThread data) => json.encode(data.toJson());
 
 class ResponseThread {
-  List<Datum> data;
-  String message;
+    List<Datum>? data;
+    String? message;
 
-  ResponseThread({
-    required this.data,
-    required this.message,
-  });
+    ResponseThread({
+        this.data,
+        this.message,
+    });
 
-  factory ResponseThread.fromJson(Map<String, dynamic> json) => ResponseThread(
-
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    factory ResponseThread.fromJson(Map<String, dynamic> json) => ResponseThread(
+        data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
         message: json["message"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+    Map<String, dynamic> toJson() => {
+        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
         "message": message,
-      };
+    };
 }
 
 class Datum {
-  int id;
-  String title;
-  String content;
-  String file;
-  int userId;
-  User user;
+    int? id;
+    String? title;
+    String? content;
+    String? file;
+    int? comment;
+    Author? author;
+    List<dynamic>? likeUser;
+    int? like;
 
-  Datum({
-    required this.id,
-    required this.title,
-    required this.content,
-    required this.file,
-    required this.userId,
-    required this.user,
-  });
+    Datum({
+        this.id,
+        this.title,
+        this.content,
+        this.file,
+        this.comment,
+        this.author,
+        this.likeUser,
+        this.like,
+    });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["ID"],
         title: json["title"],
         content: json["content"],
         file: json["file"],
-        userId: json["user_id"],
-        user: User.fromJson(json["user"]),
-      );
+        comment: json["comment"],
+        author: json["author"] == null ? null : Author.fromJson(json["author"]),
+        likeUser: json["likeUser"] == null ? [] : List<dynamic>.from(json["likeUser"]!.map((x) => x)),
+        like: json["like"],
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "ID": id,
         "title": title,
         "content": content,
         "file": file,
-        "user_id": userId,
-        "user": user.toJson(),
-      };
+        "comment": comment,
+        "author": author?.toJson(),
+        "likeUser": likeUser == null ? [] : List<dynamic>.from(likeUser!.map((x) => x)),
+        "like": like,
+    };
 }
 
-class User {
-  int id;
-  String username;
-  String email;
-  String password;
-  String imageUrl;
-  int age;
-  String bio;
+class Author {
+    String? username;
+    String? email;
+    String? profil;
 
-  User({
-    required this.id,
-    required this.username,
-    required this.email,
-    required this.password,
-    required this.imageUrl,
-    required this.age,
-    required this.bio,
-  });
+    Author({
+        this.username,
+        this.email,
+        this.profil,
+    });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json["ID"],
+    factory Author.fromJson(Map<String, dynamic> json) => Author(
         username: json["username"],
         email: json["email"],
-        password: json["password"],
-        imageUrl: json["image_url"],
-        age: json["age"],
-        bio: json["bio"],
-      );
+        profil: json["profil"],
+    );
 
-  Map<String, dynamic> toJson() => {
-        "ID": id,
+    Map<String, dynamic> toJson() => {
         "username": username,
         "email": email,
-        "password": password,
-        "image_url": imageUrl,
-        "age": age,
-        "bio": bio,
-      };
+        "profil": profil,
+    };
 }

@@ -1,4 +1,3 @@
-import 'package:capstone_mobile/service/leaderboard_serivice.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import '../../service/thread_service.dart';
@@ -86,42 +85,72 @@ class LeaderBoardScreen extends StatelessWidget {
                 ],
               ),
             ),
-           Expanded(
+            Expanded(
               child: TabBarView(
                 children: [
-                  ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return ThreadContentCustomWidget(
-                        isLeaderBoard: true,
-                        ranking: index + 1,
-                        images: Image.asset("assets/images/fotodummy.png"),
-                        faker: faker,
-                        name: faker.person.name(),
-                        imageContent: "",
-                        contentThread: faker.lorem.sentences(7).join(''),
-                        mediaWidth: mediaQueryWidth,
-                        bodyheight: bodyHeight,
-                        title: '',
+                  FutureBuilder(
+                    future: ThreadService().getAllThread(),
+                    builder: ((context, snapshot) {
+                      var leaderboard = snapshot.data?.data;
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: leaderboard?.length,
+                          itemBuilder: (context, index) {
+                            // return Text(thread?[index].title ?? "");
+                            return ThreadContentCustomWidget(
+                              threadId: leaderboard?[index].id,
+                              faker: faker,
+                              isLeaderBoard: true,
+                              ranking: index + 1,
+                              name: leaderboard?[index].author?.username ?? "",
+                              title: leaderboard?[index].title ?? "",
+                              contentThread: leaderboard?[index].content ?? "",
+                              mediaWidth: mediaQueryWidth,
+                              bodyheight: bodyHeight,
+                              imageContent: leaderboard?[index].file ?? "",
+                              images:
+                                  Image.asset("assets/images/fotodummy.png"),
+                            );
+                          },
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
-                    },
+                    }),
                   ),
-                  ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return ThreadContentCustomWidget(
-                        isLeaderBoard: true,
-                        ranking: index + 1,
-                        images: Image.asset("assets/images/fotodummy.png"),
-                        faker: faker,
-                        name: faker.person.name(),
-                        imageContent: "",
-                        contentThread: faker.lorem.sentences(7).join(''),
-                        mediaWidth: mediaQueryWidth,
-                        bodyheight: bodyHeight,
-                        title: '',
+
+
+                  FutureBuilder(
+                    future: ThreadService().getAllThread(),
+                    builder: ((context, snapshot) {
+                      var leaderboard = snapshot.data?.data;
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: leaderboard?.length,
+                          itemBuilder: (context, index) {
+                            // return Text(thread?[index].title ?? "");
+                            return ThreadContentCustomWidget(
+                              threadId: leaderboard?[index].id,
+                              faker: faker,
+                              isLeaderBoard: true,
+                              ranking: index + 1,
+                              name: leaderboard?[index].author?.username ?? "",
+                              title: leaderboard?[index].title ?? "",
+                              contentThread: leaderboard?[index].content ?? "",
+                              mediaWidth: mediaQueryWidth,
+                              bodyheight: bodyHeight,
+                              imageContent: leaderboard?[index].file ?? "",
+                              images:
+                                  Image.asset("assets/images/fotodummy.png"),
+                            );
+                          },
+                        );
+                      }
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
-                    },
+                    }),
                   ),
                 ],
               ),
