@@ -20,10 +20,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obsecureText = true;
   bool akunInvalid = false;
-  // ignore: prefer_final_fields
-  TextEditingController _email = TextEditingController();
-  // ignore: prefer_final_fields
-  TextEditingController _password = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
