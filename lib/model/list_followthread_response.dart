@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final listFollowThreadResponse = listFollowThreadResponseFromJson(jsonString);
+
 import 'dart:convert';
 
 ListFollowThreadResponse listFollowThreadResponseFromJson(String str) => ListFollowThreadResponse.fromJson(json.decode(str));
@@ -77,6 +81,8 @@ class Thread {
     dynamic comment;
     dynamic bookmarkedUser;
     dynamic like;
+    int? likeCountDefault0;
+    int? commentCount;
 
     Thread({
         this.id,
@@ -91,6 +97,8 @@ class Thread {
         this.comment,
         this.bookmarkedUser,
         this.like,
+        this.likeCountDefault0,
+        this.commentCount,
     });
 
     factory Thread.fromJson(Map<String, dynamic> json) => Thread(
@@ -105,7 +113,9 @@ class Thread {
         user: json["user"] == null ? null : User.fromJson(json["user"]),
         comment: json["comment"],
         bookmarkedUser: json["BookmarkedUser"],
-        like: json["like"],
+        like: json["Like"],
+        likeCountDefault0: json["likeCount; default:0"],
+        commentCount: json["commentCount"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -120,7 +130,9 @@ class Thread {
         "user": user?.toJson(),
         "comment": comment,
         "BookmarkedUser": bookmarkedUser,
-        "like": like,
+        "Like": like,
+        "likeCount; default:0": likeCountDefault0,
+        "commentCount": commentCount,
     };
 }
 
@@ -138,6 +150,8 @@ class User {
     String? role;
     dynamic threads;
     dynamic bookmarked;
+    dynamic followed;
+    dynamic likedThread;
 
     User({
         this.id,
@@ -153,6 +167,8 @@ class User {
         this.role,
         this.threads,
         this.bookmarked,
+        this.followed,
+        this.likedThread,
     });
 
     factory User.fromJson(Map<String, dynamic> json) => User(
@@ -169,6 +185,8 @@ class User {
         role: json["role"],
         threads: json["threads"],
         bookmarked: json["Bookmarked"],
+        followed: json["Followed"],
+        likedThread: json["LikedThread"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -185,5 +203,7 @@ class User {
         "role": role,
         "threads": threads,
         "Bookmarked": bookmarked,
+        "Followed": followed,
+        "LikedThread": likedThread,
     };
 }

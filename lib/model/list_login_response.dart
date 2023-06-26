@@ -1,57 +1,57 @@
+// To parse this JSON data, do
+//
+//     final listResponseLogin = listResponseLoginFromJson(jsonString);
 
 import 'dart:convert';
 
-ListResponseLogin listResponseLoginFromJson(String str) =>
-    ListResponseLogin.fromJson(json.decode(str));
+ListResponseLogin listResponseLoginFromJson(String str) => ListResponseLogin.fromJson(json.decode(str));
 
-String listResponseLoginToJson(ListResponseLogin data) =>
-    json.encode(data.toJson());
+String listResponseLoginToJson(ListResponseLogin data) => json.encode(data.toJson());
 
 class ListResponseLogin {
-  String message;
-  User user;
+    String? message;
+    User? user;
 
-  ListResponseLogin({
-    required this.message,
-    required this.user,
-  });
+    ListResponseLogin({
+        this.message,
+        this.user,
+    });
 
-  factory ListResponseLogin.fromJson(Map<String, dynamic> json) =>
-      ListResponseLogin(
+    factory ListResponseLogin.fromJson(Map<String, dynamic> json) => ListResponseLogin(
         message: json["message"],
-        user: User.fromJson(json["user"]),
-      );
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "message": message,
-        "user": user.toJson(),
-      };
+        "user": user?.toJson(),
+    };
 }
 
 class User {
-  int id;
-  String name;
-  String email;
-  String token;
+    int? id;
+    String? name;
+    String? email;
+    String? token;
 
-  User({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.token,
-  });
+    User({
+        this.id,
+        this.name,
+        this.email,
+        this.token,
+    });
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+    factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
         name: json["name"],
         email: json["email"],
         token: json["token"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "email": email,
         "token": token,
-      };
+    };
 }

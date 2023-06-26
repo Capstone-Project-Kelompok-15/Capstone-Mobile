@@ -5,15 +5,16 @@ import 'package:capstone_mobile/style/color_style.dart';
 import 'package:flutter/material.dart';
 import '../../style/font_style.dart';
 import '../home_buttomNavigasi_screen.dart';
-
 class SearchScreen extends StatelessWidget {
   static const routename = "/searchScreen";
   const SearchScreen({super.key});
-
   get color => null;
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context)!.settings.arguments;
+    final argumentsString = arguments.toString();
+
     final myAppBar = AppBar(
       leading: IconButton(
         icon: const Icon(
@@ -27,6 +28,7 @@ class SearchScreen extends StatelessWidget {
       title: Container(
         margin: const EdgeInsets.only(top: 11, bottom: 8),
         width: 234,
+        height: 38,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(24),
@@ -43,11 +45,11 @@ class SearchScreen extends StatelessWidget {
                 enabledBorder: InputBorder.none,
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Cari',
+                hintStyle: regulerReguler.copyWith(color: typography500)
               ),
               onFieldSubmitted: (value) {
-                Navigator.of(context).pushNamed(
-                  SearchScreen.routename,
-                );
+                Navigator.of(context)
+                    .pushNamed(SearchScreen.routename, arguments: value);
               },
             ),
           ),
@@ -58,11 +60,9 @@ class SearchScreen extends StatelessWidget {
       bottomOpacity: 0,
       centerTitle: true,
     );
-
     // final bodyHeight = mediaQueryHeight -
     //     myAppBar.preferredSize.height -
     //     MediaQuery.of(context).padding.top;
-
     return Scaffold(
       appBar: myAppBar,
       body: DefaultTabController(
@@ -82,6 +82,7 @@ class SearchScreen extends StatelessWidget {
                 indicatorWeight: 3,
                 indicatorSize: TabBarIndicatorSize.label,
                 labelColor: typography500,
+                unselectedLabelColor: typography500.withOpacity(0.5),
                 tabs: [
                   SizedBox(
                     width: 57,
@@ -113,9 +114,9 @@ class SearchScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(
+             Expanded(
               child: TabBarView(
-                children: [SearchAll(), SearchPostingan(), SearchOrang()],
+                children: [SearchAll(), SearchPostingan(argument: argumentsString,), SearchOrang()],
               ),
             )
           ],
