@@ -233,7 +233,7 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                           onPressed: () {
                             Navigator.of(context).pushNamed(
                                 KomentarScreen.routename,
-                                arguments: {'idThread': widget.idThread});
+                                arguments: {'idThread': widget.idThread!});
                           },
                           icon: Image.asset(
                             "assets/icon/chat.png",

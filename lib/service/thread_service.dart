@@ -9,7 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ThreadService {
-  Future<ResponseThread> getAllThread() async {
+  Future<ListResponseThread> getAllThread() async {
     // ignore: unused_local_variable
     String cekUser = await getToken();
 
@@ -22,7 +22,7 @@ class ThreadService {
         },
       ),
     );
-    return ResponseThread.fromJson(response.data);
+    return ListResponseThread.fromJson(response.data);
   }
 
   // create Thread

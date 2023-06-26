@@ -109,8 +109,9 @@ class _KomentarScreenState extends State<KomentarScreen> {
                 // print(widget.idThread!);
                 if (_comment.text.isNotEmpty) {
                   CommentThread().postComment(
-                      threadId: int.parse(arguments["idThread"]),
-                      comment: _comment.text);
+                    threadId: int.parse(arguments["idThread"].toString()),
+                    comment: _comment.text,
+                  );
                   showDialog(
                       context: context,
                       builder: (context) {
