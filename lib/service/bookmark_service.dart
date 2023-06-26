@@ -68,3 +68,25 @@ class BookmarkService {
     }
   }
 }
+
+
+
+
+// GETALLLBOOKMARK
+// class FollowThreadService {
+//   Future<ListFollowThreadResponse> getAllFollowThread() async {
+//     // ignore: unused_local_variable
+//     String cekUser = await getToken();
+
+//     final response = await Dio().get(
+//       "$baseUrl/follow",
+//       options: Options(
+//         headers: {
+//           'Content-Type': 'application/json;charset=UTF-8',
+//           'Authorization': 'Bearer $cekUser'
+//         },
+//       ),
+//     );
+//     print(getAllFollowThread());
+//     return ListFollowThreadResponse.fromJson(response.data);
+//   }

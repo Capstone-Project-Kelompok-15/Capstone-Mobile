@@ -81,7 +81,7 @@ class BookmarkScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: 
+      body:
       FutureBuilder(
           future: BookmarkService().getAllBookmark(),
             builder: ((context, snapshot) {

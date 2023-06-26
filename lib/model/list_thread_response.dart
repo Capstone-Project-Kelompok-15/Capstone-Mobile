@@ -4,20 +4,20 @@
 
 import 'dart:convert';
 
-ListResponseThread listResponseThreadFromJson(String str) => ListResponseThread.fromJson(json.decode(str));
+ResponseThread responseThreadFromJson(String str) => ResponseThread.fromJson(json.decode(str));
 
 String listResponseThreadToJson(ListResponseThread data) => json.encode(data.toJson());
 
-class ListResponseThread {
+class ResponseThread {
     List<Datum>? data;
     String? message;
 
-    ListResponseThread({
+    ResponseThread({
         this.data,
         this.message,
     });
 
-    factory ListResponseThread.fromJson(Map<String, dynamic> json) => ListResponseThread(
+    factory ResponseThread.fromJson(Map<String, dynamic> json) => ResponseThread(
         data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
         message: json["message"],
     );
