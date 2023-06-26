@@ -4,20 +4,20 @@
 
 import 'dart:convert';
 
-CreateBookmarkResponse CreateBookmarkResponseFromJson(String str) => CreateBookmarkResponse.fromJson(json.decode(str));
+GetAllBookmarkResponse getAllBookmarkResponseFromJson(String str) => GetAllBookmarkResponse.fromJson(json.decode(str));
 
-String CreateBookmarkResponseToJson(CreateBookmarkResponse data) => json.encode(data.toJson());
+String getAllBookmarkResponseToJson(GetAllBookmarkResponse data) => json.encode(data.toJson());
 
-class CreateBookmarkResponse {
+class GetAllBookmarkResponse {
     Data? data;
     String? message;
 
-    CreateBookmarkResponse({
+    GetAllBookmarkResponse({
         this.data,
         this.message,
     });
 
-    factory CreateBookmarkResponse.fromJson(Map<String, dynamic> json) => CreateBookmarkResponse(
+    factory GetAllBookmarkResponse.fromJson(Map<String, dynamic> json) => GetAllBookmarkResponse(
         data: json["data"] == null ? null : Data.fromJson(json["data"]),
         message: json["message"],
     );
@@ -42,6 +42,8 @@ class Data {
     String? role;
     dynamic threads;
     List<dynamic>? bookmarked;
+    dynamic followed;
+    dynamic likedThread;
 
     Data({
         this.id,
@@ -57,6 +59,8 @@ class Data {
         this.role,
         this.threads,
         this.bookmarked,
+        this.followed,
+        this.likedThread,
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -73,6 +77,8 @@ class Data {
         role: json["role"],
         threads: json["threads"],
         bookmarked: json["Bookmarked"] == null ? [] : List<dynamic>.from(json["Bookmarked"]!.map((x) => x)),
+        followed: json["Followed"],
+        likedThread: json["LikedThread"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -89,5 +95,7 @@ class Data {
         "role": role,
         "threads": threads,
         "Bookmarked": bookmarked == null ? [] : List<dynamic>.from(bookmarked!.map((x) => x)),
+        "Followed": followed,
+        "LikedThread": likedThread,
     };
 }

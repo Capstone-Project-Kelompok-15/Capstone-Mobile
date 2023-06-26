@@ -143,7 +143,7 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
                         return ThreadContentCustomWidget(
                           faker: faker,
                           idThread: thread?[index].id,
-                          name: thread?[index].author.username ?? "",
+                          name: thread?[index].author?.username ?? "",
                           title: thread?[index].title ?? "",
                           contentThread: thread?[index].content ?? "",
                           mediaWidth: mediaQueryWidth,
