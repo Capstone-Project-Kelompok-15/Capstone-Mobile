@@ -42,7 +42,6 @@ class CommentThread {
         },
       ),
     );
-    print(response);
     return ThreadIdResponse.fromJson(response.data);
   }
 }

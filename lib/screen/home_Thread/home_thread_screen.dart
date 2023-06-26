@@ -132,32 +132,38 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
             ),
           ),
           Expanded(
-            child: FutureBuilder(
-                future: ThreadService().getAllThread(),
-                builder: ((context, snapshot) {
-                  var thread = snapshot.data?.data;
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: thread?.length,
-                      itemBuilder: (context, index) {
-                        return ThreadContentCustomWidget(
-                          faker: faker,
-                          idThread: thread?[index].id ?? 0,
-                          name: thread?[index].author.username ?? "",
-                          title: thread?[index].title ?? "",
-                          contentThread: thread?[index].content ?? "",
-                          mediaWidth: mediaQueryWidth,
-                          bodyheight: bodyHeight,
-                          imageContent: thread?[index].file ?? "",
-                          images: thread?[index].author.profil ?? "",
-                        );
-                      },
+            child: RefreshIndicator(
+              onRefresh: () {
+                return ThreadService().getAllThread();
+              },
+              child: FutureBuilder(
+                  future: ThreadService().getAllThread(),
+                  builder: ((context, snapshot) {
+                    var thread = snapshot.data?.data;
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        reverse: true,
+                        itemCount: thread?.length,
+                        itemBuilder: (context, index) {
+                          return ThreadContentCustomWidget(
+                            faker: faker,
+                            idThread: thread?[index].id ?? 0,
+                            name: thread?[index].author.username ?? "",
+                            title: thread?[index].title ?? "",
+                            contentThread: thread?[index].content ?? "",
+                            mediaWidth: mediaQueryWidth,
+                            bodyheight: bodyHeight,
+                            imageContent: thread?[index].file ?? "",
+                            images: thread?[index].author.profil ?? "",
+                          );
+                        },
+                      );
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
                     );
-                  }
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                })),
+                  })),
+            ),
           ),
           // )
         ],

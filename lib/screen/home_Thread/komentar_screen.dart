@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/model/thread_id_response.dart';
 import 'package:capstone_mobile/service/comment_thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
@@ -21,13 +22,12 @@ class _KomentarScreenState extends State<KomentarScreen> {
   // ignore: prefer_final_fields, unused_field
   TextEditingController _comment = TextEditingController();
 
-  @override
-  void initState() {
-    // print(widget.idThread!);
-    CommentThread().getThreadByID(id: widget.idThread!);
-    // TODO: implement initState
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // print(widget.idThread!);
+  //   // CommentThread().getThreadByID(id: widget.idThread!);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -55,22 +55,27 @@ class _KomentarScreenState extends State<KomentarScreen> {
       appBar: myAppBar,
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: FutureBuilder(
-          future: CommentThread().getThreadByID(id: widget.idThread!),
-          builder: ((context, snapshot) {
-            var comment = snapshot.data?.data.comment;
-            return ListView.builder(
-              itemCount: comment?.length,
-              itemBuilder: (context, index) {
-                return ItemComentarWidget(
-                  nama: comment?[index].author.username ?? "kosong",
-                  komentar: comment?[index].comment ?? "",
-                  profil: comment?[index].author.profil ?? "",
-                  mediaQueryWidth: mediaQueryWidth,
-                );
-              },
-            );
-          }),
+        child: RefreshIndicator(
+          onRefresh: () {
+            return CommentThread().getThreadByID(id: widget.idThread!);
+          },
+          child: FutureBuilder(
+            future: CommentThread().getThreadByID(id: widget.idThread!),
+            builder: ((context, snapshot) {
+              var comment = snapshot.data?.data.comment;
+              return ListView.builder(
+                itemCount: comment?.length,
+                itemBuilder: (context, index) {
+                  return ItemComentarWidget(
+                    nama: comment?[index].author.username ?? "kosong",
+                    komentar: comment?[index].comment ?? "",
+                    profil: comment?[index].author.profil ?? "",
+                    mediaQueryWidth: mediaQueryWidth,
+                  );
+                },
+              );
+            }),
+          ),
         ),
       ),
       bottomSheet: Container(
@@ -127,6 +132,7 @@ class _KomentarScreenState extends State<KomentarScreen> {
                     threadId: widget.idThread!,
                     comment: _comment.text,
                   );
+                  _comment.clear();
                   showDialog(
                       context: context,
                       builder: (context) {
@@ -135,6 +141,7 @@ class _KomentarScreenState extends State<KomentarScreen> {
                           text: "Komentar telah terkirim",
                         );
                       });
+
                   setState(() {});
                 }
               },
