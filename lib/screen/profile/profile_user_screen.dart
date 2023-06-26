@@ -71,7 +71,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                             GestureDetector(
                               onTap: () {},
                               child: Image.asset(
-                                "assets/icon/Menu.png",
+                                "assets/icon/Message.png",
                                 color: Colors.black,
                               ),
                             ),
@@ -181,10 +181,8 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => UbahProfileScreen(
-                                        id: userDetails?.id.toString() ?? '',
                                         username: userDetails?.username ?? '',
                                         bio: userDetails?.bio ?? '',
-                                        email: userDetails?.email ?? '',
                                       ),
                                     ),
                                   );

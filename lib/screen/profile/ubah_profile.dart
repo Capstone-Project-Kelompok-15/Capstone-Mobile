@@ -97,8 +97,6 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                           await UpdateUser().updateUser(
                             _controllerUpdateNama.text,
                             _controllerUpdateBio.text,
-                            widget.email ?? '',
-                            widget.password ?? '',
                           );
                           // ignore: use_build_context_synchronously
                           Navigator.pop(context);
