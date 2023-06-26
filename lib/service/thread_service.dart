@@ -50,4 +50,21 @@ class ThreadService {
       print(e);
     }
   }
+
+  Future<String> uploadImage(imageFile) async {
+    // ignore: unused_local_variable
+    FormData formData = FormData.fromMap({
+      'image_url': await MultipartFile.fromFile(imageFile!.path),
+    });
+    final response = await Dio().post(
+        "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/uploadImage",
+        data: formData);
+    final url = response.data["Data"];
+    // ignore: unnecessary_null_comparison
+
+    // print("ini dalah url image terbaru $urlImage");
+    return url;
+
+    // Berhasil mengunggah gambar
+  }
 }

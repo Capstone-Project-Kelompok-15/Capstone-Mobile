@@ -140,9 +140,9 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
                     return ListView.builder(
                       itemCount: thread?.length,
                       itemBuilder: (context, index) {
-                        // return Text(thread?[index].title ?? "");
                         return ThreadContentCustomWidget(
                           faker: faker,
+                          idThread: thread?[index].id,
                           name: thread?[index].user.username ?? "",
                           title: thread?[index].title ?? "",
                           contentThread: thread?[index].content ?? "",

@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
               const HomeButtonmNavigasiScreen(),
           HomeThreadScreen.routename: (context) => HomeThreadScreen(),
           CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
-          KomentarScreen.routename: (context) => const KomentarScreen(),
+          KomentarScreen.routename: (context) => KomentarScreen(),
           LeaderBoardScreen.routename: (context) => const LeaderBoardScreen(),
           FollowByThread.routename: (context) => const FollowByThread(),
           BookmarkScreen.routename: (context) => BookmarkScreen(),
@@ -51,8 +51,7 @@ class MyApp extends StatelessWidget {
           PengaturanAkunScreen.routename: (context) =>
               const PengaturanAkunScreen(),
           ProfileOrangScreen.routename: (context) => const ProfileOrangScreen(),
-          SearchScreen.routename:(context) => const SearchScreen()
+          SearchScreen.routename: (context) => const SearchScreen()
         });
-
   }
 }

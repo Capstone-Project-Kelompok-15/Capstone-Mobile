@@ -19,6 +19,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
   bool? isLeaderBoard;
   int? ranking;
   Image images;
+  int? idThread;
 
   ThreadContentCustomWidget({
     super.key,
@@ -32,6 +33,7 @@ class ThreadContentCustomWidget extends StatefulWidget {
     this.isLeaderBoard = false,
     this.ranking,
     required this.images,
+    this.idThread,
   });
 
   final Faker faker;
@@ -229,8 +231,9 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
                           onPressed: () {
-                            Navigator.of(context)
-                                .pushNamed(KomentarScreen.routename);
+                            Navigator.of(context).pushNamed(
+                                KomentarScreen.routename,
+                                arguments: {'idThread': widget.idThread});
                           },
                           icon: Image.asset(
                             "assets/icon/chat.png",

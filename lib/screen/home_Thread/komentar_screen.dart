@@ -1,3 +1,4 @@
+import 'package:capstone_mobile/service/comment_thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
 import 'package:capstone_mobile/widget/item_komentar_widget.dart';
@@ -7,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class KomentarScreen extends StatefulWidget {
   static const routename = "/komentarScreen";
-
   const KomentarScreen({super.key});
 
   @override
@@ -16,11 +16,14 @@ class KomentarScreen extends StatefulWidget {
 
 class _KomentarScreenState extends State<KomentarScreen> {
   // ignore: unnecessary_new
-  final faker = new Faker();
   String contentKomentar = "";
+  // ignore: prefer_final_fields, unused_field
+  TextEditingController _comment = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    // final args = ModalRoute.of(context)?.settings.arguments;
+    Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
     final mediaQueryWidth = MediaQuery.of(context).size.width;
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final myAppBar = AppBar(
@@ -90,10 +93,8 @@ class _KomentarScreenState extends State<KomentarScreen> {
                   border: Border.all(color: Colors.black),
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                 ),
-                child: TextField(
-                  onChanged: (value) {
-                    contentKomentar = value;
-                  },
+                child: TextFormField(
+                  controller: _comment,
                   decoration: const InputDecoration(
                     hintText: "Masukan Komentar...",
                     border: InputBorder.none,
@@ -104,7 +105,12 @@ class _KomentarScreenState extends State<KomentarScreen> {
             IconButton(
               splashRadius: 20,
               onPressed: () {
-                if (contentKomentar.isNotEmpty) {
+                print(arguments["idThread"]);
+                // print(widget.idThread!);
+                if (_comment.text.isNotEmpty) {
+                  CommentThread().postComment(
+                      threadId: int.parse(arguments["idThread"]),
+                      comment: _comment.text);
                   showDialog(
                       context: context,
                       builder: (context) {
@@ -113,6 +119,7 @@ class _KomentarScreenState extends State<KomentarScreen> {
                           text: "Komentar telah terkirim",
                         );
                       });
+                  setState(() {});
                 }
               },
               icon: Image.asset(
