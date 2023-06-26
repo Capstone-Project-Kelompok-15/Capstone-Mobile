@@ -9,7 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ThreadService {
-  Future<ResponseThread> getAllThread() async {
+  Future<ListResponseThread> getAllThread() async {
     // ignore: unused_local_variable
     String cekUser = await getToken();
 
@@ -22,7 +22,7 @@ class ThreadService {
         },
       ),
     );
-    return ResponseThread.fromJson(response.data);
+    return ListResponseThread.fromJson(response.data);
   }
 
   // create Thread
@@ -49,5 +49,22 @@ class ThreadService {
     } on DioException catch (e) {
       print(e);
     }
+  }
+
+  Future<String> uploadImage(imageFile) async {
+    // ignore: unused_local_variable
+    FormData formData = FormData.fromMap({
+      'image_url': await MultipartFile.fromFile(imageFile!.path),
+    });
+    final response = await Dio().post(
+        "http://ec2-54-206-29-131.ap-southeast-2.compute.amazonaws.com:8000/uploadImage",
+        data: formData);
+    final url = response.data["Data"];
+    // ignore: unnecessary_null_comparison
+
+    // print("ini dalah url image terbaru $urlImage");
+    return url;
+
+    // Berhasil mengunggah gambar
   }
 }

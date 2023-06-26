@@ -1,10 +1,10 @@
-// import 'package:capstone_mobile/screen/login/login_screen.dart';
+import 'package:capstone_mobile/screen/login/login_screen.dart';
 import 'package:capstone_mobile/screen/settings/pengaturan_akun_screen.dart';
-// import 'package:capstone_mobile/service/login_service.dart';
+import 'package:capstone_mobile/service/login_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_dialogs/flutter_dialogs.dart';
+import 'package:flutter_dialogs/flutter_dialogs.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -120,48 +120,48 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.fromLTRB(28, 15, 15, 15),
-            //   child: GestureDetector(
-            //     onTap: () {
-            //       showPlatformDialog(
-            //         context: context,
-            //         builder: (context) => BasicDialogAlert(
-            //           title: const Text("Apakah anda yakin?"),
-            //           content: const Text(
-            //               "Apakah anda yakin ingin keluar dari aplikasi Squad Space."),
-            //           actions: <Widget>[
-            //             BasicDialogAction(
-            //               title: const Text("Ya"),
-            //               onPressed: () {
-            //                 Navigator.pushNamed(context, LoginScreen.routename);
-            //                 removeToken();
-            //               },
-            //             ),
-            //             BasicDialogAction(
-            //               title: const Text("Batal"),
-            //               onPressed: () {
-            //                 Navigator.pop(context);
-            //               },
-            //             ),
-            //           ],
-            //         ),
-            //       );
-            //     },
-            //     child: const Text(
-            //       "Keluar",
-            //       style: TextStyle(
-            //         fontFamily: 'Source Sans Pro',
-            //         fontStyle: FontStyle.normal,
-            //         fontWeight: FontWeight.w600,
-            //         fontSize: 16,
-            //         height:
-            //             1.4, // Menggunakan faktor 1.4 untuk line-height 140%
-            //         color: Color(0xFFB92B27),
-            //       ),
-            //     ),
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(28, 15, 15, 15),
+              child: GestureDetector(
+                onTap: () {
+                  showPlatformDialog(
+                    context: context,
+                    builder: (context) => BasicDialogAlert(
+                      title: const Text("Apakah anda yakin?"),
+                      content: const Text(
+                          "Apakah anda yakin ingin keluar dari aplikasi Squad Space."),
+                      actions: <Widget>[
+                        BasicDialogAction(
+                          title: const Text("Ya"),
+                          onPressed: () {
+                            Navigator.pushNamed(context, LoginScreen.routename);
+                            removeToken();
+                          },
+                        ),
+                        BasicDialogAction(
+                          title: const Text("Batal"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Keluar",
+                  style: TextStyle(
+                    fontFamily: 'Source Sans Pro',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    height:
+                        1.4, // Menggunakan faktor 1.4 untuk line-height 140%
+                    color: Color(0xFFB92B27),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

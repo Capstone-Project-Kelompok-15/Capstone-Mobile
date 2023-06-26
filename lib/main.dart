@@ -10,11 +10,13 @@ import 'package:capstone_mobile/screen/leaderboard/leaderboard_screen.dart';
 import 'package:capstone_mobile/screen/login/login_screen.dart';
 import 'package:capstone_mobile/screen/login/lupa_password/lupa_password_screen_1.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
+import 'package:capstone_mobile/screen/search/search_screen.dart';
 import 'package:capstone_mobile/screen/settings/pengaturan_akun_screen.dart';
 import 'package:capstone_mobile/screen/settings/setting_screen.dart';
 import 'package:capstone_mobile/screen/splash_screen.dart';
 
 import 'package:capstone_mobile/screen/profil_user_lain/profile_orang_screen.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
               const HomeButtonmNavigasiScreen(),
           HomeThreadScreen.routename: (context) => HomeThreadScreen(),
           CreateThreadScreen.routename: (context) => const CreateThreadScreen(),
-          KomentarScreen.routename: (context) => const KomentarScreen(),
+          KomentarScreen.routename: (context) => KomentarScreen(),
           LeaderBoardScreen.routename: (context) => const LeaderBoardScreen(),
           FollowByThread.routename: (context) => const FollowByThread(),
           BookmarkScreen.routename: (context) => BookmarkScreen(),
@@ -49,6 +51,7 @@ class MyApp extends StatelessWidget {
           PengaturanAkunScreen.routename: (context) =>
               const PengaturanAkunScreen(),
           ProfileOrangScreen.routename: (context) => const ProfileOrangScreen(),
+          SearchScreen.routename: (context) => const SearchScreen()
         });
   }
 }

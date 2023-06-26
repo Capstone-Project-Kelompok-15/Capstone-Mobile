@@ -1,4 +1,3 @@
-// import 'package:capstone_mobile/model/list_followthread_response.dart';
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
 import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
 import 'package:capstone_mobile/screen/search/search_screen.dart';
@@ -8,11 +7,7 @@ import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
-
-import '../../style/color_style.dart';
-
 class HomeThreadScreen extends StatefulWidget {
-
   static const routename = "/homeThread";
   HomeThreadScreen({super.key});
 
@@ -30,14 +25,11 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
     final myAppBar = AppBar(
-      centerTitle: true,
       leading: Image.asset(
         "assets/images/logo.png",
       ),
       title: Container(
         margin: const EdgeInsets.only(top: 5),
-        width: 234,
-        height: 38,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
             Radius.circular(24),
@@ -49,12 +41,11 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
             child: TextFormField(
               textAlignVertical: TextAlignVertical.center,
               style: regulerReguler,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Cari',
-                hintStyle: regulerReguler.copyWith(color: typography500)
               ),
               onFieldSubmitted: (value) {
                 Navigator.of(context)
@@ -149,11 +140,10 @@ class _HomeThreadScreenState extends State<HomeThreadScreen> {
                     return ListView.builder(
                       itemCount: thread?.length,
                       itemBuilder: (context, index) {
-                        // return Text(thread?[index].title ?? "");
                         return ThreadContentCustomWidget(
-                          threadId : thread?[index].id,
                           faker: faker,
-                          name: thread?[index].user.username ?? "",
+                          idThread: thread?[index].id,
+                          name: thread?[index].author.username ?? "",
                           title: thread?[index].title ?? "",
                           contentThread: thread?[index].content ?? "",
                           mediaWidth: mediaQueryWidth,
