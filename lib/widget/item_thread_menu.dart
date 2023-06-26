@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 class ItemThreadMenu extends StatelessWidget {
   String imageIcon;
   String namaButton;
-  Function() navigasi;
+  Function() onTap;
   ItemThreadMenu({
     super.key,
     required this.imageIcon,
     required this.namaButton,
-    required this.navigasi,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: navigasi,
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.only(top: 10, bottom: 10),
         child: Row(

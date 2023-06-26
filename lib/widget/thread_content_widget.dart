@@ -7,7 +7,6 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
-
 // ignore: must_be_immutable
 class ThreadContentCustomWidget extends StatefulWidget {
   String name;
@@ -19,6 +18,8 @@ class ThreadContentCustomWidget extends StatefulWidget {
   bool? isLeaderBoard;
   int? ranking;
   Image images;
+  int? threadId;
+  int? userId;
   int? idThread;
 
   ThreadContentCustomWidget({
@@ -33,16 +34,16 @@ class ThreadContentCustomWidget extends StatefulWidget {
     this.isLeaderBoard = false,
     this.ranking,
     required this.images,
+    this.userId,
+    this.threadId,
     this.idThread,
   });
 
   final Faker faker;
-
   @override
   State<ThreadContentCustomWidget> createState() =>
       _ThreadContentCustomWidgetState();
 }
-
 class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
   bool isFollowing = false;
   bool islike = false;
@@ -277,7 +278,10 @@ class _ThreadContentCustomWidgetState extends State<ThreadContentCustomWidget> {
                         ),
                       ),
                       builder: (BuildContext context) {
-                        return const BottomSheetThreadMenu();
+                        return BottomSheetThreadMenu(
+                          userId: widget.userId??-1,
+                          threadId: widget.threadId??-1,
+                        );
                       },
                     );
                   },
