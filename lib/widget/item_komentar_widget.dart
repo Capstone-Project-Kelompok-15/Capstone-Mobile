@@ -35,7 +35,7 @@ class _ItemComentarWidget extends State<ItemComentarWidget> {
             child: ClipOval(
               child: widget.profil != ""
                   ? Image.network(
-                      widget.profil!,
+                      widget.profil,
                       fit: BoxFit.cover,
                       width: 50,
                       height: 50,
