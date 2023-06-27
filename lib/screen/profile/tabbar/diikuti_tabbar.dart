@@ -1,4 +1,5 @@
 import 'package:capstone_mobile/widget/diikuti.widget.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 class DiikutiTabbar extends StatefulWidget {
@@ -19,7 +20,9 @@ class _DiikutiTabbarState extends State<DiikutiTabbar> {
             itemCount: 10,
             physics: const ScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
-              return const DiikutiProfile();
+              return DiikutiProfile(
+                name: faker.person.name(),
+              );
             },
           ),
         ),
