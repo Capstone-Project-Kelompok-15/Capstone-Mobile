@@ -101,12 +101,22 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                     child: Column(
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        ClipRRect(
-                          child: Image.asset(
-                            "assets/images/fotodummy.png",
-                            height: 89.0,
-                            width: 89.0,
-                            fit: BoxFit.fill,
+                        CircleAvatar(
+                          radius: 45,
+                          child: ClipOval(
+                            child: userDetails?.imageUrl == null
+                                ? Image.network(
+                                    userDetails?.imageUrl ?? "",
+                                    fit: BoxFit.fill,
+                                    width: 90,
+                                    height: 90,
+                                  )
+                                : Image.network(
+                                    "https://res.cloudinary.com/dwvq529jy/image/upload/v1687364629/Uploads/empty.jpg.jpg",
+                                    fit: BoxFit.fill,
+                                    width: 90,
+                                    height: 90,
+                                  ),
                           ),
                         ),
                         const SizedBox(height: 18),
