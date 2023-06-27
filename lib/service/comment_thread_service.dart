@@ -33,7 +33,7 @@ class CommentThread {
     }
   }
 
-  Future<ThreadIdResponse> getThreadByID({required int id}) async {
+  Future<ThreadByIdResponse> getThreadByID({required int id}) async {
     String cekUser = await getToken();
     final response = await Dio().get(
       "$baseUrl/threads/$id",
@@ -44,6 +44,6 @@ class CommentThread {
         },
       ),
     );
-    return ThreadIdResponse.fromJson(response.data);
+    return ThreadByIdResponse.fromJson(response.data);
   }
 }

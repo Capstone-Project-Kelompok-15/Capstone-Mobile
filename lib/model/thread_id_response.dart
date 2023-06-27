@@ -1,26 +1,26 @@
 // To parse this JSON data, do
 //
-//     final threadIdResponse = threadIdResponseFromJson(jsonString);
+//     final threadByIdResponse = threadByIdResponseFromJson(jsonString);
 
 import 'dart:convert';
 
-ThreadIdResponse threadIdResponseFromJson(String str) =>
-    ThreadIdResponse.fromJson(json.decode(str));
+ThreadByIdResponse threadByIdResponseFromJson(String str) =>
+    ThreadByIdResponse.fromJson(json.decode(str));
 
-String threadIdResponseToJson(ThreadIdResponse data) =>
+String threadByIdResponseToJson(ThreadByIdResponse data) =>
     json.encode(data.toJson());
 
-class ThreadIdResponse {
+class ThreadByIdResponse {
   Data data;
   String message;
 
-  ThreadIdResponse({
+  ThreadByIdResponse({
     required this.data,
     required this.message,
   });
 
-  factory ThreadIdResponse.fromJson(Map<String, dynamic> json) =>
-      ThreadIdResponse(
+  factory ThreadByIdResponse.fromJson(Map<String, dynamic> json) =>
+      ThreadByIdResponse(
         data: Data.fromJson(json["data"]),
         message: json["message"],
       );
@@ -60,7 +60,7 @@ class Data {
         content: json["content"],
         file: json["file"],
         author: DataAuthor.fromJson(json["author"]),
-        commentCount: json["CommentCount"],
+        commentCount: json["commentCount"],
         comment:
             List<Comment>.from(json["comment"].map((x) => Comment.fromJson(x))),
         likeUser: List<dynamic>.from(json["likeUser"].map((x) => x)),
@@ -73,7 +73,7 @@ class Data {
         "content": content,
         "file": file,
         "author": author.toJson(),
-        "CommentCount": commentCount,
+        "commentCount": commentCount,
         "comment": List<dynamic>.from(comment.map((x) => x.toJson())),
         "likeUser": List<dynamic>.from(likeUser.map((x) => x)),
         "like": like,
