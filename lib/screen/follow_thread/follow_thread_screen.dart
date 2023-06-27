@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import '../../service/followthread_service.dart';
+import '../../service/thread_service.dart';
 import '../../style/font_style.dart';
 import '../../widget/thread_content_widget.dart';
 
@@ -99,16 +100,26 @@ class FollowByThread extends StatelessWidget {
                             // return Text(thread?[index].title ?? "");
                             return ThreadContentCustomWidget(
                               faker: faker,
-                              imageContent: "",
+                              threadId: followthread?[index].id ?? 0,
                               name:
-                                  followthread?[index].thread?.user?.username ??
-                                      "",
-                              title: followthread?[index].thread?.title ?? "",
+                                  followthread?[index].thread?.user?.username !=
+                                          ""
+                                      ? (followthread?[index]
+                                              .thread
+                                              ?.user
+                                              ?.username ??
+                                          "")
+                                      : "-",
+                              title: followthread?[index].thread?.title ?? "-",
                               contentThread:
-                                  followthread?[index].thread?.content ?? "",
+                                  followthread?[index].thread?.content ?? "-",
                               mediaWidth: mediaQueryWidth,
                               bodyheight: bodyHeight,
-                              images: "",
+                              imageContent:
+                                  followthread?[index].thread?.file ?? "",
+                              images:
+                                  followthread?[index].thread?.user?.imageUrl ??
+                                      "",
                             );
                           },
                         );
@@ -118,21 +129,32 @@ class FollowByThread extends StatelessWidget {
                       );
                     }),
                   ),
-                  ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return ThreadContentCustomWidget(
-                        title: "",
-                        images: "",
-                        faker: faker,
-                        name: faker.person.name(),
-                        imageContent: "",
-                        contentThread: faker.lorem.sentences(7).join(''),
-                        mediaWidth: mediaQueryWidth,
-                        bodyheight: bodyHeight,
+                  FutureBuilder(
+                  future: ThreadService().getAllThread(),
+                  builder: ((context, snapshot) {
+                    var thread = snapshot.data?.data;
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: thread?.length,
+                        itemBuilder: (context, index) {
+                          return ThreadContentCustomWidget(
+                            faker: faker,
+                            threadId: thread?[index].id ?? 0,
+                            name: thread?[index].author.username ?? "",
+                            title: thread?[index].title ?? "",
+                            contentThread: thread?[index].content ?? "",
+                            mediaWidth: mediaQueryWidth,
+                            bodyheight: bodyHeight,
+                            imageContent: thread?[index].file ?? "",
+                            images: thread?[index].author.profil ?? "",
+                          );
+                        },
                       );
-                    },
-                  ),
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  })),
                 ],
               ),
             )
