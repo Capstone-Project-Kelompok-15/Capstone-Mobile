@@ -1,12 +1,21 @@
 import 'package:capstone_mobile/screen/home_Thread/create_thread_screen.dart';
+import 'package:capstone_mobile/screen/pemberitahuan/pemberitahuan_screen.dart';
+import 'package:capstone_mobile/screen/search/search_screen.dart';
+import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/thread_content_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
-class HomeThreadScreen extends StatelessWidget {
+class HomeThreadScreen extends StatefulWidget {
   static const routename = "/homeThread";
-  HomeThreadScreen({super.key});
+  const HomeThreadScreen({super.key});
+
+  @override
+  State<HomeThreadScreen> createState() => _HomeThreadScreenState();
+}
+
+class _HomeThreadScreenState extends State<HomeThreadScreen> {
   // ignore: unnecessary_new
   final faker = new Faker();
 
@@ -38,13 +47,19 @@ class HomeThreadScreen extends StatelessWidget {
                 prefixIcon: Icon(Icons.search),
                 hintText: 'Cari',
               ),
+              onFieldSubmitted: (value) {
+                Navigator.of(context)
+                    .pushNamed(SearchScreen.routename, arguments: value);
+              },
             ),
           ),
         ),
       ),
       actions: [
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushNamed(PemberitahuanScreen.routename);
+          },
           child: Image.asset(
             "assets/icon/bell.png",
             width: 30,
@@ -65,14 +80,21 @@ class HomeThreadScreen extends StatelessWidget {
         myAppBar.preferredSize.height -
         MediaQuery.of(context).padding.top;
 
+    // Future refresh()async{
+
+    // }
+
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       appBar: myAppBar,
       body: Column(
         children: [
           GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(CreateThreadScreen.routename,
-                  arguments: bodyHeight);
+            onTap: () async {
+              // ignore: unused_local_variable
+              final result = await Navigator.of(context).pushNamed(
+                CreateThreadScreen.routename,
+              );
             },
             child: Container(
               margin: const EdgeInsets.all(20),
@@ -110,19 +132,39 @@ class HomeThreadScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return ThreadContentCustomWidget(
-                  faker: faker,
-                  name: faker.person.name(),
-                  contentThread: faker.lorem.sentences(7).join(''),
-                  mediaWidth: mediaQueryWidth,
-                  bodyheight: bodyHeight,
-                );
+            child: RefreshIndicator(
+              onRefresh: () {
+                return ThreadService().getAllThread();
               },
+              child: FutureBuilder(
+                  future: ThreadService().getAllThread(),
+                  builder: ((context, snapshot) {
+                    var thread = snapshot.data?.data;
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: thread?.length,
+                        itemBuilder: (context, index) {
+                          return ThreadContentCustomWidget(
+                            faker: faker,
+                            threadId: thread?[index].id ?? 0,
+                            name: thread?[index].author.username ?? "",
+                            title: thread?[index].title ?? "",
+                            contentThread: thread?[index].content ?? "",
+                            mediaWidth: mediaQueryWidth,
+                            bodyheight: bodyHeight,
+                            imageContent: thread?[index].file ?? "",
+                            images: thread?[index].author.profil ?? "",
+                          );
+                        },
+                      );
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  })),
             ),
-          )
+          ),
+          // )
         ],
       ),
     );

@@ -1,14 +1,15 @@
+import 'package:capstone_mobile/service/comment_thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
 import 'package:capstone_mobile/widget/item_komentar_widget.dart';
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class KomentarScreen extends StatefulWidget {
   static const routename = "/komentarScreen";
-
-  const KomentarScreen({super.key});
+  int? idThread;
+  KomentarScreen({super.key, this.idThread});
 
   @override
   State<KomentarScreen> createState() => _KomentarScreenState();
@@ -16,8 +17,16 @@ class KomentarScreen extends StatefulWidget {
 
 class _KomentarScreenState extends State<KomentarScreen> {
   // ignore: unnecessary_new
-  final faker = new Faker();
   String contentKomentar = "";
+  // ignore: prefer_final_fields, unused_field
+  TextEditingController _comment = TextEditingController();
+
+  // @override
+  // void initState() {
+  //   // print(widget.idThread!);
+  //   // CommentThread().getThreadByID(id: widget.idThread!);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +54,27 @@ class _KomentarScreenState extends State<KomentarScreen> {
       appBar: myAppBar,
       body: Padding(
         padding: const EdgeInsets.all(15),
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ItemComentarWidget(
-                faker: faker, mediaQueryWidth: mediaQueryWidth);
+        child: RefreshIndicator(
+          onRefresh: () {
+            return CommentThread().getThreadByID(id: widget.idThread!);
           },
+          child: FutureBuilder(
+            future: CommentThread().getThreadByID(id: widget.idThread!),
+            builder: ((context, snapshot) {
+              var comment = snapshot.data?.data.comment;
+              return ListView.builder(
+                itemCount: comment?.length,
+                itemBuilder: (context, index) {
+                  return ItemComentarWidget(
+                    nama: comment?[index].author.username ?? "kosong",
+                    komentar: comment?[index].comment ?? "",
+                    profil: comment?[index].author.profil ?? "",
+                    mediaQueryWidth: mediaQueryWidth,
+                  );
+                },
+              );
+            }),
+          ),
         ),
       ),
       bottomSheet: Container(
@@ -90,10 +114,8 @@ class _KomentarScreenState extends State<KomentarScreen> {
                   border: Border.all(color: Colors.black),
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                 ),
-                child: TextField(
-                  onChanged: (value) {
-                    contentKomentar = value;
-                  },
+                child: TextFormField(
+                  controller: _comment,
                   decoration: const InputDecoration(
                     hintText: "Masukan Komentar...",
                     border: InputBorder.none,
@@ -102,19 +124,24 @@ class _KomentarScreenState extends State<KomentarScreen> {
               ),
             ),
             IconButton(
-              splashRadius: 20,
+              // splashRadius: 20,
               onPressed: () {
-                if (contentKomentar.isNotEmpty) {
+                if (_comment.text.isNotEmpty) {
+                  CommentThread().postComment(
+                    threadId: widget.idThread!,
+                    comment: _comment.text,
+                  );
+                  _comment.clear();
                   showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialogCustomWidget(
-                          bodyHeight: bodyHeight,
-                          mediaQueryWidth: mediaQueryWidth,
                           warna: primary500,
                           text: "Komentar telah terkirim",
                         );
                       });
+
+                  setState(() {});
                 }
               },
               icon: Image.asset(
