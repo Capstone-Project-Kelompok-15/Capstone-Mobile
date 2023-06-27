@@ -66,7 +66,7 @@ class _KomentarScreenState extends State<KomentarScreen> {
                 itemCount: comment?.length,
                 itemBuilder: (context, index) {
                   return ItemComentarWidget(
-                    nama: comment?[index].author.username ?? "kosong",
+                    nama: comment?[index].author.username ?? "",
                     komentar: comment?[index].comment ?? "",
                     profil: comment?[index].author.profil ?? "",
                     mediaQueryWidth: mediaQueryWidth,

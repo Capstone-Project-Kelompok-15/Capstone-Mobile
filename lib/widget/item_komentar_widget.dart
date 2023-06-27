@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class ItemComentarWidget extends StatefulWidget {
   final double mediaQueryWidth;
-  String? nama;
-  String? komentar;
-  String? profil;
+  String nama;
+  String komentar;
+  String profil;
   ItemComentarWidget({
     super.key,
-    this.nama,
-    this.komentar,
-    this.profil,
+    required this.nama,
+    required this.komentar,
+    required this.profil,
     required this.mediaQueryWidth,
   });
 
@@ -48,8 +48,8 @@ class _ItemComentarWidget extends State<ItemComentarWidget> {
                     ),
             ),
           ),
-          title: Text(widget.nama!),
-          subtitle: Text(widget.komentar!),
+          title: Text(widget.nama),
+          subtitle: Text(widget.komentar),
         ),
       ],
     );
