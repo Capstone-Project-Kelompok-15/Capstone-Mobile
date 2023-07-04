@@ -1,8 +1,16 @@
+// ignore_for_file: unused_import, prefer_final_fields, unnecessary_null_comparison
+
+import 'dart:io';
+
+import 'package:capstone_mobile/screen/home_buttomNavigasi_screen.dart';
+import 'package:capstone_mobile/service/thread_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
 import 'package:capstone_mobile/widget/alert_dialog_widget.dart';
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:open_file/open_file.dart';
 
 class CreateThreadScreen extends StatefulWidget {
@@ -15,24 +23,33 @@ class CreateThreadScreen extends StatefulWidget {
 }
 
 class _CreateThreadScreenState extends State<CreateThreadScreen> {
-  void _pickerFile() async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) return;
+  File? imageFile;
+  String urlImage = "";
+  bool isImage = false;
+  TextEditingController _title = TextEditingController();
+  TextEditingController _content = TextEditingController();
 
-    final file = result.files.first;
-    _openFIle(file);
-  }
+  Future getImage() async {
+    final XFile? images =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (images != null) {
+      imageFile = File(images.path);
+    }
+    // uploadImage();
+    final imageupload = await ThreadService().uploadImage(imageFile);
+    if (imageupload != null) {
+      urlImage = imageupload;
+      isImage = true;
+    }
 
-  void _openFIle(PlatformFile file) {
-    OpenFile.open(file.path);
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    String content = "";
-    final argumentHeight =
-        (ModalRoute.of(context)?.settings.arguments ?? "") as double;
-
+    // String content = "";
+    // String title = "";
+    // ignore: unused_local_variable
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     // ignore: unused_local_variable
     final mediaQueryWidth = MediaQuery.of(context).size.width;
@@ -48,28 +65,34 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
           child: Center(
             child: ElevatedButton(
               onPressed: () {
-                if (content.isNotEmpty) {
+                if (_title.text.isNotEmpty && _content.text.isNotEmpty) {
                   showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialogCustomWidget(
-                          bodyHeight: argumentHeight,
-                          mediaQueryWidth: mediaQueryWidth,
-                          warna: primary500,
-                          text: "Komentar telah terkirim",
-                        );
-                      });
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogCustomWidget(
+                        warna: primary500,
+                        text: "Komentar telah terkirim",
+                      );
+                    },
+                  );
+                  ThreadService().postThread(
+                    title: _title.text,
+                    content: _content.text,
+                    imageFile: urlImage,
+                  );
+                  setState(() {});
+                  Navigator.pushReplacementNamed(
+                      context, HomeButtonmNavigasiScreen.routename);
                 } else {
                   showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialogCustomWidget(
-                          bodyHeight: argumentHeight,
-                          mediaQueryWidth: mediaQueryWidth,
-                          warna: danger500,
-                          text: "Gagal",
-                        );
-                      });
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogCustomWidget(
+                        warna: danger500,
+                        text: "Gagal",
+                      );
+                    },
+                  );
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -90,6 +113,10 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
         ),
       ],
     );
+    // ignore: unused_local_variable
+    final bodyHeight = mediaQueryHeight -
+        myAppbar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
 
     return Scaffold(
       appBar: myAppbar,
@@ -106,6 +133,10 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     border: Border.all(color: typography400),
                   ),
                   child: TextFormField(
+                    // onChanged: (value) {
+                    //   title = value;
+                    // },
+                    controller: _title,
                     decoration: const InputDecoration(
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,
@@ -124,10 +155,10 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                     ),
                   ),
                   child: TextFormField(
-                    onChanged: (value) {
-                      content = value;
-                    },
-
+                    // onChanged: (value) {
+                    //   content = value;
+                    // },
+                    controller: _content,
                     minLines:
                         15, // any number you need (It works as the rows for the textarea)
                     // keyboardType: TextInputType.multiline,
@@ -163,15 +194,22 @@ class _CreateThreadScreenState extends State<CreateThreadScreen> {
                       ],
                     ),
                     TextButton(
-                        onPressed: () {
-                          _pickerFile();
-                        },
-                        child: Text(
-                          "add",
-                          style: TextStyle(color: primary500),
-                        ))
+                      onPressed: () {
+                        getImage();
+                      },
+                      child: Text(
+                        "add",
+                        style: TextStyle(color: primary500),
+                      ),
+                    ),
                   ],
                 ),
+                isImage == true
+                    ? Image.network(
+                        urlImage,
+                        width: 150,
+                      )
+                    : Container(),
               ],
             ),
           ),

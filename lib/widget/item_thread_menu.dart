@@ -2,21 +2,21 @@ import 'package:capstone_mobile/style/font_style.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class BtnThreadMenu extends StatelessWidget {
+class ItemThreadMenu extends StatelessWidget {
   String imageIcon;
   String namaButton;
-  Function() navigasi;
-  BtnThreadMenu({
+  Function() onTap;
+  ItemThreadMenu({
     super.key,
     required this.imageIcon,
     required this.namaButton,
-    required this.navigasi,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: navigasi,
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.only(top: 10, bottom: 10),
         child: Row(

@@ -5,18 +5,15 @@ import 'package:flutter/material.dart';
 class AlertDialogCustomWidget extends StatelessWidget {
   AlertDialogCustomWidget({
     super.key,
-    required this.bodyHeight,
-    required this.mediaQueryWidth,
     required this.warna,
     required this.text,
   });
   String text;
   Color warna;
-  final double bodyHeight;
-  final double mediaQueryWidth;
 
   @override
   Widget build(BuildContext context) {
+    final mediaQueryWidth = MediaQuery.of(context).size.width;
     return AlertDialog(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
@@ -25,7 +22,7 @@ class AlertDialogCustomWidget extends StatelessWidget {
       ),
       backgroundColor: warna,
       content: SizedBox(
-        height: bodyHeight * 0.018,
+        height: 18,
         width: mediaQueryWidth,
         child: Center(
           child: Text(
