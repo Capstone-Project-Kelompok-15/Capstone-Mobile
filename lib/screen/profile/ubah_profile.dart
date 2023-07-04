@@ -3,7 +3,10 @@ import 'dart:io';
 // import 'package:capstone_mobile/service/detail_user.dart';
 
 import 'package:capstone_mobile/model/detail_user_response.dart';
+import 'package:capstone_mobile/model/update_detail_user_response.dart';
 import 'package:capstone_mobile/service/detail_user.dart';
+import 'package:capstone_mobile/service/thread_service.dart';
+import 'package:capstone_mobile/service/update_image_service.dart';
 import 'package:capstone_mobile/service/update_user_service.dart';
 import 'package:capstone_mobile/style/color_style.dart';
 import 'package:capstone_mobile/style/font_style.dart';
@@ -16,16 +19,14 @@ class UbahProfileScreen extends StatefulWidget {
   final String? id;
   final String? username;
   final String? bio;
-  final String? email;
-  final String? password;
+  final File? imageUrl;
 
   const UbahProfileScreen({
     super.key,
     this.id,
     this.username,
     this.bio,
-    this.email,
-    this.password,
+    this.imageUrl,
   });
 
   @override
@@ -33,27 +34,36 @@ class UbahProfileScreen extends StatefulWidget {
 }
 
 class _UbahProfileScreenState extends State<UbahProfileScreen> {
-  File? _imageFile;
-  final ImagePicker _picker = ImagePicker();
-  String? _profileImagePath;
+  File? imageFile;
+  String urlImage = "";
+  bool isImage = false;
+
   final TextEditingController _controllerUpdateNama = TextEditingController();
   final TextEditingController _controllerUpdateBio = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    UpdateUser().updateUser;
     _controllerUpdateNama.text = widget.username ?? '';
     _controllerUpdateBio.text = widget.bio ?? '';
   }
 
-  void selectPhoto(ImageSource source) async {
-    final pickedFile = await _picker.pickImage(source: source);
-    if (pickedFile != null) {
-      setState(() {
-        _imageFile = File(pickedFile.path);
-        _profileImagePath = null;
-      });
+  Future getImage() async {
+    final XFile? images =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (images != null) {
+      imageFile = File(images.path);
     }
+    // uploadImage();
+    final imageupload = await UpdateUser().uploadImage(imageFile);
+    // ignore: unnecessary_null_comparison
+    if (imageupload != null) {
+      urlImage = imageupload;
+      isImage = true;
+    }
+
+    setState(() {});
   }
 
   @override
@@ -94,12 +104,12 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                     ),
                     GestureDetector(
                         onTap: () async {
+                          Navigator.pop(context);
                           await UpdateUser().updateUser(
                             _controllerUpdateNama.text,
                             _controllerUpdateBio.text,
+                            urlImage,
                           );
-                          // ignore: use_build_context_synchronously
-                          Navigator.pop(context);
                         },
                         child: Image.asset(
                           'assets/icon/centang.png',
@@ -113,22 +123,22 @@ class _UbahProfileScreenState extends State<UbahProfileScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundImage: _imageFile != null
-                          ? FileImage(_imageFile!)
-                          : (_profileImagePath != null
-                                  ? FileImage(File(_profileImagePath!))
-                                  : const AssetImage(
-                                      "assets/images/fotodummy.png"))
-                              as ImageProvider,
-                    ),
+                    FutureBuilder(
+                        future: UserService().getdetailUser(),
+                        builder: (context, snapshot) {
+                          final user = snapshot.data?.data;
+                          return CircleAvatar(
+                              radius: 50,
+                              backgroundImage: urlImage.isNotEmpty
+                                  ? NetworkImage(urlImage) as ImageProvider
+                                  : NetworkImage(user?.imageUrl ?? ''));
+                        }),
                     const SizedBox(
                       width: 20,
                     ),
                     GestureDetector(
                       onTap: () {
-                        selectPhoto(ImageSource.gallery);
+                        getImage();
                       },
                       child: Text(
                         'Ubah Gambar Profile',

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:capstone_mobile/screen/profile/menu_profile.dart';
 import 'package:capstone_mobile/screen/profile/postingan_tabbar.dart';
 import 'package:capstone_mobile/screen/profile/tabbar/diikuti_tabbar.dart';
@@ -22,11 +24,11 @@ class ProfileUserScreen extends StatefulWidget {
 class _ProfileUserScreenState extends State<ProfileUserScreen>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  bool isImage = true;
 
   @override
   void initState() {
     _tabController = TabController(length: 4, vsync: this);
-
     super.initState();
   }
 
@@ -101,14 +103,25 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                     child: Column(
                       // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        ClipRRect(
-                          child: Image.asset(
-                            "assets/images/fotodummy.png",
-                            height: 89.0,
-                            width: 89.0,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                        isImage == true
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(89),
+                                child: Image.network(
+                                  userDetails?.imageUrl ?? '',
+                                  height: 89.0,
+                                  width: 89.0,
+                                  fit: BoxFit.fill,
+                                ),
+                              )
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(89),
+                                child: Image.asset(
+                                  "assets/images/fotodummy.png",
+                                  height: 89.0,
+                                  width: 89.0,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
                         const SizedBox(height: 18),
                         SizedBox(
                           height: 40,
@@ -181,6 +194,8 @@ class _ProfileUserScreenState extends State<ProfileUserScreen>
                                       builder: (context) => UbahProfileScreen(
                                         username: userDetails?.username ?? '',
                                         bio: userDetails?.bio ?? '',
+                                        imageUrl:
+                                            File(userDetails?.imageUrl ?? ''),
                                       ),
                                     ),
                                   );

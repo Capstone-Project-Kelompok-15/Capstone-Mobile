@@ -1,45 +1,35 @@
-import 'dart:async';
-import 'dart:io';
-
-import 'package:capstone_mobile/model/update_detail_user_response.dart';
+import 'package:capstone_mobile/constant.dart';
+import 'package:capstone_mobile/service/login_service.dart';
 import 'package:dio/dio.dart';
 
-import '../constant.dart';
-import 'login_service.dart';
-
-class UpdateUser {
-  Future<UpdateUserResponse> updateUser(
-    String username,
-    String bio,
-    String imageUrl,
-  ) async {
-    String token = await getToken();
-
+class UserImageService {
+  Future<void> postImage({
+    String? imageFile,
+  }) async {
+    String cekUser = await getToken();
     try {
-      final response = await Dio().put("$baseUrl/userprofile",
-          options: Options(
-            headers: {"Authorization": "Bearer $token"},
-          ),
+      final response = await Dio().post("$baseUrl/userprofile",
+          options: Options(headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'Authorization': 'Bearer $cekUser'
+          }),
           data: {
-            'username': username,
-            'bio': bio,
-            'image_url': imageUrl,
+            "file": imageFile,
           });
       if (response.statusCode == 200) {
+        // ignore: avoid_print
         print("berhasil");
-        print(response.data);
-        return UpdateUserResponse.fromMap(response.data);
       }
     } on DioException catch (e) {
-      print(e.response?.data);
+      // ignore: avoid_print
+      print(e);
     }
-    throw Exception('Failed to update user.');
   }
 
   Future<String> uploadImage(imageFile) async {
     // ignore: unused_local_variable
     FormData formData = FormData.fromMap({
-      'image_url': await MultipartFile.fromFile(imageFile.path),
+      'image_url': await MultipartFile.fromFile(imageFile!.path),
     });
     try {
       final response = await Dio().post(
